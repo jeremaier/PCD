@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane ?>
-<?import javafx.scene.control.Button ?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.TextFlow?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.pcd2k17.MainController">
-  <center>
-    <Button fx:id="button" text="Ok" onAction="#handleClickOk"/>
-  </center>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="eu.telecomnancy.pcd2k17.MainController">
+   <top>
+      <TextFlow prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+    <Button onAction="#handleClickOk" text="Ok" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

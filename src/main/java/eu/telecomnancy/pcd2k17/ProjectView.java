@@ -3,6 +3,8 @@ package eu.telecomnancy.pcd2k17;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -39,11 +41,26 @@ public class ProjectView {
         try {
             List<Project> list = gitLab.getProjectApi().getMemberProjects();
             final TitledPane[] tps = new TitledPane[list.size()];
+            final Button[] buttons =new Button[list.size()];
             int i=0;
+            System.out.println("COUCOU");
+            System.out.println(list.size());
             for (Project p : list) {
-                tps[i]=new TitledPane(p.getName(), new Button("OK"));
+                buttons[i]=new Button("Modifier");
+                buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        try {
+                            new ConfigurationView(p);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                tps[i]=new TitledPane(p.getName(), buttons[i]);
                 System.out.println(p.getName());
                 System.out.println(p.getArchived());
+                i++;
             }
             accordion.getPanes().addAll(tps);
             accordion.setExpandedPane(tps[0]);

@@ -21,19 +21,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    primaryStage.setTitle("SchoolRoom - Logging");
-
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("main.fxml"));
-    Parent root = loader.load();
-
-    primaryStage.setOnCloseRequest(event -> {
-      log.debug("terminating application.");
-      Platform.exit();
-    });
-
-    primaryStage.setScene(new Scene(root, 320, 200));
-    primaryStage.show();
+      new LogView(primaryStage);
   }
 
 }
