@@ -5,6 +5,6 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.pcd2k17.MainController">
   <center>
-    <Button text="Ok" onAction="#handleClickOk"/>
+    <Button fx:id="button" text="Ok" onAction="#handleClickOk"/>
   </center>
 </BorderPane>

@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 
+
   final static Logger log = LogManager.getLogger(Main.class);
 
   public static void main(String args[]) {
@@ -20,7 +21,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    primaryStage.setTitle("JFX Sample Application");
+    primaryStage.setTitle("SchoolRoom - Logging");
 
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("main.fxml"));
@@ -30,6 +31,7 @@ public class Main extends Application {
       log.debug("terminating application.");
       Platform.exit();
     });
+
     primaryStage.setScene(new Scene(root, 320, 200));
     primaryStage.show();
   }
