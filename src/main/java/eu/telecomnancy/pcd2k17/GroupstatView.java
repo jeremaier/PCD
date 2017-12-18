@@ -8,29 +8,30 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class LogView {
+public class GroupstatView {
 
-    final static Logger log = LogManager.getLogger(LogView.class);
+    final static Logger log = LogManager.getLogger(GroupstatView.class);
 
-    public LogView (Stage primaryStage) throws Exception{
+    public GroupstatView () throws Exception{
 
-        primaryStage.setTitle("SchoolRoom login");
+        Stage window = new Stage();
+
+        window.setTitle("SchoolRoom login");
 
         FXMLLoader logviewloader = new FXMLLoader();
         logviewloader.setLocation(getClass().getResource("log.fxml"));
         Parent rootlog = logviewloader.load();
 
-        primaryStage.setOnCloseRequest(event -> {
+        window.setOnCloseRequest(event -> {
             log.debug("terminating application.");
             Platform.exit();
         });
 
 
-        primaryStage.setScene(new Scene(rootlog, 600, 200));
-        primaryStage.show();
+        window.setScene(new Scene(rootlog, 600, 200));
+        window.show();
 
     }
 
 
 }
-

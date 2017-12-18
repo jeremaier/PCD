@@ -19,8 +19,10 @@ public class LogController {
 
     @FXML TextField password_fill;
     @FXML TextField identifiant_fill;
+    @FXML TextField cToken;
     @FXML Button connect_button;
 
+    String connectiontoken;
 
     final static Logger log = LogManager.getLogger( LogController.class);
 
@@ -28,29 +30,13 @@ public class LogController {
     public void TryConnect(ActionEvent event) {
         log.debug("connection button was clicked!");
         if ((identifiant_fill.getText().equals("admin") ) && (password_fill.getText().equals("admin"))){
+
+            connectiontoken=cToken.getText();
             Stage stage = (Stage) connect_button.getScene().getWindow();
             stage.close();
 
-            Stage window = new Stage();
-            window.setTitle("SchoolRoom - Project");
+            new ProjectView(connectiontoken);
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("ProjectView.fxml"));
-            loader.setControllerFactory(iC-> new ProjectView());
-            Parent root = null;
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            window.setOnCloseRequest(event2 -> {
-                log.debug("terminating application.");
-                Platform.exit();
-            });
-
-            window.setScene(new Scene(root, 800, 600));
-            window.show();
         } else {
             identifiant_fill.clear();
             password_fill.clear();
