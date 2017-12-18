@@ -1,3 +1,5 @@
+package eu.telecomnancy.pcd2k17;
+
 public class Group {
 
     public int id;
@@ -8,7 +10,7 @@ public class Group {
     public Group(int id, String name, int number) {
         this.id = id;
         this.name = name;
-        this.number = number;
+        this.number = 0;
         this.members = new String[10];
     }
 
@@ -20,8 +22,8 @@ public class Group {
     }
 
     public void addMember(String member) {
-        this.number++;
         this.members[number] = member;
+        this.number++;
     }
 
     public void removeMember(String member) {
@@ -43,14 +45,23 @@ public class Group {
         return this.members[i];
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getID() {
+        return this.id;
+    }
+
     public String getMembers() {
         String res = "(";
         for (int i=0;i<this.number;i++) {
             res += this.getMember(i);
-            if (i!=this.number) {
+            if (i!=this.number-1) {
                 res+=", ";
             }
         }
+        res+=(")");
         return res;
     }
 }
