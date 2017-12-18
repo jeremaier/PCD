@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 
 public class MainController {
 
-  final static Logger log = LogManager.getLogger(MainController.class);
+  final static Logger log = LogManager.getLogger( MainController.class);
 
   @FXML
   public void handleClickOk(ActionEvent event) {
