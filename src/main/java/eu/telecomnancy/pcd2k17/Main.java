@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class Main extends Application  {
 
+
   final static Logger log = LogManager.getLogger(Main.class);
 
   public static void main(String args[]) {
