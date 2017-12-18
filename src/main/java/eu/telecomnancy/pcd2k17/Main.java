@@ -20,17 +20,17 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    primaryStage.setTitle("JFX Sample Application");
+    primaryStage.setTitle("TELECOM Nancy Schoolroom");
 
     FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("main.fxml"));
+    loader.setLocation(getClass().getResource("GroupsView.fxml"));
     Parent root = loader.load();
 
     primaryStage.setOnCloseRequest(event -> {
       log.debug("terminating application.");
       Platform.exit();
     });
-    primaryStage.setScene(new Scene(root, 320, 200));
+    primaryStage.setScene(new Scene(root, 800, 600));
     primaryStage.show();
   }
 
