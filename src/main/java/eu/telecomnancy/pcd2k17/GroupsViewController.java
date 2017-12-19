@@ -1,8 +1,13 @@
 package eu.telecomnancy.pcd2k17;
 
+import javafx.scene.Node;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.TextField;
@@ -20,10 +25,11 @@ public class GroupsViewController implements Initializable {
     final static Logger log = LogManager.getLogger(Main.class);
 
     private int number;
-    private int numberGroups;
+    //private int this.groupes2.size();
     private int taille;
     private TextField[][] textes;
     public Group[] groupes;
+    public ArrayList<Group> groupes2;
     public Button[] boutons;
 
     public Project project;
@@ -40,40 +46,47 @@ public class GroupsViewController implements Initializable {
     @FXML
     private Label groupLabel;
 
+    @FXML
+    private Button studentListButton;
+
     public GroupsViewController(Project project) {
         this.project = project;
     }
 
     public void redo() {
+        Node node = this.groupsTab.getChildren().get(0);
         this.groupsTab.getChildren().clear();
-        this.groupsTab.setGridLinesVisible(true);
-        for (int i=0;i<numberGroups;i++) {
-            addGroup(groupes[i],i);
+        this.groupsTab.getChildren().add(0,node);
+        //this.groupsTab.setGridLinesVisible(true);
+        for (int i=0;i<this.groupes2.size();i++) {
+            addGroup(groupes2.get(i),i+1);
         }
     }
 
-
     public void deleteAll() {
-        this.numberGroups = 0;
+        //this.groupes2.size() = 0;
         this.groupes = new Group[100];
+        Node node = this.groupsTab.getChildren().get(0);
         this.groupsTab.getChildren().clear();
+        this.groupsTab.getChildren().add(0,node);
     }
 
 
     public void removeGroup(int pos) {
-
-        for (int j=pos;j<this.numberGroups;j++) {
+        //pos = pos-1;
+        /*for (int j=pos;j<this.groupes2.size();j++) {
             this.groupes[j] = this.groupes[j+1];
         }
-        this.groupes[this.numberGroups] = null;
-        numberGroups--;
+        this.groupes[this.groupes2.size()] = null;*/
+
+        this.groupes2.remove(groupes2.get(pos));
         redo();
-        this.groupsTab.setGridLinesVisible(true);
     }
     public void addGroup() {
-        Group groupe = new Group(this.numberGroups+1,"Dreamteam",number);
-        this.groupes[this.numberGroups] = groupe;
-        this.numberGroups++;
+        Group groupe = new Group(this.groupes2.size()+1,"Dreamteam",number);
+        //this.groupes[this.groupes2.size()+1] = groupe;
+        this.groupes2.add(groupe);
+        //this.groupes2.size()++;
         boolean groupOK = true;
         for (int i=0;i<number;i++) {
             if ((textes[i][0].getLength()==0) || (textes[i][1].getLength()==0)) {
@@ -82,12 +95,13 @@ public class GroupsViewController implements Initializable {
             }
         }
 
-
         for (int i=0;i<number;i++) {
             if (groupOK) {
                 groupe.addMember(textes[i][0].getText()+" "+textes[i][1].getText());
-                groupLabel.setText("Le groupe a été créé !");
-                groupLabel.setText("");
+                textes[i][0].setText("");
+                textes[i][0].setPromptText("Nom");
+                textes[i][1].setText("");
+                textes[i][1].setPromptText("Prénom");
             }
         }
 
@@ -98,14 +112,17 @@ public class GroupsViewController implements Initializable {
             groupe.setName(nameGroupTF.getText());
         }
         if (groupOK) {
-            addGroup(groupe, this.numberGroups);
+            groupLabel.setText("");
+            nameGroupTF.setText("");
+            nameGroupTF.setPromptText("Nom du groupe");
+            addGroup(groupe, this.groupes2.size());
         }
     }
 
     private void addGroup(Group groupe, int pos) {
         Label nom = new Label(groupe.name);
         nom.setPadding(new Insets(10, 10, 10, 10));
-        //this.numberGroups++;
+        //this.groupes2.size()++;
         nom.setPrefHeight(30);
         groupsTab.add(nom,0,pos);
         for (int n=1;n<groupe.number+1;n++) {
@@ -114,24 +131,37 @@ public class GroupsViewController implements Initializable {
             membre.setPrefHeight(30);
             groupsTab.add(membre,n,pos);
         }
-        boutons[this.numberGroups-1] = new Button("X");
-        boutons[this.numberGroups-1].setPadding(new Insets(10, 10, 10, 10));
-        int i = this.numberGroups;
-        boutons[this.numberGroups-1].setOnAction(e -> removeGroup(pos));
-        groupsTab.add(boutons[this.numberGroups-1],groupe.number+1,pos);
+        boutons[this.groupes2.size()-1] = new Button("X");
+        boutons[this.groupes2.size()-1].setPadding(new Insets(10, 10, 10, 10));
+        //int i = this.groupes2.size();
+        boutons[this.groupes2.size()-1].setOnAction(e -> removeGroup(pos-1));
+        groupsTab.add(boutons[this.groupes2.size()-1],groupe.number+1,pos);
 
-        this.taille = (numberGroups+1)*30+(numberGroups)*2;
+        this.taille = (this.groupes2.size()+1)*30+(this.groupes2.size())*2;
         groupsTab.setPrefSize(390,taille);
+    }
 
-        this.groupsTab.setGridLinesVisible(true);
+    public void showStudentList() {
+        try {
+            new StudentListView(this.project);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.groupes = new Group[100];
+        /*try {
+            new StudentListView(this.project);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        //this.groupes = new Group[100];
+        this.groupes2 = new ArrayList<Group>();
         this.number = 4;
-        this.numberGroups = 0;
+        //this.groupes2.size() = 0;
         textes = new TextField[number][2];
         taille = number*30+(number-1)*5;
         TextFieldTab.setHgap(5);

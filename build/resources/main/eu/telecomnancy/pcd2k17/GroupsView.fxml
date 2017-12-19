@@ -95,12 +95,14 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="deleter" layoutX="647.0" layoutY="-1.0" maxHeight="20.0" mnemonicParsing="false" onAction="#deleteAll" prefHeight="20.0" text="Tout supprimer" />
+                  <Button fx:id="deleter" layoutX="491.0" layoutY="1.0" maxHeight="20.0" mnemonicParsing="false" onAction="#deleteAll" prefHeight="20.0" text="Tout supprimer" />
+                  <Button layoutX="633.0" layoutY="1.0" mnemonicParsing="false" text="Valider les groupes" />
+                  <Button fx:id="studentListButton" layoutX="342.0" layoutY="1.0" mnemonicParsing="false" onAction="#showStudentList" text="Liste des élèves" />
                </children>
             </Pane>
             <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
                <content>
-                  <GridPane id="groupsTab" fx:id="groupsTab" gridLinesVisible="true" minWidth="775.0" prefHeight="190.0" prefWidth="775.0">
+                  <GridPane id="groupsTab" fx:id="groupsTab" gridLinesVisible="true" minWidth="760.0" prefHeight="190.0" prefWidth="760.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -128,5 +130,10 @@
             <Image url="@../../../../../../../../Desktop/Capture%20d’écran%202017-12-18%20à%2016.24.20.png" />
          </image>
       </ImageView>
+      <Label fx:id="projectName" layoutX="13.0" layoutY="67.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
