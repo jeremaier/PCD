@@ -16,3 +16,21 @@ En cliquant sur un projet, on voit apparaître un bouton "modifier" qui permet d
 
 Les autres interfaces ne sont pas encore accessibles depuis ce programme.
 
+
+##  RELEASE_DAY_2
+Deuxième jour de code.
+
+Les 2 premières étapes sont indentiques. Cependant, des messages d'erreur ont été ajoutés en cas d'echec de connexion.
+
+    3ème étape
+On peut maintenant créer un nouveau fichier en appuyant sur "Nouveau Projet" ou actualiser la session.
+De plus, sur chaque projet est disponible un certains nombres d'informations dont les options "modifier" et "supprimer".
+
+    4ème étape
+Le bouton "Gestionnaire de groupes" permet d'accéder à des réglages permettant de créer des groupes. Ce gestionnaire prend en charge la lecture des fichiers .csv.
+
+
+À noter que d'autres fonctionnalités n'ont pas encore été liées au reste du projet (notemment les statistiques de chacun des groupes)
+
+
+

@@ -22,6 +22,7 @@ public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
       new LogView(primaryStage);
+      //new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
   }
 
 }

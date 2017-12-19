@@ -1,19 +1,10 @@
 package eu.telecomnancy.pcd2k17;
-
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import javafx.scene.control.ScrollPane;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-
-import java.awt.*;
 import java.io.IOException;
 
 public class MainController {
@@ -29,7 +20,7 @@ public class MainController {
 
     log.debug("ok button was clicked!");
 
-    new ProjectView("vQZL2K-1161fbxFAwLsS");
+    new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
 
   }
 
