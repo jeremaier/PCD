@@ -37,6 +37,27 @@ public class GroupsViewController implements Initializable {
     @FXML
     private GridPane groupsTab;
 
+    @FXML
+    private Button createGroup;
+
+    @FXML
+    private TextField nameGroupTF;
+
+    public void addGroup() {
+        Group groupe = new Group(this.numberGroups+1,"Dreamteam",number);
+        for (int i=0;i<number;i++) {
+            groupe.addMember(textes[i][0].getText()+" "+textes[i][1].getText());
+        }
+
+        if (nameGroupTF.getText().length()==0) {
+            groupe.setName("Groupe "+groupe.id);
+        }
+        else {
+            groupe.setName(nameGroupTF.getText());
+        }
+        addGroup(groupe);
+    }
+
     public void addGroup(Group groupe) {
         Label nom = new Label(groupe.name);
         nom.setPadding(new Insets(10, 10, 10, 10));
@@ -73,12 +94,24 @@ public class GroupsViewController implements Initializable {
             text2.setPromptText("Prénom");
             text2.setPrefHeight(30);
 
+            final int j = i;
+            text1.textProperty().addListener((observable, oldValue, newValue) -> {
+                System.out.println("textfield ("+j+",0) changed from " + oldValue + " to " + newValue);
+            });
+
+            text2.textProperty().addListener((observable, oldValue, newValue) -> {
+                System.out.println("textfield ("+ j +",1) changed from " + oldValue + " to " + newValue);
+            });
+
+
             textes[i][0] = text1;
+            textes[i][0].textProperty().addListener((observable, oldValue, newValue) -> {
+                System.out.println("textfield 1 changed from " + oldValue + " to " + newValue);
+            });
             TextFieldTab.add(text1,0,i);
             textes[i][1] = text2;
             TextFieldTab.add(text2,1,i);
         }
-
 
         this.numberGroups = 0;
         groupes = new Group[numberGroups];
