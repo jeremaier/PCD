@@ -15,22 +15,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
+import org.gitlab4j.api.models.Project;
 //import Group;
 
 public class GroupsView {
 
     final static Logger log = LogManager.getLogger(Main.class);
 
-    public GroupsView() {
-
-    }
-
-    public GroupsView (Stage primaryStage) throws Exception{
+    public GroupsView (Stage primaryStage, Project project) throws Exception{
 
         primaryStage.setTitle("SchoolRoom groups");
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("GroupsView.fxml"));
+        loader.setControllerFactory(iC -> new GroupsViewController(project));
         Parent root = loader.load();
 
         primaryStage.setOnCloseRequest(event -> {

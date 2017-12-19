@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import org.gitlab4j.api.models.Project;
 
 public class Main extends Application {
 
@@ -21,7 +22,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-      new GroupsView(primaryStage);
+      new GroupsView(primaryStage, new Project());
   }
 
 }
