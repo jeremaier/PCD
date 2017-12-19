@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 public class Main extends Application  {
 
 
+
   final static Logger log = LogManager.getLogger(Main.class);
 
   public static void main(String args[]) {
@@ -20,7 +21,7 @@ public class Main extends Application  {
   @Override
   public void start(Stage primaryStage) throws Exception {
 
-    new LogView(primaryStage);
+      new LogView(primaryStage);
 
   }
 

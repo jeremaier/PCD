@@ -1,11 +1,13 @@
 package eu.telecomnancy.pcd2k17;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import javafx.event.ActionEvent;
 
 public class ProjectController {
 
-    final static Logger log = LogManager.getLogger( ProjectController.class);
+    public void handleClick(ActionEvent event){
+
+    }
 
 
 }

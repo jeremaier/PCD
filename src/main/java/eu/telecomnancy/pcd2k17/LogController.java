@@ -27,7 +27,8 @@ public class LogController {
     final static Logger log = LogManager.getLogger( LogController.class);
 
 
-    public void TryConnect(ActionEvent event) {
+
+    public void TryConnect(ActionEvent event){
         log.debug("connection button was clicked!");
         if ((identifiant_fill.getText().equals("admin") ) && (password_fill.getText().equals("admin"))){
 
@@ -35,7 +36,11 @@ public class LogController {
             Stage stage = (Stage) connect_button.getScene().getWindow();
             stage.close();
 
-            new ProjectView(connectiontoken);
+            try {
+                new ProjectView(connectiontoken);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } else {
             identifiant_fill.clear();
