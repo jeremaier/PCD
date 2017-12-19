@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 
+
   final static Logger log = LogManager.getLogger(Main.class);
 
   public static void main(String args[]) {
@@ -20,18 +21,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    primaryStage.setTitle("TELECOM Nancy Schoolroom");
-
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource("GroupsView.fxml"));
-    Parent root = loader.load();
-
-    primaryStage.setOnCloseRequest(event -> {
-      log.debug("terminating application.");
-      Platform.exit();
-    });
-    primaryStage.setScene(new Scene(root, 800, 600));
-    primaryStage.show();
+      new GroupsView(primaryStage);
   }
 
 }
