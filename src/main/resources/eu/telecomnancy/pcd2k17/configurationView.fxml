@@ -30,7 +30,7 @@
                   <Insets left="50.0" />
                </FlowPane.margin>
             </Label>
-            <RadioButton mnemonicParsing="false" text="Publique">
+            <RadioButton fx:id="Public" mnemonicParsing="false" onAction="#handleClickPublic" text="Publique">
                <toggleGroup>
                   <ToggleGroup fx:id="optionToggleGroup" />
                </toggleGroup>
@@ -38,7 +38,7 @@
                   <Insets left="20.0" />
                </FlowPane.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Privé" toggleGroup="$optionToggleGroup">
+            <RadioButton fx:id="Private" mnemonicParsing="false" onAction="#handleClickPrivate" text="Privé" toggleGroup="$optionToggleGroup">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
@@ -91,7 +91,7 @@
                   <Insets left="20.0" />
                </FlowPane.margin>
             </Button>
-            <Button fx:id="Archive" alignment="CENTER" mnemonicParsing="false" onAction="#handleClickArchive" prefHeight="45.0" prefWidth="140.0" text="Archiver" textAlignment="CENTER">
+            <Button fx:id="Archive" alignment="CENTER" mnemonicParsing="false" onAction="#handleClickArchive" prefHeight="45.0" prefWidth="140.0" textAlignment="CENTER">
                <FlowPane.margin>
                   <Insets left="20.0" right="30.0" />
                </FlowPane.margin>

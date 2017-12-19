@@ -6,41 +6,35 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.gitlab4j.api.models.Project;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class ConfigurationView {
 
     final static Logger log = LogManager.getLogger(ConfigurationView.class);
-    private static Project project;
+    private Project project;
 
-    public ConfigurationView(){}
+    public ConfigurationView() {}
 
-    public ConfigurationView(Project proj) throws IOException {
-        log.debug("executing ConfigurationView method.");
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("JFX Sample Application");
+    public ConfigurationView(Project project) throws IOException {
+        this.project = project;
+        Stage configurationStage = new Stage();
+        configurationStage.setTitle("Configuration d'un projet");
+        configurationStage.setResizable(false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("configurationView.fxml"));
+        loader.setControllerFactory(iC -> new ConfigurationViewController(project));
         Parent root = loader.load();
 
-        primaryStage.setOnCloseRequest(event -> {
-            log.debug("terminating application.");
-            primaryStage.close();
+        configurationStage.setOnCloseRequest(event -> {
+            log.debug("Fermeture");
+            configurationStage.close();
         });
 
-        primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.show();
-    }
-
-    public static Project getProject() {
-        return project;
-    }
-
-    public static void setProject(String title, String module, String nbMembers, LocalDate firstDate,LocalDate lastDate, String description) {
-        project = new Project(title, module, nbMembers, firstDate, lastDate, description);
+        configurationStage.setScene(new Scene(root, 800, 600));
+        configurationStage.show();
     }
 }
 
