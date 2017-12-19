@@ -57,8 +57,8 @@ public class ProjectController implements Initializable {
             e.printStackTrace();
         }
         nb++;
+        nb++;
         String name = "unknownProject" + Integer.toString(nb);
-
         try {
             Project newProject = gitlab.getProjectApi().createProject(name);
             new ConfigurationView(newProject);

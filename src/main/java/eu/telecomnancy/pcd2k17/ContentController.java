@@ -34,6 +34,9 @@ public class ContentController implements Initializable {
     private Button modify;
 
     @FXML
+    private Button group;
+
+    @FXML
     private Button supp;
 
     @FXML
@@ -74,6 +77,18 @@ public class ContentController implements Initializable {
                 }
             }
         });
+        group.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Stage groupStage= new Stage();
+                try {
+                    new GroupsView(groupStage,proj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         Text description = new Text(proj.getDescription());
         text.getChildren().add(description);
 

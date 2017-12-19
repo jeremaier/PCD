@@ -11,7 +11,7 @@
    <children>
       <Button fx:id="modify" layoutX="43.0" layoutY="129.0" mnemonicParsing="false" text="Modifier" />
       <Button fx:id="supp" layoutX="153.0" layoutY="129.0" mnemonicParsing="false" text="Supprimer" />
-      <Button fx:id="supp1" layoutX="278.0" layoutY="129.0" mnemonicParsing="false" text="Gestionnaire de groupes" />
+      <Button fx:id="group" layoutX="278.0" layoutY="129.0" mnemonicParsing="false" text="Gestionnaire de groupes" />
       <Label layoutX="23.0" layoutY="87.0" text="Options">
          <font>
             <Font size="20.0" />
