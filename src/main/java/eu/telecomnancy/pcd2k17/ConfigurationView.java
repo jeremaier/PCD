@@ -1,27 +1,24 @@
 package eu.telecomnancy.pcd2k17;
 
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.gitlab4j.api.models.Project;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
-public class ConfigurationView{
+public class ConfigurationView {
 
     final static Logger log = LogManager.getLogger(ConfigurationView.class);
+    private static Project project;
 
-    public ConfigurationView(){
-
-    }
-
+    public ConfigurationView(){}
 
     public ConfigurationView(Project proj) throws IOException {
+        log.debug("executing ConfigurationView method.");
         Stage primaryStage = new Stage();
         primaryStage.setTitle("JFX Sample Application");
 
@@ -37,4 +34,13 @@ public class ConfigurationView{
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
+
+    public static Project getProject() {
+        return project;
+    }
+
+    public static void setProject(String title, String module, String nbMembers, LocalDate firstDate,LocalDate lastDate, String description) {
+        project = new Project(title, module, nbMembers, firstDate, lastDate, description);
+    }
 }
+

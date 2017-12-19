@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -8,15 +9,15 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="controllerView" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.ConfigurationViewController">
-    <children>
+   <children>
       <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="14.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
          <children>
             <TextField fx:id="Title" prefHeight="35.0" prefWidth="272.0" promptText="Titre*">
@@ -30,9 +31,9 @@
                </FlowPane.margin>
             </Label>
             <RadioButton mnemonicParsing="false" text="Publique">
-                <toggleGroup>
-                    <ToggleGroup fx:id="optionToggleGroup" />
-                </toggleGroup>
+               <toggleGroup>
+                  <ToggleGroup fx:id="optionToggleGroup" />
+               </toggleGroup>
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
@@ -146,5 +147,14 @@
             <InnerShadow />
          </effect>
       </Separator>
+      <Accordion layoutX="-2.0" layoutY="300.0" prefHeight="93.0" prefWidth="800.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+        <panes>
+          <TitledPane animated="false" prefWidth="760.0" text="Membres">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
    </children>
 </AnchorPane>
