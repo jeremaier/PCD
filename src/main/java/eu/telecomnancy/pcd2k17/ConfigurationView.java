@@ -15,9 +15,8 @@ public class ConfigurationView {
     final static Logger log = LogManager.getLogger(ConfigurationView.class);
     private Project project;
 
-    public ConfigurationView() {}
-
     public ConfigurationView(Project project) throws IOException {
+        super();
         this.project = project;
         Stage configurationStage = new Stage();
         configurationStage.setTitle("Configuration d'un projet");

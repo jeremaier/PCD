@@ -1,50 +1,51 @@
 package eu.telecomnancy.pcd2k17;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
 public class ProjectConfiguration implements Serializable {
-    // Constant
     private static final long serialVersionUID = 1L;
 
     private int id;
-    private String title;
-    private Boolean visibility;
+    private String name;
+    private int visibility;
     private String module;
     private int nbMembers;
     private LocalDate firstDay;
     private LocalDate lastDay;
     private String description;
+    private ArrayList members;
 
-    public ProjectConfiguration(String title, Boolean visibility, String module, String nbMembers, LocalDate firstDay, LocalDate lastDay, String description) {
-        this.title = title;
-        this.visibility = visibility;
-        this.lastDay = lastDay;
-        this.module = module;
-        this.description = description;
+    public ProjectConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDay, LocalDate lastDay, String description, ArrayList members) {
+        this.setId(id);
+        this.setName(name);
+        this.setVisibility(visibility);
+        this.setLastDay(lastDay);
+        this.setModule(module);
+        this.setDescription(description);
+        this.setMembers(members);
 
-        if(nbMembers.equals(""))
-            this.nbMembers = 0;
-        else this.nbMembers = Integer.parseInt(nbMembers);
+        if(nbMembers.isEmpty())
+            this.setNbMembers(0);
+        else this.setNbMembers(Integer.parseInt(nbMembers));
 
-        if(firstDay == null) {
-            Date date = new Date();
-
-            this.firstDay = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        } else this.firstDay = firstDay;
+        if(firstDay == null)
+            this.setFirstDay((new Date()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        else this.setFirstDay(firstDay);
     }
 
     //Setter
-    public void setTitle(String title) {
-        this.title = title;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setVisibility(Boolean visibility) {
-        this.visibility = visibility;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public void setVisibility(int visibility) { this.visibility = visibility; }
 
     public void setModule(String module) {
         this.module = module;
@@ -66,10 +67,16 @@ public class ProjectConfiguration implements Serializable {
         this.description = description;
     }
 
-    //Getter
-    public String getTitle() { return this.title; }
+    public void setMembers(ArrayList members) {
+        this.members = members;
+    }
 
-    public Boolean getVisibility() { return visibility; }
+    //Getter
+    public int getId() { return this.id; }
+
+    public String getName() { return this.name; }
+
+    public int getVisibility() { return visibility; }
 
     public String getModule() { return this.module; }
 
@@ -81,34 +88,42 @@ public class ProjectConfiguration implements Serializable {
 
     public String getDescription() { return this.description; }
 
+    public ArrayList getMembers() { return this.members; }
+
     public boolean isComplete() {
-        if(this.getTitle().equals("") || this.getVisibility() == null || this.getNbMembers() == 0 || this.getLastDay() == null)
-            return true;
-        else return false;
+        if(this.getName().isEmpty() || this.getNbMembers() == 0 || this.getLastDay() == null)
+            return false;
+        else return true;
     }
 
     public boolean isGoodLastDate() {
-        if(this.getLastDay().isAfter(this.getFirstDay()))
+        if(this.getLastDay().isAfter(this.getFirstDay()) || this.getLastDay().isEqual(this.getFirstDay()))
             return true;
         else return false;
     }
 
-    public void saveInFile() {
-        String directoryPath = System.getProperty("user.dir") + "\\Saves";
+    public static File createDirectory() {
+        String directoryPath = System.getProperty("user.dir") + "\\saves";
         File folder = new File(directoryPath);
 
         if(!folder.exists())
             folder.mkdirs();
 
+        return folder.getAbsoluteFile();
+    }
+
+    public void saveProjectsInFile() {
+        File directoryPath = createDirectory();
         FileOutputStream fOut;
         ObjectOutputStream oOut;
 
-        List<ProjectConfiguration> projectConfigurationListAncient = this.loadFromFile();
+        List<ProjectConfiguration> projectConfigurationListAncient = this.loadProjectsFromFile();
         List<ProjectConfiguration> projectConfigurationListRecent = new ArrayList();
 
-        for(int i = 0; i < projectConfigurationListAncient.size(); i++)
-            if(this.title != projectConfigurationListAncient.get(i).getTitle())
-                projectConfigurationListRecent.add(projectConfigurationListAncient.get(i));
+        if(projectConfigurationListAncient != null)
+            for (int i = 0; i < projectConfigurationListAncient.size(); i++)
+                if (this.id != projectConfigurationListAncient.get(i).getId())
+                    projectConfigurationListRecent.add(projectConfigurationListAncient.get(i));
 
         projectConfigurationListRecent.add(this);
 
@@ -128,28 +143,50 @@ public class ProjectConfiguration implements Serializable {
         }
     }
 
-    public ArrayList<ProjectConfiguration> loadFromFile() {
-        File file = new File(System.getProperty("user.dir") + "\\Saves\\Projects");
+    public static ArrayList<ProjectConfiguration> loadProjectsFromFile() {
+        File directoryPath = createDirectory();
+        File file = new File(directoryPath + File.separator + "Projects");
         FileInputStream fIn;
         ObjectInputStream oIn;
 
         try {
-            fIn = new FileInputStream(file);
-            oIn = new ObjectInputStream(fIn);
-
-            ArrayList projectConfiguration = (ArrayList)oIn.readObject();
-
-            if(oIn != null)
-                oIn.close();
-
-            if(fIn != null)
-                fIn.close();
-
-            return projectConfiguration;
-        } catch(IOException e) {
+            file.createNewFile();
+        } catch (IOException e) {
             e.printStackTrace();
-        } catch(ClassNotFoundException e) {
-            e.printStackTrace();
+        }
+
+        if(file.length() > 0) {
+            try {
+                fIn = new FileInputStream(file);
+                oIn = new ObjectInputStream(fIn);
+
+                ArrayList projectConfiguration = (ArrayList) oIn.readObject();
+
+                if (oIn != null)
+                    oIn.close();
+
+                if (fIn != null)
+                    fIn.close();
+
+                return projectConfiguration;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public static ProjectConfiguration getById(int id) {
+        List<ProjectConfiguration> projectConfigurationList = loadProjectsFromFile();
+
+        for (int i = 0; i < loadProjectsFromFile().size(); i++) {
+            ProjectConfiguration projectConfiguration = projectConfigurationList.get(i);
+
+            if (projectConfiguration.getId() == id)
+                return projectConfiguration;
         }
 
         return null;

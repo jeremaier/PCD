@@ -8,17 +8,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.Visibility;
 
-import java.io.*;
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.chrono.Chronology;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
@@ -26,15 +27,12 @@ import java.util.function.UnaryOperator;
 public class ConfigurationViewController implements Initializable {
     final static Logger log = LogManager.getLogger(ConfigurationViewController.class);
 
-    private Stage configurationStage;
     private ProjectConfiguration projectConfiguration;
     private Project project;
+    Stage configurationStage;
 
-    private boolean archived = this.project.getArchived();
+    private boolean archived = false;
     private boolean changed = false;
-    private boolean radioButtonChanged = false;
-    private boolean publicSelected = false;
-    private boolean privateSelected = false;
 
     @FXML
     private AnchorPane controllerView;
@@ -58,7 +56,7 @@ public class ConfigurationViewController implements Initializable {
     private RadioButton Private;
 
     @FXML
-    private TextField Title;
+    private TextField Name;
 
     @FXML
     private TextField Module;
@@ -86,23 +84,67 @@ public class ConfigurationViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        final BooleanProperty firstTime = new SimpleBooleanProperty(true);
+        ArrayList<ProjectConfiguration> projectslist = ProjectConfiguration.loadProjectsFromFile();
+        int idProject = 0;
+
+        if(projectslist != null) {
+            for (ProjectConfiguration p : projectslist) {
+                if (p.getId() == project.getId()) {
+                    idProject = p.getId();
+                    this.setProjectConfigurationFromId(idProject);
+                    break;
+                }
+            }
+        }
+
+        if(idProject == 0) {
+            this.setProjectConfiguration(this.project.getId(), this.project.getName(), 0, "", "", null, null, "", new ArrayList());
+            this.Name.setText(this.projectConfiguration.getName());
+            projectConfiguration.saveProjectsInFile();
+        } else this.initializePaneInfo();
+
+        this.initializeListenners();
+    }
+
+    private void initializePaneInfo() {
+        archived = this.project.getArchived();
+        int visibility = this.projectConfiguration.getVisibility();
+        this.Name.setText(this.projectConfiguration.getName());
+        this.Module.setText(this.projectConfiguration.getModule());
+        this.NbMembers.setText(String.valueOf(this.projectConfiguration.getNbMembers()));
+        this.FirstDay.setValue(this.projectConfiguration.getFirstDay());
+        this.LastDay.setValue(this.projectConfiguration.getLastDay());
+        this.Description.setText(this.projectConfiguration.getDescription());
+
+        if(visibility == 1)
+            this.Private.setSelected(true);
+        else this.Public.setSelected(true);
 
         if(archived)
             Archive.setText("Desarchiver");
         else Archive.setText("Archiver");
+    }
+
+    private void initializeListenners() {
+        final BooleanProperty firstTime = new SimpleBooleanProperty(true);
 
         NbMembers.setTextFormatter(new TextFormatter(integerOnlyFilter));
-        Title.focusedProperty().addListener((observable, oldValue, newValue) -> {
+        Name.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue && firstTime.get()) {
                 controllerView.requestFocus();
                 firstTime.setValue(false);
             }
         });
 
-        Title.lengthProperty().addListener(new ChangeListener<Number>() {
+        Name.lengthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 changed = true;
+
+                System.out.println(Name.getText().length());
+
+                if(newValue.intValue() > oldValue.intValue())
+                    if(Name.getText().contains(" "))
+                        Name.setText(Name.getText().substring(0, Name.getText().length() - 1));
             }
         });
 
@@ -142,23 +184,18 @@ public class ConfigurationViewController implements Initializable {
     }
 
     @FXML
-    public void handleClickPublic(ActionEvent event) {
-        this.radioButtonChanged = this.Public.isSelected() != publicSelected ? true : false;
-    }
-
-    @FXML
-    public void handleClickPrivate(ActionEvent event) {
-        this.radioButtonChanged = this.Private.isSelected() != privateSelected ? true : false;
-    }
-
-    @FXML
     public void handleClickAddFile(ActionEvent event) {
+        final FileChooser fileChooser = new FileChooser();
+
+        File file = fileChooser.showOpenDialog(configurationStage);
+        /*if (file != null)
+            openFile(file);*/
+
         log.debug("Add");
     }
 
     @FXML
-    public void handleClickCancel(ActionEvent event) throws IOException {
-        log.debug("Cancel");
+    public void handleClickCancel(ActionEvent event) {
         this.configurationStage = (Stage)Cancel.getScene().getWindow();
         this.configurationStage.close();
     }
@@ -166,34 +203,31 @@ public class ConfigurationViewController implements Initializable {
     @FXML
     public void handleClickArchive(ActionEvent event) {
         if(archived) {
+            archived = false;
             this.Archive.setText("Archiver");
             this.project.setArchived(false);
         } else {
+            archived = true;
             this.Archive.setText("Desarchiver");
             this.project.setArchived(true);
         }
-
-        log.debug("Archive");
     }
 
     @FXML
     public void handleClickSave(ActionEvent event) {
-        if(verifyIfChange()) {
-            Boolean visibility = null;
+        if(this.changed) {
+            ArrayList members = new ArrayList();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information dialog");
             alert.setHeaderText(null);
 
-            if (Public.isSelected())
-                visibility = true;
-            else if (Private.isSelected())
-                visibility = false;
+            this.setProjectConfiguration(project.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members);
 
-            this.setProject(Title.getText(), visibility, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText());
-
-            if (this.getProjectConfiguration().isComplete()) {
-                if (this.getProjectConfiguration().isGoodLastDate()) {
+            if(this.getProjectConfiguration().isComplete()) {
+                if(this.getProjectConfiguration().isGoodLastDate()) {
                     this.updateProjectInformations(this.getProjectConfiguration(), this.project);
+                    alert.setContentText("Le projet a bien été sauvegardé");
+                    alert.showAndWait();
                 } else {
                     alert.setContentText("La date de fin est avant la date de debut");
                     alert.showAndWait();
@@ -205,23 +239,26 @@ public class ConfigurationViewController implements Initializable {
         }
     }
 
-    private boolean verifyIfChange() {
-        return changed && radioButtonChanged;
-    }
-
-    public ProjectConfiguration getProjectConfiguration() {
+    private ProjectConfiguration getProjectConfiguration() {
         return this.projectConfiguration;
     }
 
-    private void setProject(String title, Boolean visibility, String module, String nbMembers, LocalDate firstDate,LocalDate lastDate, String description) {
-        projectConfiguration = new ProjectConfiguration(title, visibility, module, nbMembers, firstDate, lastDate, description);
+    private void setProjectConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDate, LocalDate lastDate, String description, ArrayList members) {
+        this.projectConfiguration = new ProjectConfiguration(id, name, visibility, module, nbMembers, firstDate, lastDate, description, members);
     }
 
-    public void updateProjectInformations(ProjectConfiguration projectConfiguration, Project project) {
-        project.setName(projectConfiguration.getTitle());
-        project.setVisibility(projectConfiguration.getVisibility() ? Visibility.PUBLIC : Visibility.PRIVATE);
+    private void updateProjectInformations(ProjectConfiguration projectConfiguration, Project project) {
+        project.setName(projectConfiguration.getName());
         project.setCreatedAt(Date.from(projectConfiguration.getFirstDay().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
         project.setDescription(projectConfiguration.getDescription());
-        projectConfiguration.saveInFile();
+        projectConfiguration.saveProjectsInFile();
+
+        if(projectConfiguration.getVisibility() == 1)
+            project.setVisibility(Visibility.PUBLIC);
+        else project.setVisibility(Visibility.PRIVATE);
+    }
+
+    private void setProjectConfigurationFromId(int id) {
+        this.projectConfiguration = ProjectConfiguration.getById(id);
     }
 }
