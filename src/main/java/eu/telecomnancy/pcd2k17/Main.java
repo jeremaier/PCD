@@ -5,6 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
+import org.gitlab4j.api.GitLabApi;
+
+import java.util.Date;
 
 
 public class Main extends Application  {
@@ -18,10 +21,17 @@ public class Main extends Application  {
     launch(args);
   }
 
+  public GitLabApi gla;
+
   @Override
   public void start(Stage primaryStage) throws Exception {
 
+
+
+
       new LogView(primaryStage);
+
+      //new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
 
   }
 

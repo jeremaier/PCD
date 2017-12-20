@@ -16,3 +16,16 @@ En cliquant sur un projet, on voit apparaître un bouton "modifier" qui permet d
 
 Les autres interfaces ne sont pas encore accessibles depuis ce programme.
 
+##  RELEASE_DAY_2
+Deuxième jour de code.
+
+Les premières étapes sont similaires à la première release. Cependant, de nouvelles fenêtres d'erreur s'ouvrent en cas d'échec de connexion.
+
+    3ème étape
+Il est possible de créer un nouveau projet en appuyant sur "Nouveau Projet" et d'actualiser la session en appuyant sur "Actualiser".
+De plus, chaque projet affiché à l'écran peut être "déroulé" afin d'obtenir des informations complémentaires.
+
+    4ème étape
+Dans chaque projet, il est possible de démarrer le "Gestionnaire de groupes" permettant de créer les groupes de projet.
+
+À noter que d'autres fonctionnalités n'ont pas encore liées au reste du projet (comme par exemple l'affichage des statistiques de chaque groupe).

@@ -1,7 +1,5 @@
 package eu.telecomnancy.pcd2k17;
 
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,29 +10,30 @@ import org.gitlab4j.api.models.Project;
 
 import java.io.IOException;
 
-public class ConfigurationView{
+public class ConfigurationView {
 
     final static Logger log = LogManager.getLogger(ConfigurationView.class);
+    private Project project;
 
-    public ConfigurationView(){
-
-    }
-
-
-    public ConfigurationView(Project proj) throws IOException {
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("JFX Sample Application");
+    public ConfigurationView(Project project) throws IOException {
+        super();
+        this.project = project;
+        Stage configurationStage = new Stage();
+        configurationStage.setTitle("Configuration d'un projet");
+        configurationStage.setResizable(false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("configurationView.fxml"));
+        loader.setControllerFactory(iC -> new ConfigurationViewController(project));
         Parent root = loader.load();
 
-        primaryStage.setOnCloseRequest(event -> {
-            log.debug("terminating application.");
-            primaryStage.close();
+        configurationStage.setOnCloseRequest(event -> {
+            log.debug("Fermeture");
+            configurationStage.close();
         });
 
-        primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.show();
+        configurationStage.setScene(new Scene(root, 800, 600));
+        configurationStage.show();
     }
 }
+
