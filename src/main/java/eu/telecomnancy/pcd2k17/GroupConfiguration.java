@@ -16,17 +16,20 @@ public class GroupConfiguration implements Serializable {
     private LocalDate firstDay;
     private LocalDate lastDay;
     private String description;
-    private ArrayList members;
+    private ArrayList<MemberInformations> membersList;
     private boolean archived;
+    private String promo;
 
-    public GroupConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDay, LocalDate lastDay, String description, ArrayList members, Boolean archived) {
+    public GroupConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDay, LocalDate lastDay, String description, ArrayList<MemberInformations> membersList, boolean archived, String promo) {
         this.setId(id);
         this.setName(name);
         this.setVisibility(visibility);
         this.setLastDay(lastDay);
         this.setModule(module);
         this.setDescription(description);
-        this.setMembers(members);
+        this.setMembers(membersList);
+        this.setArchived(archived);
+        this.setPromo(promo);
 
         if(nbMembers.isEmpty())
             this.setNbMembers(0);
@@ -35,10 +38,6 @@ public class GroupConfiguration implements Serializable {
         if(firstDay == null)
             this.setFirstDay((new Date()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         else this.setFirstDay(firstDay);
-
-        if(archived == null)
-            this.setArchived(false);
-        else this.setArchived(archived);
     }
 
     //Setter
@@ -54,9 +53,7 @@ public class GroupConfiguration implements Serializable {
 
     public void setModule(String module) { this.module = module; }
 
-    public void setNbMembers(int nbMembers) {
-        this.nbMembers = nbMembers;
-    }
+    public void setNbMembers(int nbMembers) { this.nbMembers = nbMembers; }
 
     public void setFirstDay(LocalDate firstDay) {
         this.firstDay = firstDay;
@@ -70,11 +67,11 @@ public class GroupConfiguration implements Serializable {
         this.description = description;
     }
 
-    public void setMembers(ArrayList members) {
-        this.members = members;
-    }
+    public void setMembers(ArrayList<MemberInformations> membersList) { this.membersList = membersList; }
 
     public void setArchived(boolean archived) { this.archived = archived; }
+
+    public void setPromo(String promo) { this.promo = promo; }
 
     //Getter
     public int getId() { return this.id; }
@@ -93,12 +90,18 @@ public class GroupConfiguration implements Serializable {
 
     public String getDescription() { return this.description; }
 
-    public ArrayList getMembers() { return this.members; }
+    public ArrayList<MemberInformations> getMembersList() { return this.membersList; }
 
     public boolean getArchived() { return this.archived; }
 
+    public String getPromo() { return this.promo; }
+
+    public void addMember(MemberInformations member) { membersList.add(member); }
+
+    public void removeMember(MemberInformations member) { membersList.remove(member); }
+
     public boolean isComplete() {
-        if(this.getName().isEmpty() || this.getNbMembers() == 0 || this.getLastDay() == null)
+        if(this.getName().isEmpty() || this.getNbMembers() == 0 || this.getLastDay() == null || this.getPromo() == null)
             return false;
         else return true;
     }
@@ -116,40 +119,10 @@ public class GroupConfiguration implements Serializable {
         if(!folder.exists())
             folder.mkdirs();
 
-        return folder.getAbsoluteFile() + File.separator + "Projects";
+        return folder.getAbsoluteFile() + File.separator + "Groups";
     }
 
-    public void saveProjectsInFile() {
-        FileOutputStream fOut;
-        ObjectOutputStream oOut;
-
-        List<GroupConfiguration> projectConfigurationListAncient = this.loadProjectsFromFile();
-        ArrayList projectConfigurationListRecent = new ArrayList();
-
-        if (projectConfigurationListAncient != null)
-            for (int i = 0; i < projectConfigurationListAncient.size(); i++)
-                if (this.id != projectConfigurationListAncient.get(i).getId())
-                    projectConfigurationListRecent.add(projectConfigurationListAncient.get(i));
-
-        projectConfigurationListRecent.add(this);
-
-        try {
-            fOut = new FileOutputStream(getFilePath());
-            oOut = new ObjectOutputStream(fOut);
-
-            oOut.writeObject(projectConfigurationListRecent);
-
-            if(oOut != null)
-                oOut.close();
-
-            if(fOut != null)
-                fOut.close();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static ArrayList<GroupConfiguration> loadProjectsFromFile() {
+    public static ArrayList<GroupConfiguration> loadGroupsFromFile() {
         File file = new File(getFilePath());
         FileInputStream fIn;
         ObjectInputStream oIn;
@@ -184,16 +157,80 @@ public class GroupConfiguration implements Serializable {
         return null;
     }
 
+    public void saveGroupInFile(ArrayList<GroupConfiguration> ancientGroupsList) {
+        ArrayList groupsConfigurationListRecent = new ArrayList();
+
+        if (ancientGroupsList != null)
+            for (int i = 0; i < ancientGroupsList.size(); i++)
+                if (this.id != ancientGroupsList.get(i).getId())
+                    groupsConfigurationListRecent.add(ancientGroupsList.get(i));
+
+        groupsConfigurationListRecent.add(this);
+
+        saveGroupsInFile(groupsConfigurationListRecent);
+    }
+
     public static GroupConfiguration getById(int id) {
-        List<GroupConfiguration> projectConfigurationList = loadProjectsFromFile();
+        List<GroupConfiguration> groupsConfigurationList = loadGroupsFromFile();
 
-        for (int i = 0; i < loadProjectsFromFile().size(); i++) {
-            GroupConfiguration projectConfiguration = projectConfigurationList.get(i);
+        if(groupsConfigurationList != null) {
+            for (int i = 0; i < groupsConfigurationList.size(); i++) {
+                GroupConfiguration groupsConfiguration = groupsConfigurationList.get(i);
 
-            if (projectConfiguration.getId() == id)
-                return projectConfiguration;
+                if (groupsConfiguration.getId() == id)
+                    return groupsConfiguration;
+            }
         }
 
         return null;
+    }
+
+    public static ArrayList getNewGroupsInGit(List<Group> groupsList) {
+        List<GroupConfiguration> groupsConfigurationList = loadGroupsFromFile();
+        ArrayList newGroupsList = new ArrayList();
+        int k;
+
+        if (groupsList != null) {
+            for (int i = 0; i < groupsList.size(); i++) {
+                k = -1;
+
+                for (int j = 0; j < groupsConfigurationList.size(); j++) {
+                    if (groupsList.get(i).getID() == groupsConfigurationList.get(j).getId()) {
+                        k = j;
+                        break;
+                    }
+                }
+
+                if(k >= 0)
+                    newGroupsList.add(groupsConfigurationList.get(k));
+                else newGroupsList.add(groupsList.get(i));
+            }
+
+            return newGroupsList;
+        }
+
+        return null;
+    }
+
+    public static void saveGroupsInFile(ArrayList<GroupConfiguration> groupsList) {
+        if(groupsList != null) {
+            FileOutputStream fOut;
+            ObjectOutputStream oOut;
+
+            try {
+                fOut = new FileOutputStream(getFilePath());
+                oOut = new ObjectOutputStream(fOut);
+
+                oOut.writeObject(groupsList);
+
+                if (oOut != null)
+                    oOut.close();
+
+                if (fOut != null)
+                    fOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
