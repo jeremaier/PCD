@@ -1,5 +1,6 @@
 package eu.telecomnancy.pcd2k17;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,13 +14,14 @@ import javafx.stage.Stage;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Project;
+import org.gitlab4j.api.models.Group;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProjectController implements Initializable {
+public class GroupController implements Initializable {
 
     @FXML
     private Accordion acc;
@@ -35,7 +37,7 @@ public class ProjectController implements Initializable {
     private String user;
 
 
-    public ProjectController(GitLabApi gla,String privateToken, String name){
+    public GroupController(GitLabApi gla,String privateToken, String name){
         gitlab=gla;
         token=privateToken;
         user=name;
@@ -44,28 +46,28 @@ public class ProjectController implements Initializable {
     public void handleNew(ActionEvent event){
         int nb=0;
         try {
-            List<Project> list = gitlab.getProjectApi().getMemberProjects();
-                for (Project p : list) {
-                    if (p.getName().length()>14) {
-                        if (p.getName().substring(0, 14).equals("unknownProject")){
-                            String proj = p.getName().substring(14, p.getName().length());
-                            nb=Integer.max(Integer.parseInt(proj),nb);
-                        }
+            List<Group> group = gitlab.getGroupApi().getGroups();
+            for (Group g : group) {
+                if (g.getName().length()>14) {
+                    if (g.getName().substring(0, 14).equals("unknownProject")){
+                        String proj = g.getName().substring(14, g.getName().length());
+                        nb=Integer.max(Integer.parseInt(proj),nb);
                     }
+                }
             }
         } catch (GitLabApiException e) {
             e.printStackTrace();
         }
         nb++;
-        nb++;
         String name = "unknownProject" + Integer.toString(nb);
         try {
-            Project newProject = gitlab.getProjectApi().createProject(name);
-            new ConfigurationView(newProject);
+            gitlab.getGroupApi().addGroup(name,name);
+            Group group = gitlab.getGroupApi().getGroup(name);
+            new ConfigurationView(gitlab,group);
         } catch (GitLabApiException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
 
     }
@@ -73,29 +75,36 @@ public class ProjectController implements Initializable {
     public void handleRefresh(ActionEvent event){
         Stage stage = (Stage) refresh.getScene().getWindow();
         stage.close();
-        new ProjectView(token,user);
+        new GroupView(token,user);
+    }
+
+    public void handleQuit(ActionEvent event){
+        Platform.exit();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         name.setText(user);
+        boolean ok = false;
         try {
-            List<Project> list = gitlab.getProjectApi().getMemberProjects();
-            final TitledPane[] tps = new TitledPane[list.size()];
+            List<Group> groups = gitlab.getGroupApi().getGroups();
+            //GroupConfiguration.saveGroupsInFile(getNewGroupsInGit(groups));
+            final TitledPane[] tps = new TitledPane[groups.size()];
             int i=0;
-            for (Project p : list) {
+            for (Group p : groups) {
                 tps[i]=new TitledPane(p.getName(), setContent(p));
+                ok=true;
                 i++;
             }
-            acc.getPanes().addAll(tps);
+            if(ok) acc.getPanes().addAll(tps);
         } catch (GitLabApiException e) {
             e.printStackTrace();
         }
     }
 
-    public Node setContent(Project p) {
+    public Node setContent(Group p) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("ProjectContent.fxml"));
+        loader.setLocation(getClass().getResource("GroupContent.fxml"));
         loader.setControllerFactory(iC-> new ContentController(p,gitlab));
         AnchorPane anchor = null;
         try {

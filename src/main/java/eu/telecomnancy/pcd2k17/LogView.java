@@ -38,7 +38,7 @@ public class LogView {
         });
 
 
-        primaryStage.setScene(new Scene(rootlog, 600, 300));
+        primaryStage.setScene(new Scene(rootlog, 600, 400));
         primaryStage.show();
 
     }

@@ -6,25 +6,24 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.gitlab4j.api.models.Project;
+import org.gitlab4j.api.GitLabApi;
+import org.gitlab4j.api.models.Group;
 
 import java.io.IOException;
 
 public class ConfigurationView {
 
-    final static Logger log = LogManager.getLogger(ConfigurationView.class);
-    private Project project;
+    private final static Logger log = LogManager.getLogger(ConfigurationView.class);
 
-    public ConfigurationView(Project project) throws IOException {
+    public ConfigurationView(GitLabApi gitLab, Group group) throws IOException {
         super();
-        this.project = project;
         Stage configurationStage = new Stage();
         configurationStage.setTitle("Configuration d'un projet");
         configurationStage.setResizable(false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("configurationView.fxml"));
-        loader.setControllerFactory(iC -> new ConfigurationViewController(project));
+        loader.setControllerFactory(iC -> new ConfigurationViewController(gitLab, group));
         Parent root = loader.load();
 
         configurationStage.setOnCloseRequest(event -> {
@@ -36,4 +35,3 @@ public class ConfigurationView {
         configurationStage.show();
     }
 }
-

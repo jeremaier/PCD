@@ -9,7 +9,7 @@ Voici comment lancer cette première version.
 Entrer son "Personal Access Tokens" dans le champ "Clé de connexion" (ce token se trouve sur gitlab)
 Entrez "admin" en identifiant ET mot de passe.
 
-La fenêtre qui s'ouvre alors répertorie tous les projets gitlab associés à la clé de connexion sous la forme d'une liste.
+La fenêtre qui s'ouvre alors répertorie tous les groupes gitlab associés à la clé de connexion sous la forme d'une liste.
 
     2ème étape
 En cliquant sur un projet, on voit apparaître un bouton "modifier" qui permet d'accéder aux réglagles de ce projet (cette fonctionnalité n'est pas encore implémentée, seule l'interface est faite).
@@ -29,3 +29,16 @@ De plus, chaque projet affiché à l'écran peut être "déroulé" afin d'obteni
 Dans chaque projet, il est possible de démarrer le "Gestionnaire de groupes" permettant de créer les groupes de projet.
 
 À noter que d'autres fonctionnalités n'ont pas encore liées au reste du projet (comme par exemple l'affichage des statistiques de chaque groupe).
+
+##  RELEASE_DAY_3
+Encore un peu plus de code...
+
+En cette 3ème journée, plusieurs problèmes ont été résolus (comme par exemple le fait qu'un enseignant génère une instance de Group et non de Project)
+
+    Pour lancer l'application, se référer à l'étape 1 de la RELEASE_DAY_1
+    
+Il est maintenant possible d'envoyer des mails à tous les membres d'un groupe en appuyant sur le bouton "Mail" dans le panneau d'informations concernant les groupes.
+Tout groupe créé est maintenant mis à jour automatiquement sur gitlab.
+
+Les fonctions permettant de créer des groupes de projets et d'afficher les statistiques sont presque terminées mais ne sont pas encore accessible depuis la fenêtre principale.
+
