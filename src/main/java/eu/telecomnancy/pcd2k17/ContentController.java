@@ -3,11 +3,15 @@ package eu.telecomnancy.pcd2k17;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Group;
@@ -37,6 +41,9 @@ public class ContentController implements Initializable {
     private Button group;
 
     @FXML
+    private Button mail;
+
+    @FXML
     private Button supp;
 
     @FXML
@@ -58,6 +65,31 @@ public class ContentController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        mail.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Stage mailStage = new Stage();
+                mailStage.setTitle("SchoolRoom groups");
+
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("GmailView.fxml"));
+                loader.setControllerFactory(iC-> new GmailSTMP(thisgroup));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mailStage.setOnCloseRequest(event2 -> {
+                    mailStage.close();
+                });
+
+                mailStage.setScene(new Scene(root, 600, 400));
+                mailStage.show();
             }
         });
 

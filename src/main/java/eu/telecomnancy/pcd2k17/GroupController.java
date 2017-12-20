@@ -88,6 +88,7 @@ public class GroupController implements Initializable {
         boolean ok = false;
         try {
             List<Group> groups = gitlab.getGroupApi().getGroups();
+            //GroupConfiguration.saveGroupsInFile(getNewGroupsInGit(groups));
             final TitledPane[] tps = new TitledPane[groups.size()];
             int i=0;
             for (Group p : groups) {
