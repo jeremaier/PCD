@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 import org.gitlab4j.api.models.Project;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 //import Group;
 
 public class GroupsView {
@@ -39,6 +42,11 @@ public class GroupsView {
 
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
+
+        Rectangle2D coord = Screen.getPrimary().getVisualBounds();
+        System.out.println(coord.getWidth());
+        primaryStage.setX(coord.getWidth()*1/8);
+        primaryStage.setY(50);
 
     }
 }
