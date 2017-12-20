@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-public class ProjectConfiguration implements Serializable {
+public class GroupConfiguration implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int id;
@@ -17,8 +17,9 @@ public class ProjectConfiguration implements Serializable {
     private LocalDate lastDay;
     private String description;
     private ArrayList members;
+    private boolean archived;
 
-    public ProjectConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDay, LocalDate lastDay, String description, ArrayList members) {
+    public GroupConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDay, LocalDate lastDay, String description, ArrayList members, Boolean archived) {
         this.setId(id);
         this.setName(name);
         this.setVisibility(visibility);
@@ -34,6 +35,10 @@ public class ProjectConfiguration implements Serializable {
         if(firstDay == null)
             this.setFirstDay((new Date()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         else this.setFirstDay(firstDay);
+
+        if(archived == null)
+            this.setArchived(false);
+        else this.setArchived(archived);
     }
 
     //Setter
@@ -47,9 +52,7 @@ public class ProjectConfiguration implements Serializable {
 
     public void setVisibility(int visibility) { this.visibility = visibility; }
 
-    public void setModule(String module) {
-        this.module = module;
-    }
+    public void setModule(String module) { this.module = module; }
 
     public void setNbMembers(int nbMembers) {
         this.nbMembers = nbMembers;
@@ -71,6 +74,8 @@ public class ProjectConfiguration implements Serializable {
         this.members = members;
     }
 
+    public void setArchived(boolean archived) { this.archived = archived; }
+
     //Getter
     public int getId() { return this.id; }
 
@@ -90,6 +95,8 @@ public class ProjectConfiguration implements Serializable {
 
     public ArrayList getMembers() { return this.members; }
 
+    public boolean getArchived() { return this.archived; }
+
     public boolean isComplete() {
         if(this.getName().isEmpty() || this.getNbMembers() == 0 || this.getLastDay() == null)
             return false;
@@ -102,25 +109,24 @@ public class ProjectConfiguration implements Serializable {
         else return false;
     }
 
-    public static File createDirectory() {
+    public static String getFilePath() {
         String directoryPath = System.getProperty("user.dir") + "\\saves";
         File folder = new File(directoryPath);
 
         if(!folder.exists())
             folder.mkdirs();
 
-        return folder.getAbsoluteFile();
+        return folder.getAbsoluteFile() + File.separator + "Projects";
     }
 
     public void saveProjectsInFile() {
-        File directoryPath = createDirectory();
         FileOutputStream fOut;
         ObjectOutputStream oOut;
 
-        List<ProjectConfiguration> projectConfigurationListAncient = this.loadProjectsFromFile();
-        List<ProjectConfiguration> projectConfigurationListRecent = new ArrayList();
+        List<GroupConfiguration> projectConfigurationListAncient = this.loadProjectsFromFile();
+        ArrayList projectConfigurationListRecent = new ArrayList();
 
-        if(projectConfigurationListAncient != null)
+        if (projectConfigurationListAncient != null)
             for (int i = 0; i < projectConfigurationListAncient.size(); i++)
                 if (this.id != projectConfigurationListAncient.get(i).getId())
                     projectConfigurationListRecent.add(projectConfigurationListAncient.get(i));
@@ -128,7 +134,7 @@ public class ProjectConfiguration implements Serializable {
         projectConfigurationListRecent.add(this);
 
         try {
-            fOut = new FileOutputStream(directoryPath + "\\Projects");
+            fOut = new FileOutputStream(getFilePath());
             oOut = new ObjectOutputStream(fOut);
 
             oOut.writeObject(projectConfigurationListRecent);
@@ -143,9 +149,8 @@ public class ProjectConfiguration implements Serializable {
         }
     }
 
-    public static ArrayList<ProjectConfiguration> loadProjectsFromFile() {
-        File directoryPath = createDirectory();
-        File file = new File(directoryPath + File.separator + "Projects");
+    public static ArrayList<GroupConfiguration> loadProjectsFromFile() {
+        File file = new File(getFilePath());
         FileInputStream fIn;
         ObjectInputStream oIn;
 
@@ -179,11 +184,11 @@ public class ProjectConfiguration implements Serializable {
         return null;
     }
 
-    public static ProjectConfiguration getById(int id) {
-        List<ProjectConfiguration> projectConfigurationList = loadProjectsFromFile();
+    public static GroupConfiguration getById(int id) {
+        List<GroupConfiguration> projectConfigurationList = loadProjectsFromFile();
 
         for (int i = 0; i < loadProjectsFromFile().size(); i++) {
-            ProjectConfiguration projectConfiguration = projectConfigurationList.get(i);
+            GroupConfiguration projectConfiguration = projectConfigurationList.get(i);
 
             if (projectConfiguration.getId() == id)
                 return projectConfiguration;
