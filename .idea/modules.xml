@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/pcd2k17-karczewski-lefeuvre-lefort-sernit.iml" filepath="$PROJECT_DIR$/pcd2k17-karczewski-lefeuvre-lefort-sernit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pcd2k17-sample.iml" filepath="$PROJECT_DIR$/.idea/modules/pcd2k17-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pcd2k17-sample_main.iml" filepath="$PROJECT_DIR$/.idea/modules/pcd2k17-sample_main.iml" group="pcd2k17-sample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pcd2k17-sample_test.iml" filepath="$PROJECT_DIR$/.idea/modules/pcd2k17-sample_test.iml" group="pcd2k17-sample" />
     </modules>
   </component>
 </project>

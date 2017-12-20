@@ -1,9 +1,5 @@
 package eu.telecomnancy.pcd2k17;
 
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -36,7 +32,7 @@ public class LogController {
             stage.close();
 
             try {
-                new ProjectView(connectiontoken);
+                new GroupsView(connectiontoken);
             } catch (IOException e) {
                 e.printStackTrace();
             }

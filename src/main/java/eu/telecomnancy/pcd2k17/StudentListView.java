@@ -1,8 +1,6 @@
 package eu.telecomnancy.pcd2k17;
 
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.layout.VBox;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,14 +10,15 @@ import org.apache.logging.log4j.Logger;
 import org.gitlab4j.api.models.Project;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
-import javafx.stage.Stage;
 //import Group;
 
 public class StudentListView {
 
+    public StudentListController controleur;
+
     final static Logger log = LogManager.getLogger(Main.class);
 
-    public StudentListView(Project project) throws Exception{
+    public StudentListView(Project project, ProjectsController groupes) throws Exception{
 
         Stage window = new Stage();
         window.setTitle("Liste des élèves");
@@ -34,10 +33,13 @@ public class StudentListView {
         //stage.show();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("StudentListView.fxml"));
-        loader.setControllerFactory(iC -> new GroupsViewController(project));
+        this.controleur = new StudentListController(project, groupes);
+        loader.setControllerFactory(iC -> controleur);
         Parent root = loader.load();
 
         window.setOnCloseRequest(event -> {
+            this.controleur.groupes.studentListButton.setDisable(false);
+            this.controleur.groupes.deleteAll();
             log.debug("terminating application.");
             window.close();
             //Platform.exit();
@@ -45,13 +47,13 @@ public class StudentListView {
 
         //window.setFill(null);
 
-        window.setScene(new Scene(root, 800, 600));
+        window.setScene(new Scene(root, 500, 600));
         //window.setScene(scene);
         window.show();
 
         Rectangle2D coord = Screen.getPrimary().getVisualBounds();
         System.out.println(coord.getWidth());
-        window.setX(coord.getWidth()*3/4);
+        window.setX(coord.getWidth()*3/5);
         window.setY(50);
     }
 }
