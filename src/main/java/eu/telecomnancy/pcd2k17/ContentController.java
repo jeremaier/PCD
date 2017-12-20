@@ -53,18 +53,14 @@ public class ContentController implements Initializable {
         modify.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                thisgroup.setDescription("Swag total");
-                thisgroup.setName("Askip");
-                thisgroup.setPath("Askip");
-                updateThisGroup();
                 try {
                     new ConfigurationView(gitlab,thisgroup);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         });
+
         supp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -82,6 +78,7 @@ public class ContentController implements Initializable {
                 }
             }
         });
+
         group.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -107,16 +104,5 @@ public class ContentController implements Initializable {
         */
     }
 
-    public void updateThisGroup(){
-        try {
-            thisgroup = gitlab.getGroupApi().updateGroup(thisgroup.getId(),thisgroup.getName(),thisgroup.getPath(),thisgroup.getDescription(),thisgroup.getRequestAccessEnabled(),thisgroup.getRequestAccessEnabled(),thisgroup.getVisibility(),thisgroup.getRequestAccessEnabled(),thisgroup.getRequestAccessEnabled(),thisgroup.getParentId(),thisgroup.getSharedRunnersMinutesLimit());
-        } catch (GitLabApiException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Requête impossible");
-            alert.setHeaderText(null);
-            alert.setContentText("Une erreur est survenue durant la mise à jour des données.\n\nVérifiez que le nom n'est pas déjà utilisé.");
-            Optional<ButtonType> result = alert.showAndWait();
-        }
-    }
 }
+

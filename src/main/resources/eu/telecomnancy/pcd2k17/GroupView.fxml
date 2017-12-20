@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -16,13 +17,13 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.GroupController">
     <children>
-        <Button alignment="CENTER" layoutX="120.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleNew" prefHeight="27.0" prefWidth="150.0" text="[+] Nouveau projet" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+        <Button alignment="CENTER" layoutX="50.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleNew" prefHeight="27.0" prefWidth="150.0" text="✚ Nouveau projet" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
         <ScrollPane layoutY="151.0" prefHeight="400.0" prefWidth="804.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="151.0">
             <content>
                 <Accordion fx:id="acc" prefHeight="397.0" prefWidth="781.0" />
             </content>
         </ScrollPane>
-        <Button fx:id="refresh" alignment="CENTER" layoutX="530.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="27.0" prefWidth="150.0" text=" ↻ Actualiser" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+        <Button fx:id="refresh" alignment="CENTER" layoutX="325.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="27.0" prefWidth="150.0" text=" ↻ Actualiser" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
         <Separator layoutY="550.0" prefWidth="800.0">
             <effect>
                 <Lighting>
@@ -58,11 +59,15 @@
                 <Image url="@../../../univ.png" />
             </image>
         </ImageView>
-        <Separator layoutX="-4.0" layoutY="109.0" prefHeight="3.0" prefWidth="808.0" />
-        <Label layoutX="306.0" layoutY="114.0" text="Liste des projets" textFill="#4a4545">
+        <Separator layoutX="-4.0" layoutY="113.0" prefHeight="3.0" prefWidth="808.0">
+         <effect>
+            <DropShadow height="9.79" radius="4.965" width="12.07" />
+         </effect></Separator>
+        <Label layoutX="321.0" layoutY="122.0" text="Liste des projets" textFill="#4a4545">
             <font>
-                <Font size="23.0" />
+                <Font size="18.0" />
             </font>
         </Label>
+      <Button fx:id="quit" alignment="CENTER" layoutX="600.0" layoutY="562.0" mnemonicParsing="false" onAction="#handleQuit" prefHeight="27.0" prefWidth="150.0" text="⎋ Quitter" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
     </children>
 </AnchorPane>

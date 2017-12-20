@@ -1,5 +1,6 @@
 package eu.telecomnancy.pcd2k17;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -62,12 +63,12 @@ public class GroupController implements Initializable {
         try {
             gitlab.getGroupApi().addGroup(name,name);
             Group group = gitlab.getGroupApi().getGroup(name);
-            //new ConfigurationView(newProject);
+            new ConfigurationView(gitlab,group);
         } catch (GitLabApiException e) {
             e.printStackTrace();
-        } //catch (IOException e) {
-        //  e.printStackTrace();
-        //}
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
 
     }
 
@@ -77,12 +78,15 @@ public class GroupController implements Initializable {
         new GroupView(token,user);
     }
 
+    public void handleQuit(ActionEvent event){
+        Platform.exit();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         name.setText(user);
         boolean ok = false;
         try {
-            List<Project> list = gitlab.getProjectApi().getOwnedProjects();
             List<Group> groups = gitlab.getGroupApi().getGroups();
             final TitledPane[] tps = new TitledPane[groups.size()];
             int i=0;
@@ -99,7 +103,7 @@ public class GroupController implements Initializable {
 
     public Node setContent(Group p) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("ProjectContent.fxml"));
+        loader.setLocation(getClass().getResource("GroupContent.fxml"));
         loader.setControllerFactory(iC-> new ContentController(p,gitlab));
         AnchorPane anchor = null;
         try {
