@@ -12,6 +12,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.gitlab4j.api.GitLabApi;
+import org.gitlab4j.api.GitLabApiException;
+import org.gitlab4j.api.models.Group;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.Visibility;
 
@@ -27,11 +30,11 @@ import java.util.function.UnaryOperator;
 public class ConfigurationViewController implements Initializable {
     final static Logger log = LogManager.getLogger(ConfigurationViewController.class);
 
-    private ProjectConfiguration projectConfiguration;
-    private Project project;
-    Stage configurationStage;
+    private GroupConfiguration groupConfiguration;
+    private GitLabApi gitLab;
+    private Group group;
+    private Stage configurationStage;
 
-    private boolean archived = false;
     private boolean changed = false;
 
     @FXML
@@ -73,8 +76,9 @@ public class ConfigurationViewController implements Initializable {
     @FXML
     private TextArea Description;
 
-    public ConfigurationViewController(Project project) {
-        this.project = project;
+    public ConfigurationViewController(GitLabApi gitLab, Group group) {
+        this.gitLab = gitLab;
+        this.group = group;
     }
 
     public final UnaryOperator<TextFormatter.Change> integerOnlyFilter = change -> {
@@ -84,45 +88,51 @@ public class ConfigurationViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<ProjectConfiguration> projectslist = ProjectConfiguration.loadProjectsFromFile();
+        this.initializeGroupConfiguration();
+        this.initializeListenners();
+    }
+
+    private void initializeGroupConfiguration() {
+        ArrayList<GroupConfiguration> projectslist = GroupConfiguration.loadProjectsFromFile();
         int idProject = 0;
 
         if(projectslist != null) {
-            for (ProjectConfiguration p : projectslist) {
-                if (p.getId() == project.getId()) {
+            for (GroupConfiguration p : projectslist) {
+                if (p.getId() == group.getId()) {
                     idProject = p.getId();
-                    this.setProjectConfigurationFromId(idProject);
+                    this.setGroupConfigurationFromId(idProject);
                     break;
                 }
             }
         }
 
         if(idProject == 0) {
-            this.setProjectConfiguration(this.project.getId(), this.project.getName(), 0, "", "", null, null, "", new ArrayList());
-            this.Name.setText(this.projectConfiguration.getName());
-            projectConfiguration.saveProjectsInFile();
+            this.setGroupConfiguration(this.group.getId(), this.group.getName(), 0, "", "", null, null, "", new ArrayList(), false);
+            this.Name.setText(this.groupConfiguration.getName());
+            this.setArchiveText();
+            groupConfiguration.saveProjectsInFile();
         } else this.initializePaneInfo();
-
-        this.initializeListenners();
     }
 
     private void initializePaneInfo() {
-        archived = this.project.getArchived();
-        int visibility = this.projectConfiguration.getVisibility();
-        this.Name.setText(this.projectConfiguration.getName());
-        this.Module.setText(this.projectConfiguration.getModule());
-        this.NbMembers.setText(String.valueOf(this.projectConfiguration.getNbMembers()));
-        this.FirstDay.setValue(this.projectConfiguration.getFirstDay());
-        this.LastDay.setValue(this.projectConfiguration.getLastDay());
-        this.Description.setText(this.projectConfiguration.getDescription());
+        int visibility = this.groupConfiguration.getVisibility();
+        this.Name.setText(this.groupConfiguration.getName());
+        this.Module.setText(this.groupConfiguration.getModule());
+        this.NbMembers.setText(String.valueOf(this.groupConfiguration.getNbMembers()));
+        this.FirstDay.setValue(this.groupConfiguration.getFirstDay());
+        this.LastDay.setValue(this.groupConfiguration.getLastDay());
+        this.Description.setText(this.groupConfiguration.getDescription());
+        this.setArchiveText();
 
-        if(visibility == 1)
+        if(visibility == 0)
             this.Private.setSelected(true);
         else this.Public.setSelected(true);
+    }
 
-        if(archived)
-            Archive.setText("Desarchiver");
-        else Archive.setText("Archiver");
+    private void setArchiveText() {
+        if(this.groupConfiguration.getArchived())
+            this.Archive.setText("Desarchiver");
+        else this.Archive.setText("Archiver");
     }
 
     private void initializeListenners() {
@@ -181,6 +191,22 @@ public class ConfigurationViewController implements Initializable {
                 changed = true;
             }
         });
+
+        Public.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(oldValue != newValue)
+                    changed = true;
+            }
+        });
+
+        Private.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(oldValue != newValue)
+                    changed = true;
+            }
+        });
     }
 
     @FXML
@@ -202,15 +228,9 @@ public class ConfigurationViewController implements Initializable {
 
     @FXML
     public void handleClickArchive(ActionEvent event) {
-        if(archived) {
-            archived = false;
-            this.Archive.setText("Archiver");
-            this.project.setArchived(false);
-        } else {
-            archived = true;
-            this.Archive.setText("Desarchiver");
-            this.project.setArchived(true);
-        }
+        boolean changeArchivedTo = !this.groupConfiguration.getArchived();
+        this.groupConfiguration.setArchived(changeArchivedTo);
+        this.setArchiveText();
     }
 
     @FXML
@@ -221,13 +241,11 @@ public class ConfigurationViewController implements Initializable {
             alert.setTitle("Information dialog");
             alert.setHeaderText(null);
 
-            this.setProjectConfiguration(project.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members);
+            this.setGroupConfiguration(group.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members, !Archive.getText().equals("Archiver"));
 
-            if(this.getProjectConfiguration().isComplete()) {
-                if(this.getProjectConfiguration().isGoodLastDate()) {
-                    this.updateProjectInformations(this.getProjectConfiguration(), this.project);
-                    alert.setContentText("Le projet a bien été sauvegardé");
-                    alert.showAndWait();
+            if(this.getGroupConfiguration().isComplete()) {
+                if(this.getGroupConfiguration().isGoodLastDate()) {
+                    this.updateProjectInformations(this.getGroupConfiguration(), alert);
                 } else {
                     alert.setContentText("La date de fin est avant la date de debut");
                     alert.showAndWait();
@@ -239,26 +257,41 @@ public class ConfigurationViewController implements Initializable {
         }
     }
 
-    private ProjectConfiguration getProjectConfiguration() {
-        return this.projectConfiguration;
+    private GroupConfiguration getGroupConfiguration() {
+        return this.groupConfiguration;
     }
 
-    private void setProjectConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDate, LocalDate lastDate, String description, ArrayList members) {
-        this.projectConfiguration = new ProjectConfiguration(id, name, visibility, module, nbMembers, firstDate, lastDate, description, members);
+    private void setGroupConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDate, LocalDate lastDate, String description, ArrayList members, boolean archived) {
+        this.groupConfiguration = new GroupConfiguration(id, name, visibility, module, nbMembers, firstDate, lastDate, description, members, archived);
     }
 
-    private void updateProjectInformations(ProjectConfiguration projectConfiguration, Project project) {
-        project.setName(projectConfiguration.getName());
-        project.setCreatedAt(Date.from(projectConfiguration.getFirstDay().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-        project.setDescription(projectConfiguration.getDescription());
-        projectConfiguration.saveProjectsInFile();
+    private void updateProjectInformations(GroupConfiguration groupConfiguration, Alert alert) {
+        group.setName(groupConfiguration.getName());
+        group.setDescription(groupConfiguration.getDescription());
+        groupConfiguration.saveProjectsInFile();
 
-        if(projectConfiguration.getVisibility() == 1)
-            project.setVisibility(Visibility.PUBLIC);
-        else project.setVisibility(Visibility.PRIVATE);
+        if(groupConfiguration.getVisibility() == 0)
+            group.setVisibility(Visibility.PRIVATE);
+        else group.setVisibility(Visibility.PUBLIC);
+
+        /*try {
+            Project projectResponse = gitLab.getProjectApi().updateProject(group);
+
+            if(projectResponse != null) {
+                alert.setContentText("Le projet a bien été sauvegardé");
+                alert.showAndWait();
+            }
+        } catch (GitLabApiException e) {
+            e.printStackTrace();
+            Alert alertError = new Alert(Alert.AlertType.ERROR);
+            alertError.setTitle("Error dialog");
+            alertError.setHeaderText(null);
+            alertError.setContentText("La sauvegarde n'a pas pu être effectué");
+            alertError.showAndWait();
+        }*/
     }
 
-    private void setProjectConfigurationFromId(int id) {
-        this.projectConfiguration = ProjectConfiguration.getById(id);
+    private void setGroupConfigurationFromId(int id) {
+        this.groupConfiguration = GroupConfiguration.getById(id);
     }
 }

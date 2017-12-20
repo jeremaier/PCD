@@ -8,7 +8,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class CSVListener {
-    private ArrayList<Member> members = new ArrayList();
+    private ArrayList<MemberInformations> members = new ArrayList();
 
     public CSVListener(String nomFichier) {
         load(nomFichier);
@@ -32,7 +32,7 @@ public class CSVListener {
                 scan.next();
                 String mail = scan.next();
 
-                members.add(new Member(lastName, firstName, mail));
+                members.add(new MemberInformations(lastName, firstName, mail));
                 scan.nextLine();
             }
 
@@ -42,7 +42,7 @@ public class CSVListener {
         }
     }
 
-    public ArrayList<Member> extract() {
+    public ArrayList<MemberInformations> extract() {
         return this.members;
     }
 }

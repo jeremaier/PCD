@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 
+  //vQZL2K-1161fbxFAwLsS
+
 
   final static Logger log = LogManager.getLogger(Main.class);
 
@@ -21,8 +23,8 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-      new LogView(primaryStage);
-      //new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
+      //new LogView(primaryStage);
+      new GroupView("4E_y1qKSCRJzdMNy-49f","Quent");
   }
 
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -29,11 +30,15 @@
    <children>
       <PasswordField fx:id="password_fill" prefHeight="133.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
       <TextField fx:id="identifiant_fill" prefHeight="85.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Button fx:id="connect_button" mnemonicParsing="false" onAction="#TryConnect" prefHeight="26.0" prefWidth="442.0" text="Connexion" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Button fx:id="connect_button" mnemonicParsing="false" onAction="#TryConnect" prefHeight="27.0" prefWidth="282.0" text="Connexion" GridPane.columnIndex="2" GridPane.rowIndex="6" />
       <Label text="Identifiant :" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Label prefHeight="16.0" prefWidth="140.0" text="Mot de passe :" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <Label text="Clé de connexion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="cToken" prefHeight="27.0" prefWidth="315.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <ProgressIndicator fx:id="pi" prefHeight="16.0" prefWidth="274.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Label fx:id="load" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="276.0" text="Chargement en cours" textAlignment="RIGHT" textFill="#3c41d3" GridPane.columnIndex="2" GridPane.rowIndex="7">
+         <effect>
+            <Glow />
+         </effect></Label>
+      <ProgressIndicator fx:id="pi" maxHeight="50.0" maxWidth="100.0" prefHeight="50.0" prefWidth="60.0" progress="0.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
    </children>
 </GridPane>
