@@ -26,8 +26,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
-import static java.lang.Thread.sleep;
-
 public class ContentController implements Initializable {
 
     @FXML
@@ -60,6 +58,7 @@ public class ContentController implements Initializable {
     @FXML
     private TextFlow text;
 
+    private GroupConfiguration groupconfig;
 
 
     public ContentController(Group g, GitLabApi gla){
@@ -136,9 +135,10 @@ public class ContentController implements Initializable {
         });
 
         GroupConfiguration gc = GroupConfiguration.getById(thisgroup.getId());
+        groupconfig=gc;
         int height=0;
         int width=0;
-        int nbmembers = gc.getNbMembers();
+        int nbmembers = groupconfig.getNbMembers();
         System.out.println(nbmembers);
         try {
             List<Project> list = gitlab.getGroupApi().getProjects(thisgroup.getId());
@@ -212,7 +212,13 @@ public class ContentController implements Initializable {
             i++;
         }
         Button stats = new Button("          \uD83D\uDDE0          ");
-        stats.setOnAction(e -> System.out.println("coucou")); //new GroupstatView(gitlab,id));
+        stats.setOnAction(e -> {
+            try {
+                new GroupstatView(gitlab, p.getId(),groupconfig.getMembersList());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }); 
         table.add(stats, nbmembers+1, nbrow);
 
         Button contact = new Button("          ✉          ");
@@ -256,7 +262,7 @@ public class ContentController implements Initializable {
                     e1.printStackTrace();
                 }
             }
-        }); //new GroupstatView(gitlab,id));
+        });
         table.add(supp, nbmembers+3, nbrow);
     }
 
