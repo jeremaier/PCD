@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import org.gitlab4j.api.GitLabApi;
+import org.gitlab4j.api.models.Group;
 import org.gitlab4j.api.models.Project;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -16,18 +18,20 @@ public class ProjectsView {
 
     final static Logger log = LogManager.getLogger(Main.class);
 
-    public ProjectsView(Stage primaryStage, Project project) throws Exception{
+    public ProjectsView(Stage primaryStage, Group groupe, GitLabApi gitlab) throws Exception{
 
         primaryStage.setTitle("SchoolRoom groups");
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("ProjectsView.fxml"));
-        loader.setControllerFactory(iC -> new ProjectsController(project));
+        ProjectsController projet = new ProjectsController(groupe, gitlab);
+        loader.setControllerFactory(iC -> projet);
         Parent root = loader.load();
 
         primaryStage.setOnCloseRequest(event -> {
             log.debug("terminating application.");
-            Platform.exit();
+            primaryStage.close();
+            projet.liste.stage.close();
         });
 
 
