@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -41,6 +42,7 @@ public class ConfigurationViewController implements Initializable {
     private Group group;
     private Stage configurationStage;
     private boolean onGit = false;
+    private ArrayList<MemberInformations> members = new ArrayList<>();
 
     private int visibility;
     private int id;
@@ -48,6 +50,7 @@ public class ConfigurationViewController implements Initializable {
     private String description;
 
     private boolean changed = false;
+    private ArrayList<Button> removeButtons = new ArrayList<>();
 
     @FXML
     private AnchorPane controllerView;
@@ -69,6 +72,9 @@ public class ConfigurationViewController implements Initializable {
 
     @FXML
     private Button AddCSV;
+
+    @FXML
+    private Button RemoveAll;
 
     @FXML
     private RadioButton Public;
@@ -110,6 +116,9 @@ public class ConfigurationViewController implements Initializable {
     private ChoiceBox<String> Promo;
 
     @FXML
+    private GridPane MembersList;
+
+    @FXML
     private ScrollPane MembersScroll;
 
     public ConfigurationViewController(GitLabApi gitLab, Group group) {
@@ -148,45 +157,137 @@ public class ConfigurationViewController implements Initializable {
         visibility = this.group.getVisibility().toString().equals(Visibility.PUBLIC.toString()) ? 1 : 0;
         description = this.group.getDescription();
 
-        if(idProject == 0) {
-            this.setGroupConfiguration(id, name, visibility, "", "", null, null, description, new ArrayList<>(), false, null);
-            groupConfiguration.saveGroupInFile(groupsList);
-            groupsList = new ArrayList<>();
-            groupsList.add(groupConfiguration);
-        }
+        if(idProject == 0)
+            this.groupConfiguration = new GroupConfiguration(id, name, visibility, "", "", null, null, description, new ArrayList<>(), false, null);
 
         this.initializePaneInfo();
-
-
-        /*try {
-            final TitledPane[] tps = new TitledPane[groups.size()];
-            int i = 0;
-
-            for (Group p : members) {
-                tps[i]=new TitledPane(p.getName(), setContent(p));
-                i++;
-            }
-
-            acc.getPanes().addAll(tps);
-        } catch (GitLabApiException e) {
-            e.printStackTrace();
-        }*/
     }
 
-    /*public Node setContent(MembersList membersList) {
-        AnchorPane anchor = null;
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("ProjectContent.fxml"));
-        loader.setControllerFactory(iC-> new MembersListController(group, gitLab));
+    private void addMemberToList() {
+        String[] fields = {this.LastName.getText(), this.FirstName.getText(), this.Mail.getText()};
+        boolean allInformations = true;
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning dialog");
+        alert.setHeaderText(null);
 
-        try {
-            anchor = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (String field : fields) {
+            field = field.trim();
+
+            if ((field.isEmpty()) || (field.contains(" "))) {
+                allInformations = false;
+                break;
+            }
         }
 
-        return anchor;
-    }*/
+        if(!fields[2].contains("@"))
+            allInformations = false;
+
+        if(allInformations) {
+            MemberInformations member = new MemberInformations(fields[0].toLowerCase(), fields[1].toLowerCase(), fields[2].toLowerCase(), -1);
+            boolean contains = false;
+            int length = members.size();
+
+            for (int i = 0; i < length; i++)
+                if ((members.get(i).getFirstname().equals(member.getFirstname()) && members.get(i).getLastName().equals(member.getLastName())) || members.get(i).getEmail().equals(member.getEmail()))
+                    contains = true;
+
+            if(!contains) {
+                this.members.add(member);
+                this.addRow(members.size() - 1, members);
+                this.FirstName.setText("");
+                this.LastName.setText("");
+                this.Mail.setText("");
+                this.FirstName.setPromptText("Prénom");
+                this.LastName.setPromptText("Nom");
+                this.Mail.setPromptText("Email");
+            } else {
+                alert.setContentText("Le membre existe déjà dans la liste");
+                alert.showAndWait();
+            }
+        } else {
+            alert.setContentText("Les informations nécessaires ne sont pas valides");
+            alert.showAndWait();
+        }
+    }
+
+    private void reDoGridPane() {
+        if(this.MembersList != null) {
+            this.MembersList.getChildren().clear();
+
+            for (int i = 0; i < this.members.size(); i++)
+                addRow(members.size() - 1, members);
+        }
+    }
+
+    private void addRow(int pos, ArrayList<MemberInformations> members) {
+        MemberInformations member = members.get(pos);
+        Label label = new Label(member.getLastName().toUpperCase() + " " + member.getFirstname().toLowerCase() + " <" + member.getEmail() + ">");
+        MembersScroll.setVvalue(1.0);
+        removeButtons.add(new Button("X"));
+        removeButtons.get(pos).setOnAction(e -> removeMember(pos));
+        this.MembersList.add(label, 0, pos);
+        this.MembersList.add(removeButtons.get(pos), 1, pos);
+    }
+
+    private void removeMember(int i) {
+        this.members.remove(i);
+        this.removeButtons.remove(i);
+        reDoGridPane();
+    }
+
+    private void removeAllMembers() {
+        members = new ArrayList<>();
+        removeButtons = new ArrayList<>();
+        MembersScroll.setVvalue(0.0);
+        reDoGridPane();
+    }
+
+    private void addFromCSV(String filePath) {
+        ArrayList<MemberInformations> membersCSV = new CSVListener(filePath).extract();
+        ArrayList<MemberInformations> ancientMembers = new ArrayList<>();
+        int countAlreadyAdd = 0;
+        int posMax = 0;
+
+        if(!membersCSV.isEmpty()) {
+            boolean contains = false;
+
+            for (int i = 0; i < membersCSV.size(); i++) {
+                for (int j = 0; j < members.size(); j++)
+                    if ((members.get(j).getFirstname().equals(membersCSV.get(i).getFirstname()) && members.get(j).getLastName().equals(membersCSV.get(i).getLastName())) || members.get(i).getEmail().equals(membersCSV.get(i).getEmail()))
+                        contains = true;
+
+                if (!contains) {
+                    ancientMembers.add(membersCSV.get(i));
+                    addRow(posMax, ancientMembers);
+                    posMax++;
+                } else countAlreadyAdd++;
+            }
+        }
+
+        if(countAlreadyAdd > 0) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning dialog");
+            alert.setHeaderText(null);
+            alert.setContentText(countAlreadyAdd + " membre(s) existai(en)t déjà dans la liste");
+            alert.showAndWait();
+        }
+
+        members = ancientMembers;
+    }
+
+    private void setMembersList() {
+        ArrayList<MemberInformations> groupConfMembersList = this.groupConfiguration.getMembersList();
+        int length = groupConfMembersList.size();
+
+        //System.out.println(groupConfMembersList.get(0).getFirstname());
+
+        if(length != 0) {
+            for (int i = 0; i < length; i++) {
+                this.members.add(groupConfMembersList.get(i));
+                this.addRow(members.size() - 1, members);
+            }
+        }
+    }
 
     private void initializePaneInfo() {
         this.Name.setText(name);
@@ -197,6 +298,7 @@ public class ConfigurationViewController implements Initializable {
         this.Description.setText(description);
         this.Promo.getSelectionModel().select(this.groupConfiguration.getPromo());
         this.setArchiveText();
+        this.setMembersList();
 
         try {
             Image image = SwingFXUtils.toFXImage(ImageIO.read(new URL(this.group.getAvatarUrl())), null);
@@ -230,8 +332,6 @@ public class ConfigurationViewController implements Initializable {
         Name.lengthProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 changed = true;
-
-                System.out.println(Name.getText().length());
 
                 if(newValue.intValue() > oldValue.intValue())
                     if(Name.getText().contains(" "))
@@ -300,13 +400,28 @@ public class ConfigurationViewController implements Initializable {
 
     @FXML
     public void handleClickAddFile(ActionEvent event) {
-        /*final FileChooser fileChooser = new FileChooser();
+        log.debug("Add");
+    }
+
+    @FXML
+    public void handleClickAddMember(ActionEvent event) {
+        this.addMemberToList();
+        log.debug("AddMember");
+    }
+
+    @FXML
+    public void handleClickUseCSV(ActionEvent event) {
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Ouverture d'un fichier .csv");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Fichiers csv", "*.csv"));
 
         File file = fileChooser.showOpenDialog(configurationStage);
-        if (file != null)
-            openFile(file);*/
 
-        log.debug("Add");
+        if (file != null)
+            this.addFromCSV(file.getAbsolutePath());
+
+        log.debug("UseCSV");
     }
 
     @FXML
@@ -331,13 +446,17 @@ public class ConfigurationViewController implements Initializable {
     }
 
     @FXML
+    public void handleClickRemoveAll(ActionEvent event) {
+        this.removeAllMembers();
+    }
+
+    @FXML
     public void handleClickSave(ActionEvent event) {
-        if(this.changed || this.isDifferentFromGit()) {
-            ArrayList members = new ArrayList();
+        if(this.changed || this.isDifferentFromGit() || !this.members.equals(this.groupConfiguration.getMembersList())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information dialog");
             alert.setHeaderText(null);
-            this.setGroupConfiguration(group.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members, !Archive.getText().equals("Archiver"), Promo.getSelectionModel().getSelectedItem());
+            this.groupConfiguration = new GroupConfiguration(group.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members, !Archive.getText().equals("Archiver"), Promo.getSelectionModel().getSelectedItem());
 
             if(this.groupConfiguration.isComplete()) {
                 if(this.groupConfiguration.isGoodLastDate()) {
@@ -358,11 +477,8 @@ public class ConfigurationViewController implements Initializable {
     private boolean isDifferentFromGit() {
         return this.id != this.groupConfiguration.getId()
                 && this.Description.getText().equals(this.groupConfiguration.getDescription())
-                && this.visibility == this.groupConfiguration.getVisibility();
-    }
-
-    private void setGroupConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDate, LocalDate lastDate, String description, ArrayList<MemberInformations> members, boolean archived, String promo) {
-        this.groupConfiguration = new GroupConfiguration(id, name, visibility, module, nbMembers, firstDate, lastDate, description, members, archived, promo);
+                && this.visibility == this.groupConfiguration.getVisibility()
+                && this.members != this.groupConfiguration.getMembersList();
     }
 
     private void updateGroupInformations(GroupConfiguration groupConfiguration) {

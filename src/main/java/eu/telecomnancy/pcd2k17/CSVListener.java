@@ -23,17 +23,14 @@ public class CSVListener {
             flotFiltre = new BufferedReader(flot);
             Scanner scan = new Scanner(flotFiltre);
             scan.useLocale(Locale.ENGLISH);
+            scan.useDelimiter("\\s*;\\s*");
 
-            while(scan.hasNextLine()) {
-                scan.useDelimiter("\\s*;\\s*");
-                String lastName = scan.next();
-                scan.next();
+            while(scan.hasNext()) {
                 String firstName = scan.next();
-                scan.next();
+                String lastName = scan.next();
                 String mail = scan.next();
 
-                members.add(new MemberInformations(lastName, firstName, mail));
-                scan.nextLine();
+                members.add(new MemberInformations(lastName, firstName, mail, -1));
             }
 
             scan.close();

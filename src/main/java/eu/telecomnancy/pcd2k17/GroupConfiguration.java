@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
+import org.gitlab4j.api.models.Group;
+
 public class GroupConfiguration implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -113,7 +115,7 @@ public class GroupConfiguration implements Serializable {
     }
 
     public static String getFilePath() {
-        String directoryPath = System.getProperty("user.dir") + "\\saves";
+        String directoryPath = System.getProperty("user.dir") + File.separator + "saves";
         File folder = new File(directoryPath);
 
         if(!folder.exists())
@@ -138,7 +140,7 @@ public class GroupConfiguration implements Serializable {
                 fIn = new FileInputStream(file);
                 oIn = new ObjectInputStream(fIn);
 
-                ArrayList projectConfiguration = (ArrayList) oIn.readObject();
+                ArrayList groupsConfiguration = (ArrayList) oIn.readObject();
 
                 if (oIn != null)
                     oIn.close();
@@ -146,7 +148,7 @@ public class GroupConfiguration implements Serializable {
                 if (fIn != null)
                     fIn.close();
 
-                return projectConfiguration;
+                return groupsConfiguration;
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -195,7 +197,7 @@ public class GroupConfiguration implements Serializable {
                 k = -1;
 
                 for (int j = 0; j < groupsConfigurationList.size(); j++) {
-                    if (groupsList.get(i).getID() == groupsConfigurationList.get(j).getId()) {
+                    if (groupsList.get(i).getId() == groupsConfigurationList.get(j).getId()) {
                         k = j;
                         break;
                     }
