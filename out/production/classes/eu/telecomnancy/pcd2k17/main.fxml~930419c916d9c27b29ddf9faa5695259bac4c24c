@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane ?>
+<?import javafx.scene.control.Button ?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="eu.telecomnancy.pcd2k17.MainController">
+  <center>
+    <Button fx:id="button" text="Ok" onAction="#handleClickOk"/>
+  </center>
+</BorderPane>
