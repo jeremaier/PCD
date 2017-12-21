@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.GroupstatController">
     <children>
         <Label layoutX="32.0" layoutY="27.0" text="GROUPE N°">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <AnchorPane layoutX="101.0" layoutY="160.0" prefHeight="56.0" prefWidth="267.0" />
-        <AnchorPane layoutX="443.0" layoutY="96.0" prefHeight="160.0" prefWidth="300.0" />
-        <AnchorPane layoutX="443.0" layoutY="403.0" prefHeight="160.0" prefWidth="300.0" />
-        <AnchorPane layoutX="443.0" layoutY="256.0" prefHeight="160.0" prefWidth="300.0" />
-        <AnchorPane layoutX="101.0" layoutY="230.0" prefHeight="288.0" prefWidth="250.0" />
+        <AnchorPane fx:id="global_data" layoutX="-1.0" layoutY="81.0" prefHeight="84.0" prefWidth="400.0" />
+        <AnchorPane fx:id="chart1" layoutX="393.0" layoutY="81.0" prefHeight="246.0" prefWidth="400.0" />
+        <AnchorPane fx:id="chart3" layoutX="400.0" layoutY="326.0" prefHeight="274.0" prefWidth="400.0" />
+        <AnchorPane fx:id="individual_data" layoutX="-1.0" layoutY="174.0" prefHeight="154.0" prefWidth="400.0" />
+        <Separator layoutY="79.0" opacity="0.18" prefHeight="3.0" prefWidth="800.0">
+            <effect>
+                <DropShadow>
+                    <input>
+                        <Lighting bumpInput="$null">
+                            <light>
+                                <Light.Distant />
+                            </light>
+                        </Lighting>
+                    </input>
+                </DropShadow>
+            </effect>
+        </Separator>
+        <AnchorPane fx:id="chart2" layoutX="-1.0" layoutY="327.0" prefHeight="274.0" prefWidth="400.0" />
+        <Separator layoutX="1.0" layoutY="326.0" prefHeight="3.0" prefWidth="800.0" />
     </children>
 </AnchorPane>

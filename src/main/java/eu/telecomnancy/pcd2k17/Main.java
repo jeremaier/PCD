@@ -29,8 +29,10 @@ public class Main extends Application  {
 
 
 
-      new LogView(primaryStage);
+      //new LogView(primaryStage);
 
+      gla = new GitLabApi("https://gitlab.telecomnancy.univ-lorraine.fr", "shcz2dxdWdAFw5dc7q6-");
+      new GroupstatView(gla,1274 );
       //new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
 
   }
