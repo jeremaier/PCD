@@ -1,55 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.ConfigurationView">
+<AnchorPane fx:id="controllerView" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.ConfigurationViewController">
    <children>
-      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="14.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="14.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
-            <TextField prefHeight="35.0" prefWidth="272.0" promptText="Titre">
+            <TextField fx:id="Name" prefHeight="35.0" prefWidth="330.0" promptText="Name*" style="-fx-background-color: -fx-text-box-border, -fx-background; -fx-background-insets: 0, 0 0 2 0; -fx-background-radius: 0;">
                <FlowPane.margin>
                   <Insets left="30.0" />
                </FlowPane.margin>
             </TextField>
-            <Label text="Visibilité :">
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="124.0" prefHeight="21.0" prefWidth="600.0" vgap="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <DatePicker fx:id="FirstDay" prefHeight="35.0" prefWidth="155.0" promptText="Date de début">
+               <FlowPane.margin>
+                  <Insets left="30.0" />
+               </FlowPane.margin>
+            </DatePicker>
+            <DatePicker fx:id="LastDay" prefHeight="35.0" prefWidth="155.0" promptText="Date de rendu*">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </DatePicker>
+            <Label text="Nombre de personne(s) par groupe* :">
                <FlowPane.margin>
                   <Insets left="50.0" />
                </FlowPane.margin>
             </Label>
-            <RadioButton mnemonicParsing="false" text="Publique">
+            <TextField fx:id="NbMembers" prefHeight="35.0" prefWidth="40.0">
                <FlowPane.margin>
-                  <Insets left="20.0" />
+                  <Insets left="40.0" />
                </FlowPane.margin>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Privé">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </RadioButton>
+            </TextField>
          </children>
       </FlowPane>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutY="124.0" prefHeight="21.0" prefWidth="600.0" vgap="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <DatePicker prefHeight="31.0" prefWidth="148.0" promptText="Date de début">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin>
-            </DatePicker>
-            <DatePicker prefHeight="31.0" prefWidth="156.0" promptText="Date de rendu">
-               <FlowPane.margin>
-                  <Insets left="80.0" />
-               </FlowPane.margin>
-            </DatePicker>
-         </children>
-      </FlowPane>
-      <FlowPane columnHalignment="CENTER" layoutY="168.0" orientation="VERTICAL" prefHeight="86.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <FlowPane columnHalignment="CENTER" layoutY="172.0" orientation="VERTICAL" prefHeight="86.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="93.0" text="Description :">
                <FlowPane.margin>
@@ -59,9 +67,9 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextArea prefHeight="88.0" prefWidth="600.0">
+            <TextArea fx:id="Description" prefHeight="77.0" prefWidth="575.0">
                <FlowPane.margin>
-                  <Insets left="5.0" />
+                  <Insets left="40.0" />
                </FlowPane.margin>
                <font>
                   <Font size="16.0" />
@@ -71,61 +79,117 @@
       </FlowPane>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" layoutX="-4.0" layoutY="399.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="135.0" text="Annuler" textAlignment="CENTER">
+            <Label text="Association :">
+               <FlowPane.margin>
+                  <Insets right="30.0" />
+               </FlowPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="AddFile" mnemonicParsing="false" onAction="#handleClickAddFile" prefHeight="40.0" text="Ajouter un fichier">
+               <FlowPane.margin>
+                  <Insets right="60.0" />
+               </FlowPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="Cancel" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClickCancel" prefHeight="40.0" prefWidth="125.0" text="Annuler" textAlignment="CENTER">
                <FlowPane.margin>
                   <Insets />
                </FlowPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="135.0" text="Sauvegarder">
+            <Button fx:id="Save" mnemonicParsing="false" onAction="#handleClickSave" prefHeight="40.0" prefWidth="125.0" text="Sauvegarder">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" text="Archiver" textAlignment="CENTER">
+            <Button fx:id="Archive" alignment="CENTER" mnemonicParsing="false" onAction="#handleClickArchive" prefHeight="40.0" prefWidth="125.0" textAlignment="CENTER">
                <FlowPane.margin>
                   <Insets left="20.0" right="30.0" />
                </FlowPane.margin>
             </Button>
          </children>
       </FlowPane>
-      <FlowPane columnHalignment="CENTER" layoutY="485.0" prefHeight="21.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="64.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
-            <Label text="Association d'un fichier :">
-               <FlowPane.margin>
-                  <Insets left="30.0" />
-               </FlowPane.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button mnemonicParsing="false" prefHeight="35.0" text="Ajouter un fichier">
-               <FlowPane.margin>
-                  <Insets left="10.0" />
-               </FlowPane.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </FlowPane>
-      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="64.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-         <children>
-            <TextField prefHeight="31.0" prefWidth="93.0" promptText="Module">
+            <TextField fx:id="Module" prefHeight="35.0" prefWidth="155.0" promptText="Module">
                <FlowPane.margin>
                   <Insets left="30.0" />
                </FlowPane.margin>
             </TextField>
-            <Label text="Nombre de personne(s) par groupe :">
+            <ChoiceBox fx:id="Promo" prefHeight="35.0" prefWidth="155.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="1A" />
+                     <String fx:value="2A" />
+                     <String fx:value="3A" />
+                  </FXCollections>
+               </items>
+
                <FlowPane.margin>
-                  <Insets left="228.0" />
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </ChoiceBox>
+            <Label text="*">
+               <FlowPane.margin>
+                  <Insets left="5.0" />
                </FlowPane.margin>
             </Label>
-            <TextField prefHeight="31.0" prefWidth="41.0">
+            <Label text="Visibilité :">
                <FlowPane.margin>
-                  <Insets left="10.0" />
+                  <Insets left="38.0" />
                </FlowPane.margin>
-            </TextField>
+            </Label>
+            <RadioButton fx:id="Public" mnemonicParsing="false" text="Publique">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="optionToggleGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="Private" mnemonicParsing="false" text="Privé" toggleGroup="$optionToggleGroup">
+               <FlowPane.margin>
+                  <Insets left="20.0" />
+               </FlowPane.margin>
+            </RadioButton>
          </children>
       </FlowPane>
+      <Separator layoutX="20.0" layoutY="519.0" prefHeight="14.0" prefWidth="760.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Separator>
+      <Separator layoutX="20.0" layoutY="251.0" prefHeight="14.0" prefWidth="760.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Separator>
+      <ImageView fx:id="Avatar" fitHeight="100.0" fitWidth="100.0" layoutX="680.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
+      <AnchorPane fx:id="Grid" layoutX="20.0" layoutY="265.0" prefHeight="252.0" prefWidth="760.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <TextField fx:id="FirstName" layoutX="10.0" layoutY="14.0" prefHeight="30.0" prefWidth="200.0" promptText="Prenom" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <TextField fx:id="LastName" layoutX="219.0" layoutY="14.0" prefHeight="30.0" prefWidth="200.0" promptText="Nom" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="10.0" />
+            <TextField fx:id="Mail" layoutX="421.0" layoutY="14.0" prefHeight="30.0" prefWidth="320.0" promptText="Adresse email" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <ScrollPane fx:id="MembersScroll" layoutX="14.0" layoutY="56.0" prefHeight="196.0" prefWidth="607.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
+               <content>
+                  <GridPane fx:id="MembersList" prefHeight="31.0" prefWidth="587.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.0" minWidth="10.0" prefWidth="547.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="40.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <Button fx:id="AddMember" layoutX="622.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleClickAddMember" prefHeight="35.0" prefWidth="125.0" text="Ajouter" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
+            <Button fx:id="AddCSV" layoutX="655.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleClickUseCSV" prefHeight="35.0" prefWidth="125.0" text="Utiliser un .csv" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0" />
+            <Button fx:id="RemoveAll" layoutX="655.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleClickRemoveAll" prefHeight="35.0" prefWidth="125.0" text="Supprimer tout" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="10.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
