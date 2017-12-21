@@ -3,10 +3,16 @@ package eu.telecomnancy.pcd2k17;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -15,25 +21,31 @@ import org.apache.logging.log4j.Logger;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Group;
-import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.Visibility;
 
+import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
 public class ConfigurationViewController implements Initializable {
     final static Logger log = LogManager.getLogger(ConfigurationViewController.class);
 
+    private ArrayList<GroupConfiguration> groupsList;
     private GroupConfiguration groupConfiguration;
     private GitLabApi gitLab;
     private Group group;
     private Stage configurationStage;
+    private boolean onGit = false;
+
+    private int visibility;
+    private int id;
+    private String name;
+    private String description;
 
     private boolean changed = false;
 
@@ -53,6 +65,12 @@ public class ConfigurationViewController implements Initializable {
     private Button Save;
 
     @FXML
+    private Button AddMember;
+
+    @FXML
+    private Button AddCSV;
+
+    @FXML
     private RadioButton Public;
 
     @FXML
@@ -68,6 +86,15 @@ public class ConfigurationViewController implements Initializable {
     private TextField NbMembers;
 
     @FXML
+    private TextField FirstName;
+
+    @FXML
+    private TextField LastName;
+
+    @FXML
+    private TextField Mail;
+
+    @FXML
     private DatePicker FirstDay;
 
     @FXML
@@ -76,12 +103,21 @@ public class ConfigurationViewController implements Initializable {
     @FXML
     private TextArea Description;
 
+    @FXML
+    private ImageView Avatar;
+
+    @FXML
+    private ChoiceBox<String> Promo;
+
+    @FXML
+    private ScrollPane MembersScroll;
+
     public ConfigurationViewController(GitLabApi gitLab, Group group) {
         this.gitLab = gitLab;
         this.group = group;
     }
 
-    public final UnaryOperator<TextFormatter.Change> integerOnlyFilter = change -> {
+    private final UnaryOperator<TextFormatter.Change> integerOnlyFilter = change -> {
         final String text = change.getText();
         return (text.isEmpty() || text.matches("[0-9]")) ? change : null;
     };
@@ -93,40 +129,81 @@ public class ConfigurationViewController implements Initializable {
     }
 
     private void initializeGroupConfiguration() {
-        ArrayList<GroupConfiguration> projectslist = GroupConfiguration.loadProjectsFromFile();
+        groupsList = GroupConfiguration.loadGroupsFromFile();
         int idProject = 0;
 
-        if(projectslist != null) {
-            for (GroupConfiguration p : projectslist) {
-                if (p.getId() == group.getId()) {
-                    idProject = p.getId();
+        if(groupsList != null) {
+            for (GroupConfiguration g : groupsList) {
+                if (g.getId() == group.getId()) {
+                    onGit = true;
+                    idProject = g.getId();
                     this.setGroupConfigurationFromId(idProject);
                     break;
                 }
             }
         }
 
-        if(idProject == 0) {
-            this.setGroupConfiguration(this.group.getId(), this.group.getName(), 0, "", "", null, null, "", new ArrayList(), false);
-            this.Name.setText(this.groupConfiguration.getName());
-            this.setArchiveText();
-            groupConfiguration.saveProjectsInFile();
-        } else this.initializePaneInfo();
+        id = this.group.getId();
+        name = this.group.getName();
+        visibility = this.group.getVisibility().toString().equals(Visibility.PUBLIC.toString()) ? 1 : 0;
+        description = this.group.getDescription();
+
+        if(idProject == 0)
+            this.setGroupConfiguration(id, name, visibility, "", "", null, null, description, new ArrayList<>(), false, null);
+
+        this.initializePaneInfo();
+
+
+        /*try {
+            final TitledPane[] tps = new TitledPane[groups.size()];
+            int i = 0;
+
+            for (Group p : members) {
+                tps[i]=new TitledPane(p.getName(), setContent(p));
+                i++;
+            }
+
+            acc.getPanes().addAll(tps);
+        } catch (GitLabApiException e) {
+            e.printStackTrace();
+        }*/
     }
 
+    /*public Node setContent(MembersList membersList) {
+        AnchorPane anchor = null;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("ProjectContent.fxml"));
+        loader.setControllerFactory(iC-> new MembersListController(group, gitLab));
+
+        try {
+            anchor = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return anchor;
+    }*/
+
     private void initializePaneInfo() {
-        int visibility = this.groupConfiguration.getVisibility();
-        this.Name.setText(this.groupConfiguration.getName());
+        this.Name.setText(name);
         this.Module.setText(this.groupConfiguration.getModule());
         this.NbMembers.setText(String.valueOf(this.groupConfiguration.getNbMembers()));
         this.FirstDay.setValue(this.groupConfiguration.getFirstDay());
         this.LastDay.setValue(this.groupConfiguration.getLastDay());
-        this.Description.setText(this.groupConfiguration.getDescription());
+        this.Description.setText(description);
+        this.Promo.getSelectionModel().select(this.groupConfiguration.getPromo());
         this.setArchiveText();
 
-        if(visibility == 0)
-            this.Private.setSelected(true);
-        else this.Public.setSelected(true);
+        try {
+            Image image = SwingFXUtils.toFXImage(ImageIO.read(new URL(this.group.getAvatarUrl())), null);
+            Avatar.setImage(image);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        if(visibility == 1)
+            this.Public.setSelected(true);
+        else this.Private.setSelected(true);
     }
 
     private void setArchiveText() {
@@ -195,7 +272,7 @@ public class ConfigurationViewController implements Initializable {
         Public.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(oldValue != newValue)
+                if(oldValue.equals(newValue))
                     changed = true;
             }
         });
@@ -203,7 +280,15 @@ public class ConfigurationViewController implements Initializable {
         Private.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(oldValue != newValue)
+                if(oldValue.equals(newValue))
+                    changed = true;
+            }
+        });
+
+        Promo.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                if(oldValue.equals(newValue))
                     changed = true;
             }
         });
@@ -211,10 +296,10 @@ public class ConfigurationViewController implements Initializable {
 
     @FXML
     public void handleClickAddFile(ActionEvent event) {
-        final FileChooser fileChooser = new FileChooser();
+        /*final FileChooser fileChooser = new FileChooser();
 
         File file = fileChooser.showOpenDialog(configurationStage);
-        /*if (file != null)
+        if (file != null)
             openFile(file);*/
 
         log.debug("Add");
@@ -222,6 +307,14 @@ public class ConfigurationViewController implements Initializable {
 
     @FXML
     public void handleClickCancel(ActionEvent event) {
+        if(!onGit) {
+            try {
+                gitLab.getGroupApi().deleteGroup(this.group);
+            } catch (GitLabApiException e) {
+                e.printStackTrace();
+            }
+        }
+
         this.configurationStage = (Stage)Cancel.getScene().getWindow();
         this.configurationStage.close();
     }
@@ -235,17 +328,18 @@ public class ConfigurationViewController implements Initializable {
 
     @FXML
     public void handleClickSave(ActionEvent event) {
-        if(this.changed) {
+        if(this.changed || this.isDifferentFromGit()) {
             ArrayList members = new ArrayList();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information dialog");
             alert.setHeaderText(null);
+            this.setGroupConfiguration(group.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members, !Archive.getText().equals("Archiver"), Promo.getSelectionModel().getSelectedItem());
 
-            this.setGroupConfiguration(group.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members, !Archive.getText().equals("Archiver"));
-
-            if(this.getGroupConfiguration().isComplete()) {
-                if(this.getGroupConfiguration().isGoodLastDate()) {
-                    this.updateProjectInformations(this.getGroupConfiguration(), alert);
+            if(this.groupConfiguration.isComplete()) {
+                if(this.groupConfiguration.isGoodLastDate()) {
+                    this.updateGroupInformations(this.groupConfiguration);
+                    this.configurationStage = (Stage)Save.getScene().getWindow();
+                    this.configurationStage.close();
                 } else {
                     alert.setContentText("La date de fin est avant la date de debut");
                     alert.showAndWait();
@@ -257,38 +351,36 @@ public class ConfigurationViewController implements Initializable {
         }
     }
 
-    private GroupConfiguration getGroupConfiguration() {
-        return this.groupConfiguration;
+    private boolean isDifferentFromGit() {
+        return this.id != this.groupConfiguration.getId()
+                && this.Description.getText().equals(this.groupConfiguration.getDescription())
+                && this.visibility == this.groupConfiguration.getVisibility();
     }
 
-    private void setGroupConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDate, LocalDate lastDate, String description, ArrayList members, boolean archived) {
-        this.groupConfiguration = new GroupConfiguration(id, name, visibility, module, nbMembers, firstDate, lastDate, description, members, archived);
+    private void setGroupConfiguration(int id, String name, int visibility, String module, String nbMembers, LocalDate firstDate, LocalDate lastDate, String description, ArrayList<MemberInformations> members, boolean archived, String promo) {
+        this.groupConfiguration = new GroupConfiguration(id, name, visibility, module, nbMembers, firstDate, lastDate, description, members, archived, promo);
     }
 
-    private void updateProjectInformations(GroupConfiguration groupConfiguration, Alert alert) {
+    private void updateGroupInformations(GroupConfiguration groupConfiguration) {
         group.setName(groupConfiguration.getName());
+        group.setPath(groupConfiguration.getName());
         group.setDescription(groupConfiguration.getDescription());
-        groupConfiguration.saveProjectsInFile();
+        groupConfiguration.saveGroupInFile(groupsList);
 
-        if(groupConfiguration.getVisibility() == 0)
-            group.setVisibility(Visibility.PRIVATE);
-        else group.setVisibility(Visibility.PUBLIC);
+        if(groupConfiguration.getVisibility() == 1)
+            group.setVisibility(Visibility.PUBLIC);
+        else group.setVisibility(Visibility.PRIVATE);
 
-        /*try {
-            Project projectResponse = gitLab.getProjectApi().updateProject(group);
-
-            if(projectResponse != null) {
-                alert.setContentText("Le projet a bien été sauvegardé");
-                alert.showAndWait();
-            }
+        try {
+            gitLab.getGroupApi().updateGroup(group.getId(), group.getName(), group.getPath(), group.getDescription(), group.getRequestAccessEnabled(), group.getRequestAccessEnabled(), group.getVisibility(), group.getRequestAccessEnabled(), group.getRequestAccessEnabled(), group.getParentId(), group.getSharedRunnersMinutesLimit());
         } catch (GitLabApiException e) {
             e.printStackTrace();
             Alert alertError = new Alert(Alert.AlertType.ERROR);
-            alertError.setTitle("Error dialog");
+            alertError.setTitle("Requête impossible");
             alertError.setHeaderText(null);
-            alertError.setContentText("La sauvegarde n'a pas pu être effectué");
+            alertError.setContentText("La sauvegarde n'a pas pu être effectué.\n\nVérifiez que le nom n'est pas déjà utilisé.");
             alertError.showAndWait();
-        }*/
+        }
     }
 
     private void setGroupConfigurationFromId(int id) {

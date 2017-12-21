@@ -9,16 +9,22 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.gitlab4j.api.GitLabApi;
+import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Group;
+import org.gitlab4j.api.models.Member;
+import org.gitlab4j.api.models.Project;
 
 public class GmailSTMP implements Initializable {
 
     private Group thisgroup;
+    private GitLabApi gitlab;
 
     private boolean error = false;
 
@@ -40,8 +46,10 @@ public class GmailSTMP implements Initializable {
     @FXML
     Button sendButton;
 
-    public GmailSTMP(Group group){
+    public GmailSTMP(Group group, GitLabApi gl){
+
         thisgroup=group;
+        gitlab=gl;
     }
 
     public void sendMailTool(String id, String mdp, String destinataire, String sujet, String corps) {
@@ -71,12 +79,9 @@ public class GmailSTMP implements Initializable {
             message.setText(corps);
 
             Transport.send(message);
-            error=false;
-
         } catch (MessagingException e) {
-            error=true;
-            throw new RuntimeException(e);
-
+            this.error=true;
+            //throw new RuntimeException(e);
         }
     }
 
@@ -87,11 +92,9 @@ public class GmailSTMP implements Initializable {
 
 
     public void sendMail(){
-        sendMailTool(id_fill.getText(),password_fill.getText(),"lefeuvre.quentin@wanadoo.fr",subject.getText(),message.getText());
-        ArrayList<MemberInformations> list = GroupConfiguration.getById(thisgroup.getId()).getMembers();
+        ArrayList<MemberInformations> list = GroupConfiguration.getById(thisgroup.getId()).getMembersList();
         for (MemberInformations m : list){
-            System.out.println(m.getFirstname());
-            sendMailTool(id_fill.getText(),password_fill.getText(),"lefeuvre.quentin@wanadoo.fr",subject.getText(),message.getText());
+            sendMailTool(id_fill.getText(),password_fill.getText(),m.getEmail(),subject.getText(),message.getText());
         }
         if(!error){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -108,6 +111,7 @@ public class GmailSTMP implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Le mail n'as pas pu être achimené correctement.\n\nVérifiez vos identifiants de connexion.");
             alert.showAndWait();
+            this.error=false;
         }
 
     }

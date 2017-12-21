@@ -8,9 +8,9 @@ public class MemberInformations extends Member {
     private String firstName;
 
     public MemberInformations(String lastName, String firstName, String email) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.setMasterAccess();
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEmail(email);
     }
 
     public String getLastName() {
@@ -21,11 +21,11 @@ public class MemberInformations extends Member {
         return this.firstName;
     }
 
-    public void setAccessLevel() { this.setAccessLevel(AccessLevel.MASTER); }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-   // public void setFirstName() { this.; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     public void setMasterAccess() { this.setAccessLevel(AccessLevel.MASTER); }
 
-    public void setGuestAccess() { this.setAccessLevel(AccessLevel.MASTER); }
+    public void setGuestAccess() { this.setAccessLevel(AccessLevel.GUEST); }
 }

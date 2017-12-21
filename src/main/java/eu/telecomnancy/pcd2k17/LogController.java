@@ -108,7 +108,7 @@ public class LogController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Erreur d'identification");
                     alert.setHeaderText(null);
-                    alert.setContentText("Veuillez entrer une clé de connexion");
+                    alert.setContentText("Veuiller entrer une clé de connexion");
                     alert.showAndWait();
                     identifiant_fill.clear();
                     password_fill.clear();
