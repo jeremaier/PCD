@@ -1,26 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ae930018-d1c1-4ce7-b483-084df659db5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileContent/fileContent.lock" />
+    <list default="true" id="1428ae18-173a-43e9-a058-7a0e8f17ee67" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/Lorraine.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/logoschool.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/univ.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_sun_mail_android_activation_1_5_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_sun_mail_android_mail_1_5_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GmailSTMP.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupConfiguration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupMembersList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MemberInformations.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectsController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StudentListController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GmailView.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupContent.fxml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupView.fxml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/CSVListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupsViewController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Member.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectConfiguration.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectContent.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/main.fxml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupsView.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectsView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectView.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupsView.fxml" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectsView.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/eu/telecomnancy/pcd2k17/GroupstatController.class" afterPath="$PROJECT_DIR$/build/classes/java/main/eu/telecomnancy/pcd2k17/GroupstatController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/eu/telecomnancy/pcd2k17/GroupstatView.class" afterPath="$PROJECT_DIR$/build/classes/java/main/eu/telecomnancy/pcd2k17/GroupstatView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/eu/telecomnancy/pcd2k17/Main.class" afterPath="$PROJECT_DIR$/build/classes/java/main/eu/telecomnancy/pcd2k17/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/LogController.class" afterPath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/LogController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/LogView.class" afterPath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/LogView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/Main.class" afterPath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/MainController.class" afterPath="$PROJECT_DIR$/out/production/classes/eu/telecomnancy/pcd2k17/MainController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/pcd2k17_sample_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/pcd2k17_sample_main.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/pcd2k17_sample_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/pcd2k17_sample_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/resources/main/eu/telecomnancy/pcd2k17/Groupstat.fxml" afterPath="$PROJECT_DIR$/build/resources/main/eu/telecomnancy/pcd2k17/Groupstat.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/resources/eu/telecomnancy/pcd2k17/log.fxml" afterPath="$PROJECT_DIR$/out/production/resources/eu/telecomnancy/pcd2k17/log.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationView.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationViewController.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationViewController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ContentController.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ContentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Group.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Group.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupController.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatController.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogController.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogView.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Main.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MainController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StudentListView.java" afterPath="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StudentListView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/Groupstat.fxml" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/Groupstat.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectView.fxml" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectView.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/configurationView.fxml" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/configurationView.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/log.fxml" afterPath="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/log.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,48 +71,23 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="pcd2k17-sample" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="pcd2k17-sample" />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GroupstatView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="210">
+              <caret line="21" column="42" lean-forward="false" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupsView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupsView.java">
+      <file leaf-file-name="MemberInformations.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MemberInformations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,68 +96,68 @@
       <file leaf-file-name="ConfigurationView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupsView.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupsView.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
+      <file leaf-file-name="GroupstatView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="180" lean-forward="false" selection-start-line="14" selection-start-column="120" selection-end-line="14" selection-end-column="180" />
+            <state relative-caret-position="165">
+              <caret line="40" column="44" lean-forward="false" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Main.java">
+      <file leaf-file-name="ContentController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ContentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="930">
+              <caret line="83" column="40" lean-forward="false" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="960">
+              <caret line="85" column="76" lean-forward="false" selection-start-line="85" selection-start-column="76" selection-end-line="85" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="41" column="90" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="90" />
-              <folding>
-                <marker date="1513756443000" expanded="true" signature="1820:1826" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1305">
-              <caret line="104" column="10" lean-forward="false" selection-start-line="104" selection-start-column="10" selection-end-line="106" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Groupstat.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/Groupstat.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+              <caret line="47" column="85" lean-forward="false" selection-start-line="47" selection-start-column="85" selection-end-line="47" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -153,40 +166,14 @@
       <file leaf-file-name="GroupstatController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1395">
-              <caret line="93" column="26" lean-forward="true" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupsViewController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupsViewController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1995">
-              <caret line="152" column="68" lean-forward="false" selection-start-line="151" selection-start-column="4" selection-end-line="152" selection-end-column="68" />
+            <state relative-caret-position="-2389">
+              <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="FxmlFile" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>barc</find>
-      <find>system</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -399,8 +386,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4541004027000" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="1616718486" />
+        <entry key="$PROJECT_DIR$" value="4541186630000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -512,20 +498,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/main.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/log.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogView.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupstatController.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StatHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectView.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectView.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/Groupstat.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatController.java" />
       </list>
     </option>
@@ -537,10 +511,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="426" />
-    <option name="y" value="318" />
-    <option name="width" value="1443" />
-    <option name="height" value="842" />
+    <option name="x" value="302" />
+    <option name="y" value="448" />
+    <option name="width" value="1354" />
+    <option name="height" value="873" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -558,8 +532,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -608,68 +580,20 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="pcd2k17" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pcd2k17-karczewski-lefeuvre-lefort-sernit" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pcd2k17-karczewski-lefeuvre-lefort-sernit" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pcd2k17-karczewski-lefeuvre-lefort-sernit" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pcd2k17" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.gitlab4j:gitlab4j-api:4.7.4" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.gitlab4j:gitlab4j-api:4.7.4" type="70bed36:NamedLibraryElementNode" />
-              <item name="gitlab4j-api-4.7.4.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.gitlab4j:gitlab4j-api:4.7.4" type="70bed36:NamedLibraryElementNode" />
-              <item name="gitlab4j-api-4.7.4.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pcd2k17_sample" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.gitlab4j:gitlab4j-api:4.7.4" type="70bed36:NamedLibraryElementNode" />
-              <item name="gitlab4j-api-4.7.4.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="external.system.task.project.file.to.start" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -683,7 +607,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.Unnamed">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -700,52 +624,11 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="pcd2k17-sample_main" />
+      <module name="pcd2k17_sample_main" />
       <envs />
-    </configuration>
-    <configuration name="SampleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="eu.telecomnancy.pcd2k17.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="pcd2k17-sample_test" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="eu.telecomnancy.pcd2k17" />
-      <option name="MAIN_CLASS_NAME" value="eu.telecomnancy.pcd2k17.SampleTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="Unnamed" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="run" />
-          </list>
-        </option>
-        <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
@@ -764,6 +647,23 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -825,15 +725,9 @@
       <properties />
       <listeners />
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Gradle.Unnamed" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SampleTest" />
-    </list>
     <recent_temporary>
-      <list size="2">
+      <list size="1">
         <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SampleTest" />
       </list>
     </recent_temporary>
   </component>
@@ -842,144 +736,86 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ae930018-d1c1-4ce7-b483-084df659db5b" name="Default" comment="" />
-      <created>1513582807793</created>
+      <changelist id="1428ae18-173a-43e9-a058-7a0e8f17ee67" name="Default" comment="" />
+      <created>1513850968041</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1513582807793</updated>
-      <workItem from="1513582812361" duration="1058000" />
-      <workItem from="1513583928370" duration="1747000" />
-      <workItem from="1513585933228" duration="1605000" />
-      <workItem from="1513587589809" duration="1740000" />
-      <workItem from="1513589401744" duration="1674000" />
-      <workItem from="1513591229283" duration="1505000" />
-      <workItem from="1513593174525" duration="1220000" />
-      <workItem from="1513596797414" duration="1617000" />
-      <workItem from="1513598614317" duration="1589000" />
-      <workItem from="1513600421461" duration="1762000" />
-      <workItem from="1513602240185" duration="1788000" />
-      <workItem from="1513604077060" duration="1727000" />
-      <workItem from="1513607251692" duration="1242000" />
-      <workItem from="1513668119480" duration="279000" />
-      <workItem from="1513668438294" duration="1709000" />
-      <workItem from="1513670252843" duration="1158000" />
-      <workItem from="1513672488823" duration="1178000" />
-      <workItem from="1513674291640" duration="1716000" />
-      <workItem from="1513679943380" duration="1643000" />
-      <workItem from="1513681752933" duration="1700000" />
-      <workItem from="1513683586620" duration="1783000" />
-      <workItem from="1513685938548" duration="673000" />
-      <workItem from="1513688563430" duration="1225000" />
-      <workItem from="1513691655950" duration="1328000" />
-      <workItem from="1513693725709" duration="845000" />
-      <workItem from="1513711145096" duration="504000" />
-      <workItem from="1513712938701" duration="669000" />
-      <workItem from="1513755873760" duration="1132000" />
-      <workItem from="1513757450651" duration="1793000" />
-      <workItem from="1513759333165" duration="1905000" />
-      <workItem from="1513761589677" duration="1275000" />
-      <workItem from="1513763405138" duration="1731000" />
-      <workItem from="1513765232466" duration="1796000" />
-      <workItem from="1513767102380" duration="1679000" />
-      <workItem from="1513768953227" duration="533000" />
-      <workItem from="1513771206097" duration="1671000" />
-      <workItem from="1513773015515" duration="1750000" />
-      <workItem from="1513774872504" duration="1763000" />
-      <workItem from="1513776710673" duration="1765000" />
-      <workItem from="1513778523672" duration="1711000" />
-      <workItem from="1513780335375" duration="1830000" />
-      <workItem from="1513782430102" duration="1592000" />
-      <workItem from="1513784296411" duration="1752000" />
-      <workItem from="1513786126679" duration="2032000" />
-      <workItem from="1513788275079" duration="1063000" />
-      <workItem from="1513790572976" duration="888000" />
-      <workItem from="1513841602435" duration="1704000" />
-      <workItem from="1513843408705" duration="1675000" />
-      <workItem from="1513845229671" duration="887000" />
-      <workItem from="1513847183810" duration="1711000" />
-      <workItem from="1513849169326" duration="1186000" />
+      <updated>1513850968041</updated>
+      <workItem from="1513850974836" duration="1775000" />
+      <workItem from="1513852799594" duration="1815000" />
+      <workItem from="1513854730532" duration="1530000" />
+      <workItem from="1513858513007" duration="1760000" />
+      <workItem from="1513860327443" duration="1714000" />
+      <workItem from="1513862199224" duration="1741000" />
+      <workItem from="1513864063902" duration="51000" />
     </task>
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="SampleTest - 2017.12.18 at 08h 47m 31s.xml">
-      <configuration name="SampleTest" configurationId="JUnit" />
-    </history-entry>
-  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73508000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="10386000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="426" y="318" width="1443" height="842" extended-state="0" />
+    <frame x="302" y="448" width="1354" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.4972332" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3708166" sideWeight="0.3952234" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29451138" sideWeight="0.60477656" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.49407116" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.4972332" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3310811" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21556032" sideWeight="0.49196786" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24390244" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964426" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24961479" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980237" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24426877" sideWeight="0.50803214" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32931727" sideWeight="0.4972332" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3708166" sideWeight="0.3952234" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980237" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.4972332" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.49407116" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3708166" sideWeight="0.60477656" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931727" sideWeight="0.4972332" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30123267" sideWeight="0.49196786" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32931727" sideWeight="0.4972332" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964426" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3310811" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2631579" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24426877" sideWeight="0.50803214" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -989,202 +825,262 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/IssuesApi.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GmailSTMP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2381">
-          <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        <state relative-caret-position="1065">
+          <caret line="89" column="78" lean-forward="false" selection-start-line="89" selection-start-column="78" selection-end-line="89" selection-end-column="78" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/PipelineApi.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="25" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="20" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/ServicesApi.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MemberInformations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <caret line="35" column="68" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/SessionApi.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        <state relative-caret-position="120">
+          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/log.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="26" lean-forward="false" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/configurationView.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectsView.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/RepositoryFileApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/RepositoryApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/UserApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/ProjectApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/MilestonesApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/JobApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/DeployKeysApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/EventsApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/GitLabApiClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/GitLabApiException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/CommitsApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3825">
-          <caret line="269" column="5" lean-forward="false" selection-start-line="269" selection-start-column="5" selection-end-line="269" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StatHandler.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/LabelsApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/MergeRequestApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/NamespaceApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/NotesApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/Pager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="37" column="11" lean-forward="false" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StudentListView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <caret line="5" column="37" lean-forward="false" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/StudentListView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="53" column="45" lean-forward="false" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MemberInformations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="35" column="68" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/Groupstat.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectsView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/StudentListView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupContent.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GmailView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupContent.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GmailView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/Groupstat.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectsView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1204,212 +1100,517 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+        <state relative-caret-position="75">
+          <caret line="5" column="37" lean-forward="false" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="346" column="44" lean-forward="true" selection-start-line="346" selection-start-column="44" selection-end-line="346" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StudentListController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/StudentListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4785">
+          <caret line="349" column="17" lean-forward="false" selection-start-line="349" selection-start-column="17" selection-end-line="349" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GmailSTMP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="89" column="78" lean-forward="false" selection-start-line="89" selection-start-column="78" selection-end-line="89" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Group.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2910">
+          <caret line="207" column="0" lean-forward="true" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="103" column="9" lean-forward="false" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupMembersList.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/CSVListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ContentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Member.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/GroupApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4425">
-          <caret line="309" column="0" lean-forward="false" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/javafx-src.zip!/com/sun/javafx/application/LauncherImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12180">
-          <caret line="862" column="0" lean-forward="false" selection-start-line="862" selection-start-column="0" selection-end-line="862" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/javafx-src.zip!/com/sun/javafx/application/PlatformImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3450">
-          <caret line="294" column="0" lean-forward="false" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gitlab4j/gitlab4j-api/4.7.4/f6c5c1dc38c98a58e8623bf9e33a9956d4145a7b/gitlab4j-api-4.7.4-sources.jar!/org/gitlab4j/api/AbstractApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4305">
-          <caret line="305" column="0" lean-forward="false" selection-start-line="305" selection-start-column="0" selection-end-line="305" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/ProjectContent.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="16" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/main.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectConfiguration.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2475">
-          <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/GroupsView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="180" lean-forward="false" selection-start-line="14" selection-start-column="120" selection-end-line="14" selection-end-column="180" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="41" column="90" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="90" />
-          <folding>
-            <marker date="1513756443000" expanded="true" signature="1820:1826" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ProjectController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="104" column="10" lean-forward="false" selection-start-line="104" selection-start-column="10" selection-end-line="106" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupsViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="152" column="68" lean-forward="false" selection-start-line="151" selection-start-column="4" selection-end-line="152" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/eu/telecomnancy/pcd2k17/Groupstat.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+        <state relative-caret-position="270">
+          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/Main.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="21" column="42" lean-forward="false" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupView.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="47" column="85" lean-forward="false" selection-start-line="47" selection-start-column="85" selection-end-line="47" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/LogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="85" column="76" lean-forward="false" selection-start-line="85" selection-start-column="76" selection-end-line="85" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/eu.telecomnancy.pcd2k17.ConfigurationView">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>eu.telecomnancy.pcd2k17.ConfigurationView</OriginalElement>
+          <nodes>
+            <node x="0.0" y="535.0">eu.telecomnancy.pcd2k17.ConfigurationViewController</node>
+            <node x="407.8972805468338" y="386.0">javafx.fxml.Initializable</node>
+            <node x="694.2728496206174" y="980.0">eu.telecomnancy.pcd2k17.ProjectsView</node>
+            <node x="397.0" y="1054.0">eu.telecomnancy.pcd2k17.LogView</node>
+            <node x="288.5943190737836" y="614.0">eu.telecomnancy.pcd2k17.ConfigurationView</node>
+            <node x="0.0" y="1054.0">eu.telecomnancy.pcd2k17.GroupMembersList</node>
+            <node x="947.5943190737836" y="535.0">eu.telecomnancy.pcd2k17.StudentListController</node>
+            <node x="631.5943190737836" y="614.0">javafx.application.Application</node>
+            <node x="62.39602138932514" y="386.0">eu.telecomnancy.pcd2k17.GroupConfiguration</node>
+            <node x="281.1997448979589" y="901.0">eu.telecomnancy.pcd2k17.GroupView</node>
+            <node x="968.7097805468338" y="0.0">javax.xml.bind.annotation.XmlAccessorType</node>
+            <node x="386.6770833333333" y="703.0">eu.telecomnancy.pcd2k17.ContentController</node>
+            <node x="1024.3126880559917" y="901.0">eu.telecomnancy.pcd2k17.ProjectsController</node>
+            <node x="211.0" y="1054.0">eu.telecomnancy.pcd2k17.MainController</node>
+            <node x="771.5943190737836" y="614.0">eu.telecomnancy.pcd2k17.GroupstatView</node>
+            <node x="228.6997448979589" y="980.0">eu.telecomnancy.pcd2k17.LogController</node>
+            <node x="797.7097805468338" y="0.0">javax.xml.bind.annotation.XmlRootElement</node>
+            <node x="958.5847805468338" y="158.0">eu.telecomnancy.pcd2k17.MemberInformations</node>
+            <node x="740.0847805468338" y="703.0">eu.telecomnancy.pcd2k17.Main</node>
+            <node x="30.021021389325142" y="307.0">java.io.Serializable</node>
+            <node x="272.6997448979589" y="782.0">eu.telecomnancy.pcd2k17.GroupController</node>
+            <node x="1110.3347805468338" y="307.0">eu.telecomnancy.pcd2k17.Group</node>
+            <node x="946.4186829539508" y="782.0">eu.telecomnancy.pcd2k17.StudentListView</node>
+            <node x="911.7097805468338" y="79.0">org.gitlab4j.api.models.Member</node>
+            <node x="754.5943190737836" y="535.0">eu.telecomnancy.pcd2k17.GroupstatController</node>
+            <node x="473.5943190737836" y="535.0">eu.telecomnancy.pcd2k17.GmailSTMP</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="eu.telecomnancy.pcd2k17.MemberInformations" target="org.gitlab4j.api.models.Member">
+              <point x="0.0" y="-14.5" />
+              <point x="1048.0847805468338" y="133.0" />
+              <point x="985.2097805468338" y="133.0" />
+              <point x="24.5" y="14.5" />
+            </edge>
+            <edge source="javafx.application.Application" target="javafx.application.Application">
+              <point x="-30.0" y="14.5" />
+              <point x="661.5943190737836" y="663.0" />
+              <point x="611.5943190737836" y="663.0" />
+              <point x="611.5943190737836" y="628.5" />
+              <point x="-60.0" y="-0.0" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ProjectsView" target="eu.telecomnancy.pcd2k17.ProjectsController">
+              <point x="31.75" y="-14.5" />
+              <point x="789.5228496206174" y="955.0" />
+              <point x="1104.8126880559917" y="955.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupView" target="eu.telecomnancy.pcd2k17.GroupController">
+              <point x="-28.75" y="-14.5" />
+              <point x="-37.25" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ConfigurationViewController" target="eu.telecomnancy.pcd2k17.GroupConfiguration">
+              <point x="-18.91666666666663" y="-14.5" />
+              <point x="94.58333333333337" y="515.0" />
+              <point x="105.64602138932514" y="515.0" />
+              <point x="-43.25" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupstatController" target="eu.telecomnancy.pcd2k17.MemberInformations">
+              <point x="34.59999999999991" y="-14.5" />
+              <point x="875.6943190737835" y="515.0" />
+              <point x="902.8411858974359" y="515.0" />
+              <point x="902.8411858974359" y="247.0" />
+              <point x="1020.5463190083722" y="247.0" />
+              <point x="-27.538461538461547" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ProjectsController" target="javafx.fxml.Initializable">
+              <point x="-73.79166666666663" y="-14.5" />
+              <point x="1031.0210213893251" y="881.0" />
+              <point x="601.0943190737836" y="881.0" />
+              <point x="601.0943190737836" y="465.0" />
+              <point x="491.0847805468338" y="465.0" />
+              <point x="22.6875" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.StudentListController" target="eu.telecomnancy.pcd2k17.MemberInformations">
+              <point x="22.75" y="-14.5" />
+              <point x="1061.3443190737837" y="515.0" />
+              <point x="1045.4186829539508" y="515.0" />
+              <point x="1045.4186829539508" y="277.0" />
+              <point x="1061.8540113160645" y="277.0" />
+              <point x="13.769230769230774" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.Main" target="eu.telecomnancy.pcd2k17.GroupstatView">
+              <point x="19.5" y="-14.5" />
+              <point x="798.5847805468338" y="683.0" />
+              <point x="841.0943190737836" y="683.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupConfiguration" target="java.io.Serializable">
+              <point x="-64.875" y="-14.5" />
+              <point x="84.02102138932514" y="361.0" />
+              <point x="89.52102138932514" y="361.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ProjectsView" target="eu.telecomnancy.pcd2k17.Main">
+              <point x="-31.75" y="-14.5" />
+              <point x="726.0228496206174" y="955.0" />
+              <point x="499.1681138801671" y="955.0" />
+              <point x="499.1681138801671" y="757.0" />
+              <point x="753.0847805468338" y="757.0" />
+              <point x="-26.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.StudentListController" target="eu.telecomnancy.pcd2k17.ProjectsController">
+              <point x="-68.25" y="14.5" />
+              <point x="970.3443190737836" y="589.0" />
+              <point x="930.7936829539508" y="589.0" />
+              <point x="930.7936829539508" y="861.0" />
+              <point x="1057.8543547226586" y="861.0" />
+              <point x="-46.95833333333326" y="-14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ContentController" target="eu.telecomnancy.pcd2k17.GmailSTMP">
+              <point x="53.66666666666674" y="-14.5" />
+              <point x="520.84375" y="683.0" />
+              <point x="532.0943190737836" y="683.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ConfigurationView" target="eu.telecomnancy.pcd2k17.ConfigurationViewController">
+              <point x="0.0" y="-14.5" />
+              <point x="370.5943190737836" y="589.0" />
+              <point x="113.5" y="589.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ContentController" target="javafx.fxml.Initializable">
+              <point x="0.0" y="-14.5" />
+              <point x="467.1770833333333" y="683.0" />
+              <point x="463.0943190737836" y="683.0" />
+              <point x="463.0943190737836" y="515.0" />
+              <point x="460.8347805468338" y="515.0" />
+              <point x="-7.5625" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ContentController" target="eu.telecomnancy.pcd2k17.ConfigurationView">
+              <point x="-53.66666666666663" y="-14.5" />
+              <point x="413.5104166666667" y="683.0" />
+              <point x="411.5943190737836" y="683.0" />
+              <point x="41.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupstatController" target="org.gitlab4j.api.models.Member">
+              <point x="0.0" y="-14.5" />
+              <point x="841.0943190737836" y="515.0" />
+              <point x="859.6164115646257" y="515.0" />
+              <point x="859.6164115646257" y="133.0" />
+              <point x="936.2097805468338" y="133.0" />
+              <point x="-24.5" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ProjectsController" target="eu.telecomnancy.pcd2k17.Main">
+              <point x="-60.375" y="-14.5" />
+              <point x="1044.4376880559917" y="871.0" />
+              <point x="779.0847805468338" y="871.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.LogController" target="eu.telecomnancy.pcd2k17.GroupView">
+              <point x="33.5" y="-14.5" />
+              <point x="329.1997448979589" y="955.0" />
+              <point x="338.6997448979589" y="955.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.Group" target="eu.telecomnancy.pcd2k17.MemberInformations">
+              <point x="-21.5" y="-14.5" />
+              <point x="1131.8347805468338" y="287.0" />
+              <point x="1089.3924728545262" y="287.0" />
+              <point x="41.30769230769232" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.Main" target="javafx.application.Application">
+              <point x="-19.5" y="-14.5" />
+              <point x="759.5847805468338" y="683.0" />
+              <point x="721.5943190737836" y="683.0" />
+              <point x="30.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupstatController" target="eu.telecomnancy.pcd2k17.GroupConfiguration">
+              <point x="-69.20000000000005" y="-14.5" />
+              <point x="771.8943190737835" y="455.0" />
+              <point x="220.9793547226584" y="455.0" />
+              <point x="72.08333333333329" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupstatView" target="eu.telecomnancy.pcd2k17.GroupstatController">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.StudentListView" target="eu.telecomnancy.pcd2k17.StudentListController">
+              <point x="49.333333333333286" y="-14.5" />
+              <point x="1069.752016287284" y="757.0" />
+              <point x="1062.6686829539508" y="757.0" />
+              <point x="1062.6686829539508" y="589.0" />
+              <point x="1061.3443190737837" y="589.0" />
+              <point x="22.75" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.StudentListController" target="javafx.fxml.Initializable">
+              <point x="-68.25" y="-14.5" />
+              <point x="970.3443190737836" y="435.0" />
+              <point x="521.3347805468338" y="435.0" />
+              <point x="52.9375" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.StudentListView" target="eu.telecomnancy.pcd2k17.Main">
+              <point x="-49.33333333333334" y="-14.5" />
+              <point x="971.0853496206174" y="757.0" />
+              <point x="805.0847805468338" y="757.0" />
+              <point x="26.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupConfiguration" target="eu.telecomnancy.pcd2k17.Group">
+              <point x="64.875" y="-14.5" />
+              <point x="213.77102138932514" y="361.0" />
+              <point x="1121.0847805468338" y="361.0" />
+              <point x="-32.25" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupConfiguration" target="eu.telecomnancy.pcd2k17.MemberInformations">
+              <point x="-21.625" y="-14.5" />
+              <point x="127.27102138932514" y="361.0" />
+              <point x="159.52102138932514" y="361.0" />
+              <point x="159.52102138932514" y="217.0" />
+              <point x="979.2386267006799" y="217.0" />
+              <point x="-68.84615384615384" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.LogController" target="javafx.fxml.Initializable">
+              <point x="-33.5" y="-14.5" />
+              <point x="262.1997448979589" y="955.0" />
+              <point x="252.26041666666674" y="955.0" />
+              <point x="252.26041666666674" y="505.0" />
+              <point x="430.5847805468338" y="505.0" />
+              <point x="-37.8125" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GmailSTMP" target="eu.telecomnancy.pcd2k17.MemberInformations">
+              <point x="39.0" y="-14.5" />
+              <point x="571.0943190737836" y="515.0" />
+              <point x="568.8347805468338" y="515.0" />
+              <point x="568.8347805468338" y="237.0" />
+              <point x="1006.7770882391414" y="237.0" />
+              <point x="-41.30769230769232" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.StudentListView" target="eu.telecomnancy.pcd2k17.ProjectsController">
+              <point x="49.3333333333334" y="14.5" />
+              <point x="1069.7520162872843" y="831.0" />
+              <point x="1098.1043547226586" y="831.0" />
+              <point x="-6.7083333333332575" y="-14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupController" target="eu.telecomnancy.pcd2k17.ConfigurationView">
+              <point x="0.0" y="-14.5" />
+              <point x="347.1997448979589" y="757.0" />
+              <point x="329.5943190737836" y="757.0" />
+              <point x="-41.0" y="14.5" />
+            </edge>
+            <edge source="org.gitlab4j.api.models.Member" target="javax.xml.bind.annotation.XmlAccessorType">
+              <point x="24.5" y="-14.5" />
+              <point x="985.2097805468338" y="54.0" />
+              <point x="1048.2097805468338" y="54.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ConfigurationViewController" target="eu.telecomnancy.pcd2k17.MemberInformations">
+              <point x="-94.58333333333337" y="-14.5" />
+              <point x="19.52102138932503" y="207.0" />
+              <point x="965.4693959314492" y="207.0" />
+              <point x="-82.61538461538461" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupstatController" target="javafx.fxml.Initializable">
+              <point x="-34.59999999999991" y="-14.5" />
+              <point x="806.4943190737837" y="445.0" />
+              <point x="506.2097805468338" y="445.0" />
+              <point x="37.8125" y="14.5" />
+            </edge>
+            <edge source="org.gitlab4j.api.models.Member" target="javax.xml.bind.annotation.XmlRootElement">
+              <point x="-24.5" y="-14.5" />
+              <point x="936.2097805468338" y="54.0" />
+              <point x="873.2097805468338" y="54.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupController" target="eu.telecomnancy.pcd2k17.ContentController">
+              <point x="49.666666666666686" y="-14.5" />
+              <point x="396.8664115646256" y="757.0" />
+              <point x="467.1770833333333" y="757.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GmailSTMP" target="eu.telecomnancy.pcd2k17.GroupConfiguration">
+              <point x="-39.0" y="-14.5" />
+              <point x="493.0943190737836" y="485.0" />
+              <point x="192.14602138932514" y="485.0" />
+              <point x="43.24999999999997" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ProjectsController" target="eu.telecomnancy.pcd2k17.StudentListView">
+              <point x="-20.125" y="-14.5" />
+              <point x="1084.6876880559917" y="841.0" />
+              <point x="1020.4186829539508" y="841.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupController" target="eu.telecomnancy.pcd2k17.GroupView">
+              <point x="37.25" y="14.5" />
+              <point x="384.4497448979589" y="881.0" />
+              <point x="367.4497448979589" y="881.0" />
+              <point x="28.75" y="-14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ProjectsController" target="eu.telecomnancy.pcd2k17.Group">
+              <point x="46.95833333333337" y="-14.5" />
+              <point x="1151.7710213893251" y="861.0" />
+              <point x="1180.2097805468338" y="861.0" />
+              <point x="1180.2097805468338" y="361.0" />
+              <point x="1185.5847805468338" y="361.0" />
+              <point x="32.25" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GroupController" target="javafx.fxml.Initializable">
+              <point x="-49.66666666666663" y="-14.5" />
+              <point x="297.5330782312923" y="757.0" />
+              <point x="266.8443190737837" y="757.0" />
+              <point x="266.8443190737837" y="515.0" />
+              <point x="445.7097805468338" y="515.0" />
+              <point x="-22.6875" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.GmailSTMP" target="javafx.fxml.Initializable">
+              <point x="0.0" y="-14.5" />
+              <point x="532.0943190737836" y="475.0" />
+              <point x="475.9597805468338" y="475.0" />
+              <point x="7.5625" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ConfigurationViewController" target="javafx.fxml.Initializable">
+              <point x="94.58333333333337" y="-14.5" />
+              <point x="208.08333333333337" y="495.0" />
+              <point x="415.4597805468338" y="495.0" />
+              <point x="-52.9375" y="14.5" />
+            </edge>
+            <edge source="eu.telecomnancy.pcd2k17.ProjectsController" target="eu.telecomnancy.pcd2k17.MemberInformations">
+              <point x="73.79166666666663" y="-14.5" />
+              <point x="1178.6043547226584" y="881.0" />
+              <point x="1217.8347805468338" y="881.0" />
+              <point x="1217.8347805468338" y="257.0" />
+              <point x="1130.7001651622184" y="257.0" />
+              <point x="82.61538461538464" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="810.0" y="268.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ConfigurationView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/ContentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="83" column="40" lean-forward="false" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="40" column="44" lean-forward="false" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/GroupstatController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="93" column="26" lean-forward="true" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2389">
+          <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <entry file="file://$PROJECT_DIR$/src/main/java/eu/telecomnancy/pcd2k17/MemberInformations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

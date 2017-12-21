@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +32,8 @@ public class GroupstatController implements Initializable {
 
     GitLabApi gitLab;
     int projectID;
+
+    List<MemberInformations> liste;
 
 
     @FXML
@@ -49,7 +52,7 @@ public class GroupstatController implements Initializable {
     @FXML    private AnchorPane chart3;
 
 
-    public GroupstatController(GitLabApi gitLab,int projectID){
+    public GroupstatController(GitLabApi gitLab,int projectID, List<MemberInformations> liste){
         this.gitLab=gitLab;
         this.projectID=projectID;
     }
@@ -89,34 +92,53 @@ public class GroupstatController implements Initializable {
 
             // ProjectConfiguration.getById(projectID).getMembers().getEmail();
 
-            for (Commit p : listCommits) {
-
-                int k = 0;
-                for (org.gitlab4j.api.models.Member l : list) {
 
 
-                    if (maxDate == null) {
-                        maxDate = p.getCommittedDate();
+
+
+
+            String[] listmailord = new String[list.size()];
+            int k=0;
+            for (Member M : list){
+                for (MemberInformations m : liste){
+                    if (m.getLastName()+ " " + m.getFirstname()==M.getName()){
+                        listmailord[k]=m.getEmail();
+                        k++;
                     }
-                    if (p.getCommitterEmail().equals(l.getEmail())) {
-                        tabnb[k] += 1;
-                        if (tabdate[k] == null) {
-                            tabdate[k] = p.getCommittedDate();
+                }
+            }
 
-                        } else if (tabdate[k].before(p.getCommittedDate())) {
-                            tabdate[k] = p.getCommittedDate();
-                            if (p.getCommittedDate().after(maxDate)) {
-                                maxDate = p.getCommittedDate();
+
+            for (Commit p : listCommits){
+
+
+                for (int k3=0;k3<list.size();k3++){
+                    if (maxDate==null){
+                        maxDate=p.getCommittedDate();
+                    }
+                    if (p.getCommitterEmail().equals(listmailord[k3]) ){
+                        tabnb[k3]+=1;
+                        if (tabdate[k3]==null){
+                            tabdate[k3] = p.getCommittedDate();
+
+                        }
+                        else if (tabdate[k3].before(p.getCommittedDate())) {
+                            tabdate[k3] = p.getCommittedDate();
+                            if (p.getCommittedDate().after(maxDate)){
+                                maxDate=p.getCommittedDate();
                             }
                         }
 
                     }
-                    k += 1;
+                    k3+=1;
                 }
             }
 
+
+
+
             int i = 0;
-            int k = 0;
+            int kgb = 0;
             for (org.gitlab4j.api.models.Member p : list) {
 
                 grid[i] = new GridPane();
@@ -126,19 +148,19 @@ public class GroupstatController implements Initializable {
                 Label label2 = new Label("Nombre de commits realisés ");
                 GridPane.setConstraints(label2, 0, 1);
 
-                if (tabdate[k] == null) {
+                if (tabdate[kgb] == null) {
                     a = "aucun commit";
                 } else {
-                    a = tabdate[k].toString();
+                    a = tabdate[kgb].toString();
                 }
                 Label label3 = new Label(a);
                 GridPane.setConstraints(label3, 1, 0);
-                Label label4 = new Label(Integer.toString(tabnb[k]));
+                Label label4 = new Label(Integer.toString(tabnb[kgb]));
                 GridPane.setConstraints(label4, 1, 1);
                 grid[i].getChildren().addAll(label1, label2, label3, label4);
                 tps[i] = new TitledPane(p.getName(), grid[i]);
                 i++;
-                k++;
+                kgb++;
             }
 
 

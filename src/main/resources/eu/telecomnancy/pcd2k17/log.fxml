@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -12,28 +18,69 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.LogController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="49.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="119.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="125.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="276.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="163.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="133.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="170.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <PasswordField fx:id="password_fill" prefHeight="133.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <TextField fx:id="identifiant_fill" prefHeight="85.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Button fx:id="connect_button" mnemonicParsing="false" onAction="#TryConnect" prefHeight="26.0" prefWidth="442.0" text="Connexion" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-      <Label text="Identifiant :" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label prefHeight="16.0" prefWidth="140.0" text="Mot de passe :" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Label text="Clé de connexion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="cToken" prefHeight="27.0" prefWidth="315.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <ProgressIndicator fx:id="pi" prefHeight="16.0" prefWidth="274.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <PasswordField fx:id="password_fill" prefHeight="133.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+      <TextField fx:id="identifiant_fill" prefHeight="85.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Button fx:id="connect_button" mnemonicParsing="false" onAction="#TryConnect" prefHeight="27.0" prefWidth="282.0" text="Connexion" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+      <Label text="Identifiant :" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label prefHeight="16.0" prefWidth="140.0" text="Mot de passe :" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label text="Clé de connexion :" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <TextField fx:id="cToken" prefHeight="27.0" prefWidth="315.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Label fx:id="load" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="276.0" text="Connexion en cours" textAlignment="RIGHT" textFill="#3c41d3" GridPane.columnIndex="2" GridPane.rowIndex="11">
+         <effect>
+            <Glow />
+         </effect></Label>
+      <ProgressIndicator fx:id="pi" maxHeight="25.0" maxWidth="50.0" prefHeight="26.0" prefWidth="39.0" progress="0.0" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+      <ImageView fitHeight="112.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+         <image>
+            <Image url="@../../../logoschool.png" />
+         </image>
+      </ImageView>
+      <Separator prefHeight="1.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Separator>
+      <Separator prefHeight="1.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Separator>
+      <Separator prefHeight="1.0" prefWidth="250.0" GridPane.rowIndex="2">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Separator>
+      <Separator prefHeight="1.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Separator>
+      <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <image>
+            <Image url="@../../../univ.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="100.0" />
+         </GridPane.margin>
+      </ImageView>
    </children>
 </GridPane>

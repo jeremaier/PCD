@@ -28,15 +28,15 @@ import org.gitlab4j.api.models.Project;
 import java.io.IOException;
 import java.util.List;
 
-public class ProjectView {
+public class GroupView {
 
 
     protected GitLabApi gla;
 
-    final static Logger log = LogManager.getLogger(ProjectView.class);
+    final static Logger log = LogManager.getLogger(GroupView.class);
 
 
-    public ProjectView(String privateToken, String name) {
+    public GroupView(String privateToken, String name) {
 
 
         gla = new GitLabApi("https://gitlab.telecomnancy.univ-lorraine.fr", privateToken);
@@ -44,8 +44,8 @@ public class ProjectView {
         Stage window = new Stage();
         window.setTitle("SchoolRoom - Projects");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("ProjectView.fxml"));
-        loader.setControllerFactory(iC-> new ProjectController(gla,privateToken,name));
+        loader.setLocation(getClass().getResource("GroupView.fxml"));
+        loader.setControllerFactory(iC-> new GroupController(gla,privateToken,name));
         Parent root = null;
         try {
             root = loader.load();
@@ -57,7 +57,6 @@ public class ProjectView {
             log.debug("terminating application.");
             Platform.exit();
         });
-
         window.setResizable(false);
         window.setScene(new Scene(root, 800, 600));
         window.show();

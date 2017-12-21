@@ -28,8 +28,6 @@ public class MainController {
     log.debug("ok button was clicked!");
 
 
-    new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
-
 
   }
 
