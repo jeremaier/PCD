@@ -2,21 +2,21 @@ package eu.telecomnancy.pcd2k17;
 
 import java.util.ArrayList;
 
-public class Group {
+public class ProjectGroups {
 
     public int id;
     public String name;
     public int number;
     public ArrayList<MemberInformations> members;
 
-    public Group(int id, String name, int number) {
+    public ProjectGroups(int id, String name, int number) {
         this.id = id;
         this.name = name;
         this.number = number;
         this.members = new ArrayList<MemberInformations>();
     }
 
-    public Group(int id, String name, ArrayList<MemberInformations> members) {
+    public ProjectGroups(int id, String name, ArrayList<MemberInformations> members) {
         this.id = id;
         this.name = name;
         this.members = members;

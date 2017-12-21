@@ -95,7 +95,7 @@ public class GroupController implements Initializable {
                 int visi = g.getVisibility().equals(Visibility.PUBLIC)?1:0;
                 groupConf.add(new GroupConfiguration(g.getId(),g.getName(),visi,"","",null,null,g.getDescription(),new ArrayList<>(),false,null));
             }
-            GroupConfiguration.saveGroupsInFile(GroupConfiguration.getNewGroupsInGit(groupConf));
+            FileManager.saveGroupsInFile(FileManager.getNewGroupsInGit(groupConf));
             final TitledPane[] tps = new TitledPane[groups.size()];
             int i=0;
             for (Group p : groups) {
