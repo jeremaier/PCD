@@ -38,7 +38,6 @@ public class GroupView {
 
     public GroupView(String privateToken, String name) {
 
-
         gla = new GitLabApi("https://gitlab.telecomnancy.univ-lorraine.fr", privateToken);
 
         Stage window = new Stage();

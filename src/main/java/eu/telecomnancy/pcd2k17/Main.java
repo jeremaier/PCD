@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import org.gitlab4j.api.GitLabApi;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class Main extends Application  {
@@ -28,13 +29,9 @@ public class Main extends Application  {
   @Override
   public void start(Stage primaryStage) throws Exception {
 
-      //new LogView(primaryStage);
-
-      gla = new GitLabApi("https://gitlab.telecomnancy.univ-lorraine.fr", "shcz2dxdWdAFw5dc7q6-");
-      new GroupstatView(gla,1274 );
+    new LogView(primaryStage);
+    gla = new GitLabApi("https://gitlab.telecomnancy.univ-lorraine.fr", "shcz2dxdWdAFw5dc7q6-");
       //new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
-
-
   }
 
 

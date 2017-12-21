@@ -6,8 +6,14 @@ import org.junit.Test;
 public class SampleTest {
 
   @Test
-  public void testDummy() {
+  public void testDummy()
+
+  {
+
+    new LogView();
     assertEquals("dummy assertion", 1, 1);
   }
+
+
 
 }
