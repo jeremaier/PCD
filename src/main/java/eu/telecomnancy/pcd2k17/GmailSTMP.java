@@ -9,16 +9,22 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.gitlab4j.api.GitLabApi;
+import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Group;
+import org.gitlab4j.api.models.Member;
+import org.gitlab4j.api.models.Project;
 
 public class GmailSTMP implements Initializable {
 
     private Group thisgroup;
+    private GitLabApi gitlab;
 
     private boolean error = false;
 
@@ -40,8 +46,10 @@ public class GmailSTMP implements Initializable {
     @FXML
     Button sendButton;
 
-    public GmailSTMP(Group group){
+    public GmailSTMP(Group group, GitLabApi gl){
+
         thisgroup=group;
+        gitlab=gl;
     }
 
     public void sendMailTool(String id, String mdp, String destinataire, String sujet, String corps) {
@@ -84,7 +92,6 @@ public class GmailSTMP implements Initializable {
 
 
     public void sendMail(){
-        //sendMailTool(id_fill.getText(),password_fill.getText(),"lefeuvre.quentin@wanadoo.fr",subject.getText(),message.getText());
         ArrayList<MemberInformations> list = GroupConfiguration.getById(thisgroup.getId()).getMembersList();
         for (MemberInformations m : list){
             sendMailTool(id_fill.getText(),password_fill.getText(),m.getEmail(),subject.getText(),message.getText());

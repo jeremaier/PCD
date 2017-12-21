@@ -23,8 +23,8 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-      new LogView(primaryStage);
-      //new GroupView("4E_y1qKSCRJzdMNy-49f","Quent");
+      //new LogView(primaryStage);
+      new GroupView("4E_y1qKSCRJzdMNy-49f","Quent");
   }
 
 }

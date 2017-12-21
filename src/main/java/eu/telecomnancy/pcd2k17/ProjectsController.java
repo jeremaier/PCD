@@ -6,10 +6,7 @@ import org.apache.logging.log4j.LogManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
@@ -18,7 +15,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.geometry.Insets;
-import org.gitlab4j.api.models.Project;
+import org.gitlab4j.api.GitLabApi;
+import org.gitlab4j.api.GitLabApiException;
+import org.gitlab4j.api.models.*;
 
 
 public class ProjectsController implements Initializable {
@@ -31,11 +30,14 @@ public class ProjectsController implements Initializable {
     public TextField[][] textes;
     public ArrayList<String> namesAdded;
     //public Group[] groupes;
-    public ArrayList<Group> groupes2;
+    public ArrayList<ProjectGroups> groupes2;
     public Button[] boutons;
     public StudentListView liste;
-    public Project project;
+    public Group groupe;
     public ArrayList<Button> removeButtons;
+    public GitLabApi gitlab;
+
+    public List<User> membersLoaded;
 
     @FXML
     private GridPane TextFieldTab;
@@ -53,12 +55,44 @@ public class ProjectsController implements Initializable {
     public Button studentListButton;
 
     @FXML
+    public Button validateGroups;
+
+    @FXML
     private boolean studentButton;
 
-    public ProjectsController(Project project) {
+    public ProjectsController(Group groupe, GitLabApi gitlab) {
 
-        this.project = project;
+        this.groupe = groupe;
+        this.gitlab = gitlab;
     }
+
+
+    public ArrayList<MemberInformations> compare(List<User> membres, ArrayList<MemberInformations> membresInfo) {
+        ArrayList<MemberInformations> resultat;
+        resultat = membresInfo;
+
+        int res = 0;
+        for (int i=0;i<resultat.size();i++) {
+
+            for (int j=0;j<membres.size();j++) {
+
+                //System.out.println("Comparaison entre "+membres.get(j).getName().toLowerCase()+" et "+resultat.get(i).getLastName().toLowerCase());
+                if (membres.get(j).getName().toLowerCase().contains(resultat.get(i).getLastName().toLowerCase())) {
+
+                    resultat.get(i).setId(membres.get(j).getId());
+                    //System.out.println("ici, id = "+resultat.get(i).getId());
+                    res++;
+
+                }
+
+            }
+
+        }
+        //System.out.println(resultat.size()+" noms initialement, "+res+" ont été changés");
+        return resultat;
+    }
+
+
 
     public void automaticCreation() {
         this.deleteAll();
@@ -72,7 +106,8 @@ public class ProjectsController implements Initializable {
             entiers.add(i+1);
         }
 
-        int numberGroups = this.liste.controleur.membres.size() / this.number;
+        System.out.println(number);
+        int numberGroups = this.liste.controleur.membres.size() / number;
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(entiers.size());
 
@@ -87,7 +122,7 @@ public class ProjectsController implements Initializable {
                 while (true) {
                     bool = true;
                     for (int w=0;w<alreadyAdded.size();w++) {
-                        System.out.println(alreadyAdded.get(w));
+                        //System.out.println(alreadyAdded.get(w));
                         if (alreadyAdded.get(w)==entiers.get(randomInt)) {
                             bool = false; // existe déjà
                             break;
@@ -103,7 +138,7 @@ public class ProjectsController implements Initializable {
                 }
 
 
-                System.out.println(randomInt);
+                //System.out.println(randomInt);
                 this.liste.controleur.addStudent(entiers.get(randomInt));
                 alreadyAdded.add(entiers.get(randomInt));
 
@@ -139,14 +174,14 @@ public class ProjectsController implements Initializable {
             for (int w=0;w<this.number;w++) {
 
                 if (w<this.namesAdded.size()) {
-                    if (namesAdded.get(w).equals(this.liste.controleur.membres.get(x).getLastName())) {
+                    if (namesAdded.get(w).equals(this.liste.controleur.membres.get(x).getName())) {
                         this.liste.controleur.boutons.get(x).setDisable(true);
                     }
                 }
 
 
                 for (int n=0;n<this.groupes2.size();n++) {
-                    if (this.liste.controleur.membres.get(x).getLastName().equals(this.groupes2.get(n).getMember(w))) {
+                    if (this.liste.controleur.membres.get(x).getName().equals(this.groupes2.get(n).getMember(w))) {
                         this.liste.controleur.boutons.get(x).setDisable(true);
                         //this.namesAdded.add(this.textes[i][0].getText());
                     }
@@ -176,7 +211,7 @@ public class ProjectsController implements Initializable {
     public void deleteAll() {
         //this.groupes2.size() = 0;
         //this.groupes = new Group[100];
-        this.groupes2 = new ArrayList<Group>();
+        this.groupes2 = new ArrayList<ProjectGroups>();
         Node node = this.groupsTab.getChildren().get(0);
         this.groupsTab.getChildren().clear();
         this.groupsTab.getChildren().add(0,node);
@@ -203,7 +238,7 @@ public class ProjectsController implements Initializable {
         this.groupes[this.groupes2.size()] = null;*/
         for (int i=0;i<groupes2.get(pos).getNumber();i++) {
             for (int j=0;j<liste.controleur.membres.size();j++) {
-                if (this.liste.controleur.membres.get(j).getLastName().equals(this.groupes2.get(pos).getMember(i))) {
+                if (this.liste.controleur.membres.get(j).getName().equals(this.groupes2.get(pos).getMember(i))) {
                     this.liste.controleur.boutons.get(j).setDisable(false);
                 }
             }
@@ -224,7 +259,7 @@ public class ProjectsController implements Initializable {
                 break;
             }
         }
-        Group groupe = new Group(this.groupes2.size()+1,"Dreamteam",number);
+        ProjectGroups groupe = new ProjectGroups(this.groupes2.size()+1,"Dreamteam",number);
         for (int i=0;i<number;i++) {
             if (groupOK) {
                 MemberInformations membre = new MemberInformations(textes[i][0].getText(), textes[i][1].getText(), "test@test.com");
@@ -245,11 +280,12 @@ public class ProjectsController implements Initializable {
             nameGroupTF.setText("");
             nameGroupTF.setPromptText("Nom du groupe");
             this.groupes2.add(groupe);
+            System.out.println(groupe.members.size());
             addGroup(groupe, this.groupes2.size());
         }
     }
 
-    private void addGroup(Group groupe, int pos) {
+    private void addGroup(ProjectGroups groupe, int pos) {
 
         this.liste.controleur.memberAdded = 0;
 
@@ -278,7 +314,7 @@ public class ProjectsController implements Initializable {
         //this.groupes2.size()++;
         nom.setPrefHeight(30);
         groupsTab.add(nom,0,pos);
-        for (int n=1;n<groupe.number+1;n++) {
+        for (int n=1;n<number+1;n++) {
             Label membre = new Label(groupe.getMember(n-1));
             membre.setPadding(new Insets(10, 10, 10, 10));
             membre.setPrefHeight(30);
@@ -296,10 +332,57 @@ public class ProjectsController implements Initializable {
         groupsTab.setPrefSize(390,taille);
     }
 
+    private void addGitGroup(ProjectGroups groupe, int pos) {
+
+        this.liste.controleur.memberAdded = 0;
+
+        /*for (int j=0;j<liste.controleur.boutons.size();j++) {
+            this.liste.controleur.boutons.get(j).setDisable(false);
+
+            for (int i=0;i<number;i++) {
+
+                if (this.liste.controleur.membres.get(j).getLastName().equals(this.groupes2.get(pos-1).getMember(i))) {
+                    this.liste.controleur.boutons.get(j).setDisable(true);
+                    //this.namesAdded.add(this.textes[i][0].getText());
+                }
+
+                for (int n=0;n<this.groupes2.size();n++) {
+                    if (this.liste.controleur.membres.get(j).getLastName().equals(this.groupes2.get(n).getMember(i))) {
+                        this.liste.controleur.boutons.get(j).setDisable(true);
+                        //this.namesAdded.add(this.textes[i][0].getText());
+                    }
+                }
+            }
+
+        }*/
+
+        Label nom = new Label(groupe.name);
+        nom.setPadding(new Insets(10, 10, 10, 10));
+        //this.groupes2.size()++;
+        nom.setPrefHeight(30);
+        groupsTab.add(nom,0,pos);
+        for (int n=1;n<groupe.members.size();n++) {
+            Label membre = new Label(groupe.getMember(n-1));
+            membre.setPadding(new Insets(10, 10, 10, 10));
+            membre.setPrefHeight(30);
+            groupsTab.add(membre,n,pos);
+        }
+        /*boutons[this.groupes2.size()-1] = new Button("X");
+        boutons[this.groupes2.size()-1].setPadding(new Insets(10, 10, 10, 10));
+        //int i = this.groupes2.size();
+        boutons[this.groupes2.size()-1].setOnAction(e -> removeGroup(pos-1));
+        groupsTab.add(boutons[this.groupes2.size()-1],groupe.number+1,pos);*/
+
+        this.namesAdded = new ArrayList<String>();
+
+        this.taille = (this.groupes2.size()+1)*30+(this.groupes2.size())*2;
+        groupsTab.setPrefSize(390,taille);
+    }
+
     public void showStudentList() {
         try {
             this.studentListButton.setDisable(true);
-            this.liste = new StudentListView(this.project, this);
+            this.liste = new StudentListView(this.groupe, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -315,17 +398,42 @@ public class ProjectsController implements Initializable {
         }*/
         //this.groupes = new Group[100];
 
+        /*ArrayList<MemberInformations> membresInfo;
+        membresInfo = new ArrayList<MemberInformations>();
+        membresInfo.add(new MemberInformations("Lefort","Maxence","maxence.lefort@telecomnancy.eu",-1));
+        membresInfo.add(new MemberInformations("Sernit","Jérémy","jeremy.sernit@telecomnancy.eu",-1));
+        membresInfo.add(new MemberInformations("Lefeuvre","Quentin","quentin.lefeuvre@telecomnancy.eu",-1));
+        membresInfo.add(new MemberInformations("Kar","Matta","matta.kar@telecomnancy.eu",-1));
+
+        membresInfo.add(new MemberInformations("Hadjam","Erwan","erwan.hadjam@telecomnancy.eu",-1));
+        membresInfo.add(new MemberInformations("Ricci","Yann","yann.ricci@telecomnancy.eu",-1));
+        membresInfo.add(new MemberInformations("Trousseu","Mathieu","mathieu.trousseu@telecomnancy.eu",-1));
+        membresInfo.add(new MemberInformations("Courtot","Clément","clement.courtot@telecomnancy.eu",-1));*/
+
+
+
+        //List<Member> membersLoaded;
+        this.membersLoaded = new ArrayList<User>();
+        try {
+            this.membersLoaded = this.gitlab.getUserApi().getUsers();
+        } catch (GitLabApiException e) {
+            e.printStackTrace();
+        }
+
+
+
         try {
             this.studentListButton.setDisable(true);
-            this.liste = new StudentListView(this.project, this);
+            this.liste = new StudentListView(this.groupe, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        validateGroups.setOnAction(e -> createGitGroups());
         this.removeButtons = new ArrayList<Button>();
         this.namesAdded = new ArrayList<String>();
-        this.groupes2 = new ArrayList<Group>();
-        this.number = 4;
+        this.groupes2 = new ArrayList<ProjectGroups>();
+        this.number = GroupConfiguration.getById(groupe.getId()).getNbMembers();
         //this.groupes2.size() = 0;
         textes = new TextField[number][2];
         taille = number*30+(number-1)*5;
@@ -360,6 +468,106 @@ public class ProjectsController implements Initializable {
             TextFieldTab.add(text2,1,i);
             TextFieldTab.add(remove,2,i);
         }
+
+        List<Project> projets;
+        projets = new ArrayList<Project>();
+        try {
+            projets = gitlab.getGroupApi().getProjects(groupe.getId());
+        } catch (GitLabApiException e) {
+            e.printStackTrace();
+        }
+        System.out.println(projets.size());
+        for (int j=0;j<projets.size();j++) {
+            ProjectGroups projet;
+            projet = new ProjectGroups(projets.get(j).getId(), projets.get(j).getName(), this.number);
+            List<Member> members;
+            members = new ArrayList<Member>();
+            try {
+                members = gitlab.getProjectApi().getMembers(projets.get(j).getId());
+            } catch (GitLabApiException e) {
+                e.printStackTrace();
+            }
+            for (int k=0;k<members.size();k++) {
+                MemberInformations member;
+                System.out.println(members.size());
+                member = new MemberInformations(members.get(k).getName(),members.get(k).getName(),null);
+                members.get(k).getName();
+                projet.addMember(member);
+            }
+            addGitGroup(projet, j+1);
+        }
+
+    }
+
+    private void createGitGroups() {
+
+        List<Project> projets;
+        projets = new ArrayList<Project>();
+        try {
+            projets = gitlab.getGroupApi().getProjects(groupe.getId());
+        } catch (GitLabApiException e) {
+            e.printStackTrace();
+        }
+
+        //System.out.println(projets.get(projets.size()-1).getId());
+
+        if (groupes2.size()==0) {
+            //System.out.println("Aucun groupe n'a été rentré.");
+        }
+        else {
+
+            Project test = new Project();
+
+            this.groupes2.get(0).members = compare(membersLoaded, this.groupes2.get(0).members);
+
+
+            //System.out.println(this.groupes2.get(0).members.get(0).getLastName());
+            Project projet = new Project();
+            projet.setName(this.groupes2.get(0).getName());
+
+            //System.out.println(projets.size());
+            //System.out.println(projets.get(1).getId());
+            //System.out.println(projets.get(1).getName());
+
+            projets.add(projet);
+            groupe.setProjects(projets);
+            try {
+
+                test = gitlab.getProjectApi().createProject(groupe.getId(),"Projet 42");
+            } catch (GitLabApiException e) {
+                e.printStackTrace();
+            }
+            try {
+                gitlab.getGroupApi().updateGroup(groupe.getId(),groupe.getName(),groupe.getPath(),groupe.getDescription(),groupe.getRequestAccessEnabled(),groupe.getRequestAccessEnabled(),groupe.getVisibility(),groupe.getRequestAccessEnabled(),groupe.getRequestAccessEnabled(),groupe.getParentId(),groupe.getSharedRunnersMinutesLimit());
+            } catch (GitLabApiException e) {
+                e.printStackTrace();
+            }
+
+
+            try {
+                projets = gitlab.getGroupApi().getProjects(groupe.getId());
+            } catch (GitLabApiException e) {
+                e.printStackTrace();
+            }
+
+            //System.out.println(projets.size());
+            //System.out.println(projets.get(1).getId());
+            //System.out.println(projets.get(1).getName());
+            for (int i=0;i<this.groupes2.get(0).number;i++) {
+                try {
+                    //System.out.println("là, id = "+this.groupes2.get(0).members.get(i).getId());
+                    //gitlab.getProjectApi().getProject()
+                    gitlab.getProjectApi().addMember(test.getId(), this.groupes2.get(0).members.get(i).getId(), AccessLevel.MASTER);
+                } catch (GitLabApiException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+        //GroupConfiguration groupe2 = GroupConfiguration.getById(groupe.getId());
+        //gitlab.getGroupApi().getGroup(groupe.getId())
+
     }
 
 }
