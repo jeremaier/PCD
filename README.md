@@ -42,3 +42,13 @@ Tout groupe créé est maintenant mis à jour automatiquement sur gitlab.
 
 Les fonctions permettant de créer des groupes de projets et d'afficher les statistiques sont presque terminées mais ne sont pas encore accessible depuis la fenêtre principale.
 
+##  RELEASE_DAY_4
+
+Le projet se lance toujours de la même manière sur gitlab
+De nouvelle fonctionnalité ont été ajoutées.
+
+L'interface est assez intuitive donc les fonctionnalités sont facilement testables par l'utilisateur.
+
+Le token de connexion peut maintenant être enregistré pour ne pas avoir à l'entrer à chaque connexion.
+De plus, dès le menu nous avons maintenant tout de suite une vision des projets de chaque groupe.
+

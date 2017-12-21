@@ -16,9 +16,11 @@ import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.Group;
+import org.gitlab4j.api.models.Visibility;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -90,7 +92,12 @@ public class GroupController implements Initializable {
         boolean ok = false;
         try {
             List<Group> groups = gitlab.getGroupApi().getGroups();
-            //GroupConfiguration.saveGroupsInFile(getNewGroupsInGit(groups));
+            List<GroupConfiguration> groupConf = new ArrayList<GroupConfiguration>();
+            for (Group g : groups){
+                int visi = g.getVisibility().equals(Visibility.PUBLIC)?1:0;
+                groupConf.add(new GroupConfiguration(g.getId(),g.getName(),visi,"","",null,null,g.getDescription(),new ArrayList<>(),false,null));
+            }
+            FileManager.saveGroupsInFile(FileManager.getNewGroupsInGit(groupConf));
             final TitledPane[] tps = new TitledPane[groups.size()];
             int i=0;
             for (Group p : groups) {

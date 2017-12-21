@@ -31,14 +31,9 @@ public class Main extends Application  {
   @Override
   public void start(Stage primaryStage) throws Exception {
 
-    //new LogView(primaryStage);
-    gla = new GitLabApi("https://gitlab.telecomnancy.univ-lorraine.fr", "shcz2dxdWdAFw5dc7q6-");
+      //new LogView(primaryStage);
+      new GroupView("4E_y1qKSCRJzdMNy-49f","Quent");
 
-    List<org.gitlab4j.api.models.Member> list = gla.getProjectApi().getMembers(3196);
-    for (Member a: list){
-      System.out.println(a.getName());
-    }
-      //new ProjectView("vQZL2K-1161fbxFAwLsS","Quent");
   }
 
 

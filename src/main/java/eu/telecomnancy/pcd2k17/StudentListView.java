@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.gitlab4j.api.models.Group;
 import org.gitlab4j.api.models.Project;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -16,9 +17,11 @@ public class StudentListView {
 
     public StudentListController controleur;
 
+    public Stage stage;
+
     final static Logger log = LogManager.getLogger(Main.class);
 
-    public StudentListView(Project project, ProjectsController groupes) throws Exception{
+    public StudentListView(Group groupe, ProjectsController groupes) throws Exception{
 
         Stage window = new Stage();
         window.setTitle("Liste des élèves");
@@ -33,7 +36,7 @@ public class StudentListView {
         //stage.show();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("StudentListView.fxml"));
-        this.controleur = new StudentListController(project, groupes);
+        this.controleur = new StudentListController(groupe, groupes);
         loader.setControllerFactory(iC -> controleur);
         Parent root = loader.load();
 
@@ -55,5 +58,6 @@ public class StudentListView {
         System.out.println(coord.getWidth());
         window.setX(coord.getWidth()*3/5);
         window.setY(50);
+        this.stage = window;
     }
 }

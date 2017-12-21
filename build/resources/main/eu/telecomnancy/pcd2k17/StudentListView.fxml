@@ -6,9 +6,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<<<<<<< HEAD
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="eu.telecomnancy.pcd2k17.StudentListView"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>
+=======
+<ScrollPane prefHeight="601.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.StudentListController">
+
+        <content>
+
+                    <GridPane fx:id="studentTab" gridLinesVisible="true">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                    </GridPane>
+
+        </content>
+      </ScrollPane>
+>>>>>>> master

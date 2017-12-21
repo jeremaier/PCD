@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
+import org.gitlab4j.api.models.Group;
+
 public class GroupConfiguration implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -112,51 +114,6 @@ public class GroupConfiguration implements Serializable {
         else return false;
     }
 
-    public static String getFilePath() {
-        String directoryPath = System.getProperty("user.dir") + "\\saves";
-        File folder = new File(directoryPath);
-
-        if(!folder.exists())
-            folder.mkdirs();
-
-        return folder.getAbsoluteFile() + File.separator + "Groups";
-    }
-
-    public static ArrayList<GroupConfiguration> loadGroupsFromFile() {
-        File file = new File(getFilePath());
-        FileInputStream fIn;
-        ObjectInputStream oIn;
-
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if(file.length() > 0) {
-            try {
-                fIn = new FileInputStream(file);
-                oIn = new ObjectInputStream(fIn);
-
-                ArrayList projectConfiguration = (ArrayList) oIn.readObject();
-
-                if (oIn != null)
-                    oIn.close();
-
-                if (fIn != null)
-                    fIn.close();
-
-                return projectConfiguration;
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
     public void saveGroupInFile(ArrayList<GroupConfiguration> ancientGroupsList) {
         ArrayList groupsConfigurationListRecent = new ArrayList();
 
@@ -167,11 +124,11 @@ public class GroupConfiguration implements Serializable {
 
         groupsConfigurationListRecent.add(this);
 
-        saveGroupsInFile(groupsConfigurationListRecent);
+        FileManager.saveGroupsInFile(groupsConfigurationListRecent);
     }
 
     public static GroupConfiguration getById(int id) {
-        List<GroupConfiguration> groupsConfigurationList = loadGroupsFromFile();
+        List<GroupConfiguration> groupsConfigurationList = FileManager.loadGroupsFromFile();
 
         if(groupsConfigurationList != null) {
             for (int i = 0; i < groupsConfigurationList.size(); i++) {
@@ -183,54 +140,5 @@ public class GroupConfiguration implements Serializable {
         }
 
         return null;
-    }
-
-    public static ArrayList getNewGroupsInGit(List<Group> groupsList) {
-        List<GroupConfiguration> groupsConfigurationList = loadGroupsFromFile();
-        ArrayList newGroupsList = new ArrayList();
-        int k;
-
-        if (groupsList != null) {
-            for (int i = 0; i < groupsList.size(); i++) {
-                k = -1;
-
-                for (int j = 0; j < groupsConfigurationList.size(); j++) {
-                    if (groupsList.get(i).getID() == groupsConfigurationList.get(j).getId()) {
-                        k = j;
-                        break;
-                    }
-                }
-
-                if(k >= 0)
-                    newGroupsList.add(groupsConfigurationList.get(k));
-                else newGroupsList.add(groupsList.get(i));
-            }
-
-            return newGroupsList;
-        }
-
-        return null;
-    }
-
-    public static void saveGroupsInFile(ArrayList<GroupConfiguration> groupsList) {
-        if(groupsList != null) {
-            FileOutputStream fOut;
-            ObjectOutputStream oOut;
-
-            try {
-                fOut = new FileOutputStream(getFilePath());
-                oOut = new ObjectOutputStream(fOut);
-
-                oOut.writeObject(groupsList);
-
-                if (oOut != null)
-                    oOut.close();
-
-                if (fOut != null)
-                    fOut.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

@@ -2,8 +2,11 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+<<<<<<< HEAD
       <module name="pcd2k17-sample_main" target="1.8" />
       <module name="pcd2k17-sample_test" target="1.8" />
+=======
+>>>>>>> master
       <module name="pcd2k17_sample_main" target="1.8" />
       <module name="pcd2k17_sample_test" target="1.8" />
     </bytecodeTargetLevel>
