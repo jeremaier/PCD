@@ -30,7 +30,7 @@ public class CSVListener {
                 String lastName = scan.next();
                 String mail = scan.next();
 
-                members.add(new MemberInformations(lastName, firstName, mail, -1));
+                members.add(new MemberInformations(lastName, firstName, mail));
             }
 
             scan.close();

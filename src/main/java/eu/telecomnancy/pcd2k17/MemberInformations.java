@@ -8,13 +8,12 @@ import java.io.Serializable;
 public class MemberInformations extends Member implements Serializable {
     private String lastName;
     private String firstName;
-    private int projectId;
+    private String email;
 
-    public MemberInformations(String lastName, String firstName, String email, int projectId) {
+    public MemberInformations(String lastName, String firstName, String email) {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
-        this.setProjectId(projectId);
     }
 
     public String getLastName() {
@@ -25,13 +24,14 @@ public class MemberInformations extends Member implements Serializable {
         return this.firstName;
     }
 
-    public int getProjectId() { return projectId; }
+    public String getEmail() { return this.email; }
+
+    @Override
+    public void setEmail(String email) { this.email = email;}
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
 
     public void setLastName(String lastName) { this.lastName = lastName; }
-
-    public void setProjectId(int projectId) { this.projectId = projectId; }
 
     public void setMasterAccess() { this.setAccessLevel(AccessLevel.MASTER); }
 
