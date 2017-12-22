@@ -7,7 +7,7 @@
 */
 
 .root{
-	/*-fx-background-color: #214578;*/
+	-fx-background-color: #EEEEEE;
 }
 
 .background{
@@ -59,7 +59,8 @@
 
 .button:focused
 {
-    -fx-border-color: transparent, black;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
     -fx-border-style: solid, segments(1, 2);
     -fx-border-radius: 0, 0;
 	
@@ -149,7 +150,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-border-color: #bababa;
-    -fx-border-width: 2px;
+    -fx-border-width: 1px;
     -fx-border-style: solid;
     -fx-padding: 1;
 }
@@ -477,7 +478,7 @@
  ******************************************************************************/
 
 .scroll-pane {
-    -fx-background-color: transparent, transparent;
+	-fx-background-color: transparent, transparent;
 }
 
 .scroll-pane .corner {
@@ -599,10 +600,10 @@
  * TextBox (and PasswordBox)                                                   *
  *                                                                             *
  ******************************************************************************/
-.text-input{
+.text-field {
     -fx-background-radius: 0, 0;
-
-    -fx-background-color: #bababa, -fx-background;
+	-fx-font-size: 12pt;
+    -fx-background-color: #bababa, #DDDDDD;
     -fx-background-insets: 0, 0 0 2 0;
 
     -fx-prompt-text-fill: #9f9f9f;
@@ -611,66 +612,40 @@
     -fx-highlight-text-fill: white;
 }
 
-.text-input:hover{
-    -fx-background-color: #8f8f8f, white;
+.text-field:hover{
+    -fx-background-color: #8f8f8f, #F4F4F4;
 }
 
-.text-input:focused{
-    -fx-background-color: #5c5c5c, white;
+.text-field:focused{
+    -fx-background-color: #5c5c5c, #F4F4F4;
     -fx-text-fill: black;
 }
 
-/*.text-input > Pane{*/
-    /*-fx-padding: 0.333333em 0.583em 0.333333em 0em; *//* 4 7 4 0 */
-/*}*/
-
-.text-input > .right-button{
-    -fx-cursor: default;
-
-    -fx-background-insets: -0.1666665em -0.45em -0.1666665em -0.45em; /* 4 7 4 7 -> this values are subtracted by 2px in em because of the border of the textfield */
+.text-input{
+    -fx-background-insets: 0, 0 0 2 0;
 }
 
-.text-field > .right-button > .right-button-graphic {
-    -fx-shape            : "M221.738,305.873l6.135,6.16l-2.875,2.863l-6.135-6.159l-6.263,6.237l-2.864-2.875l6.263-6.238l-6.177-6.202l2.875-2.863l6.177,6.201l6.244-6.22l2.864,2.876L221.738,305.873z";
+.text-area .content {
+    -fx-background-radius: 0, 0;
+	-fx-font-size: 12pt;
+    -fx-background-color: #bababa, #DDDDDD;
+	-fx-background-insets: 0, 2 2 2 2;
 
-    -fx-padding: 0.5em 0.5em; /* TODO: put the real number here 18 18 */
-    -fx-background-color: black;
+    -fx-prompt-text-fill: #9f9f9f;
+
+    -fx-highlight-fill: #008287; /* TODO: this probably is the "active" color" */
+    -fx-highlight-text-fill: white;
 }
 
-.text-input > .right-button:hover {
-    -fx-background-color: #d9d9d9;
+.text-area .content:hover{
+    -fx-background-color: #8f8f8f, white;
+	-fx-background-insets: 0, 2 2 2 2;
 }
 
-.text-input > .right-button:pressed {
-    -fx-background-color: black;
-}
-
-.text-input > .right-button:pressed > .right-button-graphic {
-    -fx-background-color: white;
-}
-
-.text-input:disabled
-{
-    -fx-opacity: 1;
-    -fx-background-color: #d9d9d9, #eaeaea;
-    -fx-text-fill: #adadad;
-}
-
-.item-title.disabled{
-    -fx-text-fill: #adadad;
-}
-
-/*******************************************************************************
- *                                                                             *
- * Text-area                                                                   *
- *                                                                             *
- ******************************************************************************/
-.text-area {
-  -fx-font-family: Consolas;
-  -fx-highlight-fill: #00ff00;
-  -fx-highlight-text-fill: #000000;
-  -fx-text-fill: #00ff00;
-  -fx-background-color: #000000;
+.text-area .content:focused{
+    -fx-background-color: #5c5c5c, white;
+	-fx-background-insets: 0, 2 2 2 2;
+    -fx-text-fill: black;
 }
 
 /*******************************************************************************
@@ -905,7 +880,6 @@
 
 .date-picker .text-input{
     -fx-background-radius: 0, 0;
-
     -fx-background-color: transparent, white;
     -fx-background-insets: 2, 2;
 }
@@ -994,7 +968,7 @@
  ******************************************************************************/
 
 .choice-box  {
-    -fx-background-color: transparent, #bababa, transparent, white;
+    -fx-background-color: transparent, #bababa, transparent, #DDDDDD;
     -fx-background-radius: 0, 0, 0, 0;
     -fx-padding: 0em 0.166667em 0em 0.166667em; /* 0 2px 0 2px*/
 
@@ -1063,6 +1037,20 @@
     -fx-background-insets: 0;
 }
 
+.label {
+	-fx-font-size: 12pt;
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.accordion .titled-pane .title {
+    -fx-background-color: #DDDDDD;
+	-fx-border-color: #D0D0D0;
+	-fx-border-width: 3;
+}
+
+.accordion > .titled-pane {
+    -fx-padding: 0 0 0.3em 0;
+}
 
 .chart-plot-background {
     -fx-background-color: #e2ecfe;

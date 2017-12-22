@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.GmailSTMP">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.GmailSTMP">
    <children>
       <Label layoutX="225.0" layoutY="14.0" text="Envoyer un mail">
          <font>
@@ -23,17 +23,15 @@
             <DropShadow />
          </effect>
       </Separator>
-      <TextField fx:id="id_fill" layoutX="163.0" layoutY="100.0" prefHeight="27.0" prefWidth="333.0" />
-      <Label layoutX="42.0" layoutY="105.0" text="Adresse gmail : " />
-      <Label layoutX="42.0" layoutY="144.0" text="Mot de passe :" />
+      <TextField fx:id="id_fill" layoutX="42.0" layoutY="100.0" prefHeight="27.0" prefWidth="367.0" promptText="Adresse email (Gmail)" />
       <Label layoutX="42.0" layoutY="187.0" text="Message">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="subject" layoutX="42.0" layoutY="223.0" prefHeight="27.0" prefWidth="399.0" promptText="Objet" />
+      <TextField fx:id="subject" layoutX="42.0" layoutY="223.0" prefHeight="27.0" prefWidth="348.0" promptText="Objet" />
       <TextArea fx:id="message" layoutX="42.0" layoutY="258.0" prefHeight="128.0" prefWidth="519.0" promptText="Corps du mail" />
-      <PasswordField fx:id="password_fill" layoutX="163.0" layoutY="139.0" prefHeight="27.0" prefWidth="333.0" />
-      <Button fx:id="sendButton" layoutX="477.0" layoutY="223.0" mnemonicParsing="false" onAction="#sendMail" prefHeight="27.0" prefWidth="84.0" text="✉ Envoyer" />
+      <PasswordField fx:id="password_fill" layoutX="42.0" layoutY="140.0" prefHeight="27.0" prefWidth="367.0" promptText="Mot de passe" />
+      <Button fx:id="sendButton" layoutX="440.0" layoutY="223.0" mnemonicParsing="false" onAction="#sendMail" prefHeight="31.0" prefWidth="121.0" text="✉ Envoyer" />
    </children>
 </AnchorPane>

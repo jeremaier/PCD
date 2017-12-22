@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,58 +12,48 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.ContentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.ContentController">
     <children>
         <Button fx:id="modify" layoutX="42.0" layoutY="143.0" mnemonicParsing="false" text="⌂ Modifier" />
-        <Button fx:id="supp" layoutX="152.0" layoutY="143.0" mnemonicParsing="false" text="⌫ Supprimer" />
-        <Button fx:id="group" layoutX="272.0" layoutY="143.0" mnemonicParsing="false" text="⌂ Gestionnaire de groupes" />
-        <Label layoutX="22.0" layoutY="106.0" text="Options">
+        <Button fx:id="supp" layoutX="184.0" layoutY="143.0" mnemonicParsing="false" text="⌫ Supprimer" />
+        <Button fx:id="group" layoutX="348.0" layoutY="143.0" mnemonicParsing="false" text="⌂ Gestionnaire de groupes" />
+        <Label layoutX="22.0" layoutY="106.0" text="Options" textFill="#7f7575">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <Label layoutX="25.0" layoutY="232.0" text="Description">
+        <Label layoutX="25.0" layoutY="232.0" text="Description" textFill="#7f7575">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="42.0" layoutY="269.0" prefHeight="112.0" prefWidth="590.0">
+        <ScrollPane layoutX="42.0" layoutY="269.0" prefHeight="112.0" prefWidth="849.0" stylesheets="@../../../scrollPane.css">
             <content>
-                <TextFlow fx:id="text" prefHeight="112.0" prefWidth="572.0" />
+                <TextFlow fx:id="text" prefHeight="105.0" prefWidth="809.0" />
             </content>
         </ScrollPane>
-        <Label layoutX="22.0" layoutY="14.0" text="Statut">
+        <Label layoutX="22.0" layoutY="14.0" text="Statut" textFill="#7f7575">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <Label fx:id="statut" layoutX="47.0" layoutY="40.0" prefHeight="26.0" prefWidth="98.0" textFill="#bf2121">
+        <Label fx:id="statut" layoutX="47.0" layoutY="40.0" prefHeight="31.0" prefWidth="246.0" textFill="#bf2121">
             <font>
                 <Font size="15.0" />
             </font>
         </Label>
-      <Button fx:id="mail" layoutX="477.0" layoutY="143.0" mnemonicParsing="false" text="✉ Mail" />
-      <Separator layoutX="100.0" layoutY="87.0" prefWidth="500.0">
+      <Button fx:id="mail" layoutX="603.0" layoutY="143.0" mnemonicParsing="false" text="✉ Mail" />
+      <Separator layoutX="22.0" layoutY="85.0" prefHeight="3.0" prefWidth="883.0">
          <effect>
-            <DropShadow />
+            <InnerShadow />
          </effect>
       </Separator>
-      <Label layoutX="23.0" layoutY="433.0" text="Liste des groupes de projet">
+      <Label layoutX="23.0" layoutY="445.0" text="Liste des groupes de projet" textFill="#7f7575">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Separator layoutX="100.0" layoutY="207.0" prefWidth="500.0">
-         <effect>
-            <DropShadow />
-         </effect>
-      </Separator>
-      <Separator layoutX="100.0" layoutY="405.0" prefWidth="500.0">
-         <effect>
-            <DropShadow />
-         </effect>
-      </Separator>
-      <ScrollPane fx:id="sp" layoutX="51.0" layoutY="472.0" prefHeight="156.0" prefWidth="538.0">
+      <ScrollPane fx:id="sp" layoutX="42.0" layoutY="490.0" prefHeight="290.0" prefWidth="849.0" stylesheets="@../../../scrollPane.css">
          <content>
             <GridPane fx:id="table" prefHeight="0.0" prefWidth="0.0">
               <columnConstraints>
@@ -75,5 +65,15 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <Separator layoutX="22.0" layoutY="416.0" prefHeight="3.0" prefWidth="883.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Separator>
+      <Separator layoutX="22.0" layoutY="208.0" prefHeight="3.0" prefWidth="883.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Separator>
     </children>
 </AnchorPane>

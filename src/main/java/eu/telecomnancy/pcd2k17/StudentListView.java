@@ -55,7 +55,6 @@ public class StudentListView {
         window.show();
 
         Rectangle2D coord = Screen.getPrimary().getVisualBounds();
-        System.out.println(coord.getWidth());
         window.setX(coord.getWidth()*3/5);
         window.setY(50);
         this.stage = window;

@@ -3,6 +3,7 @@ package eu.telecomnancy.pcd2k17;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,15 +16,15 @@ public class ConfigurationView {
 
     private final static Logger log = LogManager.getLogger(ConfigurationView.class);
 
-    public ConfigurationView(GitLabApi gitLab, Group group) throws IOException {
+    public ConfigurationView(GitLabApi gitLab, Group group, String token, Button refreshButton) throws IOException {
         super();
         Stage configurationStage = new Stage();
-        configurationStage.setTitle("Configuration d'un projet");
+        configurationStage.setTitle("Configuration d'un groupe de projets");
         configurationStage.setResizable(false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("configurationView.fxml"));
-        loader.setControllerFactory(iC -> new ConfigurationViewController(gitLab, group));
+        loader.setControllerFactory(iC -> new ConfigurationViewController(gitLab, group, token, refreshButton));
         Parent root = loader.load();
 
         configurationStage.setOnCloseRequest(event -> {

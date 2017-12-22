@@ -22,7 +22,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
+import org.gitlab4j.api.GroupApi;
+import org.gitlab4j.api.models.AccessLevel;
 import org.gitlab4j.api.models.Group;
+import org.gitlab4j.api.models.User;
 import org.gitlab4j.api.models.Visibility;
 
 import javax.imageio.ImageIO;
@@ -30,7 +33,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -49,15 +55,14 @@ public class ConfigurationViewController implements Initializable {
     private int id;
     private String name;
     private String description;
+    private Button refreshGroups;
+    private String token;
 
     private boolean changed = false;
     private ArrayList<Button> removeButtons = new ArrayList<>();
 
     @FXML
     private AnchorPane controllerView;
-
-    @FXML
-    private Button AddFile;
 
     @FXML
     private Button Cancel;
@@ -67,15 +72,6 @@ public class ConfigurationViewController implements Initializable {
 
     @FXML
     private Button Save;
-
-    @FXML
-    private Button AddMember;
-
-    @FXML
-    private Button AddCSV;
-
-    @FXML
-    private Button RemoveAll;
 
     @FXML
     private RadioButton Public;
@@ -122,9 +118,11 @@ public class ConfigurationViewController implements Initializable {
     @FXML
     private ScrollPane MembersScroll;
 
-    public ConfigurationViewController(GitLabApi gitLab, Group group) {
+    public ConfigurationViewController(GitLabApi gitLab, Group group, String token, Button refreshButton) {
         this.gitLab = gitLab;
         this.group = group;
+        this.token = token;
+        this.refreshGroups = refreshButton;
     }
 
     private final UnaryOperator<TextFormatter.Change> integerOnlyFilter = change -> {
@@ -147,7 +145,7 @@ public class ConfigurationViewController implements Initializable {
                 if (g.getId() == group.getId()) {
                     onGit = true;
                     idProject = g.getId();
-                    this.setGroupConfigurationFromId(idProject);
+                    this.groupConfiguration = GroupConfiguration.getById(idProject);
                     break;
                 }
             }
@@ -212,20 +210,21 @@ public class ConfigurationViewController implements Initializable {
     }
 
     private void reDoGridPane() {
-        Node node = this.MembersList.getChildren().get(0);
+        ArrayList<MemberInformations> newMembers = new ArrayList<>();
         this.MembersList.getChildren().clear();
-        this.MembersList.getChildren().add(0, node);
 
-        /*if(this.MembersList != null) {
-            for (int i = 0; i < this.members.size(); i++)
-                addRow(members.size() - 1, members);
-        }*/
+        for (int i = 0; i < members.size(); i++) {
+            newMembers.add(members.get(i));
+            addRow(i, newMembers);
+        }
+
+        this.MembersList.setPrefWidth(530);
     }
 
     private void addRow(int pos, ArrayList<MemberInformations> members) {
         MemberInformations member = members.get(pos);
         Label label = new Label(member.getLastName().toUpperCase() + " " + member.getFirstname().toLowerCase() + " <" + member.getEmail() + ">");
-        MembersScroll.setVvalue(1.0);
+        this.MembersScroll.setVvalue(1.0);
         removeButtons.add(new Button("X"));
         removeButtons.get(pos).setOnAction(e -> removeMember(pos));
         this.MembersList.add(label, 0, pos);
@@ -300,6 +299,7 @@ public class ConfigurationViewController implements Initializable {
         this.Promo.getSelectionModel().select(this.groupConfiguration.getPromo());
         this.setArchiveText();
         this.setMembersList();
+        this.MembersList.setPrefWidth(530);
 
         String avatarUrl = this.group.getAvatarUrl();
 
@@ -381,7 +381,7 @@ public class ConfigurationViewController implements Initializable {
         Public.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(oldValue.equals(newValue))
+                if(!oldValue.equals(newValue))
                     changed = true;
             }
         });
@@ -389,7 +389,7 @@ public class ConfigurationViewController implements Initializable {
         Private.selectedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(oldValue.equals(newValue))
+                if(!oldValue.equals(newValue))
                     changed = true;
             }
         });
@@ -397,8 +397,9 @@ public class ConfigurationViewController implements Initializable {
         Promo.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-                if(oldValue.equals(newValue))
+                if(!oldValue.equals(newValue)) {
                     changed = true;
+                }
             }
         });
     }
@@ -463,10 +464,21 @@ public class ConfigurationViewController implements Initializable {
             alert.setHeaderText(null);
             this.groupConfiguration = new GroupConfiguration(group.getId(), Name.getText(), Public.isSelected() ? 1 : 0, Module.getText(), NbMembers.getText(), FirstDay.getValue(), LastDay.getValue(), Description.getText(), members, !Archive.getText().equals("Archiver"), Promo.getSelectionModel().getSelectedItem());
 
+
             if(this.groupConfiguration.isComplete()) {
                 if(this.groupConfiguration.isGoodLastDate()) {
                     this.updateGroupInformations(this.groupConfiguration);
-                    this.configurationStage = (Stage)Save.getScene().getWindow();
+                    this.configurationStage = (Stage)this.Save.getScene().getWindow();
+
+                    Stage stage = (Stage)this.refreshGroups.getScene().getWindow();
+                    stage.close();
+
+                    try {
+                        new GroupView(token, gitLab.getUserApi().getCurrentUser().getName());
+                    } catch (GitLabApiException e) {
+                        e.printStackTrace();
+                    }
+
                     this.configurationStage.close();
                 } else {
                     alert.setContentText("La date de fin est avant la date de debut");
@@ -497,8 +509,10 @@ public class ConfigurationViewController implements Initializable {
         else group.setVisibility(Visibility.PRIVATE);
 
         try {
-            gitLab.getGroupApi().updateGroup(group.getId(), group.getName(), group.getPath(), group.getDescription(), group.getRequestAccessEnabled(), group.getRequestAccessEnabled(), group.getVisibility(), group.getRequestAccessEnabled(), group.getRequestAccessEnabled(), group.getParentId(), group.getSharedRunnersMinutesLimit());
-        } catch (GitLabApiException e) {
+            GroupApi groupapi = gitLab.getGroupApi();
+            groupapi.updateGroup(group.getId(), group.getName(), group.getPath(), group.getDescription(), group.getRequestAccessEnabled(), group.getRequestAccessEnabled(), group.getVisibility(), group.getRequestAccessEnabled(), group.getRequestAccessEnabled(), group.getParentId(), group.getSharedRunnersMinutesLimit());
+
+           } catch (GitLabApiException e) {
             e.printStackTrace();
             Alert alertError = new Alert(Alert.AlertType.ERROR);
             alertError.setTitle("Requête impossible");
@@ -508,7 +522,20 @@ public class ConfigurationViewController implements Initializable {
         }
     }
 
-    private void setGroupConfigurationFromId(int id) {
-        this.groupConfiguration = GroupConfiguration.getById(id);
+    public ArrayList<MemberInformations> getCompatibleMembersList(ArrayList<MemberInformations> membres) {
+        List<User> resultat = new ArrayList();
+
+        for (int i = 0; i < membres.size(); i++) {
+            try {
+                resultat = gitLab.getUserApi().findUsers(membres.get(i).getEmail());
+            } catch (GitLabApiException e) {
+                e.printStackTrace();
+            }
+
+            if (resultat.size() == 1)
+                membres.get(i).setId(resultat.get(0).getId());
+        }
+
+        return membres;
     }
 }

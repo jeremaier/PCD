@@ -28,7 +28,6 @@ import static java.lang.Thread.sleep;
 public class LogController implements Initializable {
 
     @FXML TextField password_fill;
-    @FXML TextField identifiant_fill;
     @FXML TextField cToken;
     @FXML Button connect_button;
     @FXML ProgressIndicator pi;
@@ -74,6 +73,7 @@ public class LogController implements Initializable {
             }
         });
         new Thread(task).start();
+
     }
 
 
@@ -97,7 +97,7 @@ public class LogController implements Initializable {
 
     public void checkLog(){
         log.debug("connection button was clicked!");
-        if ((identifiant_fill.getText().equals("admin") ) && (password_fill.getText().equals("admin"))){
+        if (password_fill.getText().equals("admin")){
             connectiontoken=cToken.getText();
 
             GitLabApi gla = new GitLabApi("https://gitlab.telecomnancy.univ-lorraine.fr", connectiontoken);
@@ -111,7 +111,7 @@ public class LogController implements Initializable {
                     ///////////
                     Stage stage = (Stage) connect_button.getScene().getWindow();
                     stage.close();
-                    new GroupView(connectiontoken,identifiant_fill.getText());
+                    new GroupView(connectiontoken,gla.getUserApi().getCurrentUser().getName());
                 } catch (GitLabApiException e) {
                     e.printStackTrace();
                     Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -119,7 +119,6 @@ public class LogController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Clé de connexion incorrecte");
                     alert.showAndWait();
-                    identifiant_fill.clear();
                     password_fill.clear();
                     cToken.clear();
                 }
@@ -130,7 +129,6 @@ public class LogController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Veuiller entrer une clé de connexion");
                 alert.showAndWait();
-                identifiant_fill.clear();
                 password_fill.clear();
             }
 
@@ -140,7 +138,6 @@ public class LogController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Identifiant et/ou mot de passe incorrect(s)");
             alert.showAndWait();
-            identifiant_fill.clear();
             password_fill.clear();
         }
     }

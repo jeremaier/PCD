@@ -2,18 +2,15 @@ package eu.telecomnancy.pcd2k17;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
-import org.gitlab4j.api.models.Project;
 import org.gitlab4j.api.models.Group;
 import org.gitlab4j.api.models.Visibility;
 
@@ -35,7 +32,9 @@ public class GroupController implements Initializable {
     private Button refresh;
 
     private GitLabApi gitlab;
+
     private String token;
+
     private String user;
 
 
@@ -47,6 +46,8 @@ public class GroupController implements Initializable {
 
     public void handleNew(ActionEvent event){
         int nb=0;
+
+        //Vérification de la disponibilité du nom
         try {
             List<Group> group = gitlab.getGroupApi().getGroups();
             for (Group g : group) {
@@ -60,12 +61,14 @@ public class GroupController implements Initializable {
         } catch (GitLabApiException e) {
             e.printStackTrace();
         }
+
         nb++;
         String name = "unknownProject" + Integer.toString(nb);
+
         try {
             gitlab.getGroupApi().addGroup(name,name);
             Group group = gitlab.getGroupApi().getGroup(name);
-            new ConfigurationView(gitlab,group);
+            new ConfigurationView(gitlab,group,token,refresh);
         } catch (GitLabApiException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -74,20 +77,33 @@ public class GroupController implements Initializable {
 
     }
 
+
+
     public void handleRefresh(ActionEvent event){
         Stage stage = (Stage) refresh.getScene().getWindow();
         stage.close();
         new GroupView(token,user);
     }
 
+
+
     public void handleQuit(ActionEvent event){
         Platform.exit();
     }
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        name.setText(user);
+
+        try {
+            name.setText(gitlab.getUserApi().getCurrentUser().getName());
+        } catch (GitLabApiException e) {
+            e.printStackTrace();
+        }
+
         boolean ok = false;
+
         try {
             List<Group> groups = gitlab.getGroupApi().getGroups();
             List<GroupConfiguration> groupConf = new ArrayList<GroupConfiguration>();
@@ -103,16 +119,21 @@ public class GroupController implements Initializable {
                 ok=true;
                 i++;
             }
+
             if(ok) acc.getPanes().addAll(tps);
+
         } catch (GitLabApiException e) {
             e.printStackTrace();
         }
+
     }
+
+
 
     public Node setContent(Group p) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("GroupContent.fxml"));
-        loader.setControllerFactory(iC-> new ContentController(p,gitlab));
+        loader.setControllerFactory(iC-> new ContentController(p,gitlab,token));
         AnchorPane anchor = null;
         try {
             anchor = loader.load();
@@ -121,4 +142,6 @@ public class GroupController implements Initializable {
         }
         return anchor;
     }
+
+
 }
