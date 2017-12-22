@@ -6,11 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane prefHeight="601.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.StudentListController">
+<ScrollPane prefHeight="601.0" prefWidth="500.0" style="-fx-border-color: black;" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.StudentListController">
 
         <content>
 
-                    <GridPane fx:id="studentTab" gridLinesVisible="true">
+                    <GridPane fx:id="studentTab" prefHeight="601.0" prefWidth="484.0">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
