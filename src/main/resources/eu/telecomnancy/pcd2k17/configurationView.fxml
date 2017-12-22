@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
@@ -14,7 +22,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -23,33 +30,25 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="controllerView" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.ConfigurationViewController">
+<AnchorPane fx:id="controllerView" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.ConfigurationViewController">
    <children>
       <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="6.0" prefHeight="71.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
          <children>
-            <TextField fx:id="Name" alignment="TOP_LEFT" prefHeight="35.0" prefWidth="330.0" promptText="Name*" style="-fx-background-color: -fx-text-box-border, -fx-background; -fx-background-insets: 0, 0 0 2 0; -fx-background-radius: 0;">
+            <TextField fx:id="Name" prefHeight="35.0" prefWidth="340.0" promptText="Name*">
                <FlowPane.margin>
                   <Insets left="30.0" top="5.0" />
                </FlowPane.margin>
             </TextField>
-            <ImageView fx:id="ImageProject" fitHeight="64.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
-               <FlowPane.margin>
-                  <Insets left="80.0" />
-               </FlowPane.margin>
-               <image>
-                  <Image url="@../../../logoschool2.png" />
-               </image>
-            </ImageView>
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="124.0" prefHeight="21.0" prefWidth="600.0" vgap="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <DatePicker fx:id="FirstDay" prefHeight="35.0" prefWidth="155.0" promptText="Date de début">
+            <DatePicker fx:id="FirstDay" prefHeight="35.0" prefWidth="160.0" promptText="Début">
                <FlowPane.margin>
                   <Insets left="30.0" />
                </FlowPane.margin>
             </DatePicker>
-            <DatePicker fx:id="LastDay" prefHeight="35.0" prefWidth="155.0" promptText="Date de rendu*">
+            <DatePicker fx:id="LastDay" prefHeight="35.0" prefWidth="160.0" promptText="Rendu*">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
@@ -59,9 +58,9 @@
                   <Insets left="50.0" />
                </FlowPane.margin>
             </Label>
-            <TextField fx:id="NbMembers" prefHeight="35.0" prefWidth="40.0">
+            <TextField fx:id="NbMembers" alignment="CENTER" prefHeight="35.0" prefWidth="32.0">
                <FlowPane.margin>
-                  <Insets left="40.0" />
+                  <Insets left="20.0" />
                </FlowPane.margin>
             </TextField>
          </children>
@@ -90,7 +89,7 @@
          <children>
             <Label text="Association :">
                <FlowPane.margin>
-                  <Insets right="30.0" />
+                  <Insets right="20.0" />
                </FlowPane.margin>
                <font>
                   <Font size="16.0" />
@@ -98,13 +97,13 @@
             </Label>
             <Button fx:id="AddFile" mnemonicParsing="false" onAction="#handleClickAddFile" prefHeight="40.0" text="Ajouter un fichier">
                <FlowPane.margin>
-                  <Insets right="60.0" />
+                  <Insets right="50.0" />
                </FlowPane.margin>
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="Cancel" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClickCancel" prefHeight="40.0" prefWidth="125.0" text="Annuler" textAlignment="CENTER">
+            <Button fx:id="Cancel" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClickCancel" prefHeight="40.0" prefWidth="130.0" text="Annuler" textAlignment="CENTER">
                <FlowPane.margin>
                   <Insets />
                </FlowPane.margin>
@@ -112,7 +111,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="Save" mnemonicParsing="false" onAction="#handleClickSave" prefHeight="40.0" prefWidth="125.0" text="Sauvegarder">
+            <Button fx:id="Save" mnemonicParsing="false" onAction="#handleClickSave" prefHeight="40.0" prefWidth="130.0" text="Sauvegarder">
                <FlowPane.margin>
                   <Insets left="20.0" />
                </FlowPane.margin>
@@ -120,7 +119,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="Archive" alignment="CENTER" mnemonicParsing="false" onAction="#handleClickArchive" prefHeight="40.0" prefWidth="125.0" textAlignment="CENTER">
+            <Button fx:id="Archive" alignment="CENTER" mnemonicParsing="false" onAction="#handleClickArchive" prefHeight="40.0" prefWidth="130.0" textAlignment="CENTER">
                <FlowPane.margin>
                   <Insets left="20.0" right="30.0" />
                </FlowPane.margin>
@@ -132,12 +131,12 @@
       </FlowPane>
       <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" layoutY="64.0" prefHeight="31.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
-            <TextField fx:id="Module" prefHeight="35.0" prefWidth="155.0" promptText="Module">
+            <TextField fx:id="Module" prefHeight="35.0" prefWidth="160.0" promptText="Module">
                <FlowPane.margin>
                   <Insets left="30.0" />
                </FlowPane.margin>
             </TextField>
-            <ChoiceBox fx:id="Promo" prefHeight="35.0" prefWidth="155.0">
+            <ChoiceBox fx:id="Promo" prefHeight="35.0" prefWidth="160.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="1A" />
@@ -191,7 +190,7 @@
             <TextField fx:id="FirstName" layoutX="10.0" layoutY="14.0" prefHeight="30.0" prefWidth="200.0" promptText="Prenom" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <TextField fx:id="LastName" layoutX="219.0" layoutY="14.0" prefHeight="30.0" prefWidth="200.0" promptText="Nom" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="10.0" />
             <TextField fx:id="Mail" layoutX="421.0" layoutY="14.0" prefHeight="30.0" prefWidth="320.0" promptText="Adresse email" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <ScrollPane fx:id="MembersScroll" layoutX="14.0" layoutY="56.0" prefHeight="196.0" prefWidth="607.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
+            <ScrollPane fx:id="MembersScroll" prefHeight="196.0" prefWidth="607.0" stylesheets="@../../../scrollPane.css" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="55.0">
                <content>
                   <GridPane fx:id="MembersList" prefHeight="31.0" prefWidth="587.0">
                     <columnConstraints>
@@ -204,9 +203,9 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <Button fx:id="AddMember" layoutX="622.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleClickAddMember" prefHeight="35.0" prefWidth="125.0" text="Ajouter" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-            <Button fx:id="AddCSV" layoutX="655.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleClickUseCSV" prefHeight="35.0" prefWidth="125.0" text="Utiliser un .csv" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0" />
-            <Button fx:id="RemoveAll" layoutX="655.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleClickRemoveAll" prefHeight="35.0" prefWidth="125.0" text="Supprimer tout" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="10.0" />
+            <Button fx:id="AddMember" layoutX="622.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleClickAddMember" prefHeight="35.0" prefWidth="125.0" text="Ajouter" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="55.0" />
+            <Button fx:id="AddCSV" layoutX="655.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleClickUseCSV" prefHeight="35.0" prefWidth="125.0" text="Utiliser .csv" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="135.0" />
+            <Button fx:id="RemoveAll" layoutX="655.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleClickRemoveAll" prefHeight="35.0" prefWidth="125.0" text="Supprimer" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="10.0" />
          </children>
       </AnchorPane>
    </children>

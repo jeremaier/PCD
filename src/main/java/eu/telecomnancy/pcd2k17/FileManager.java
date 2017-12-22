@@ -52,19 +52,21 @@ public class FileManager {
         return null;
     }
 
-    public static ArrayList getNewGroupsInGit(List<Group> groupsList) {
+    public static ArrayList getNewGroupsInGit(List<GroupConfiguration> groupsList) {
         List<GroupConfiguration> groupsConfigurationList = loadGroupsFromFile();
-        ArrayList newGroupsList = new ArrayList();
+        ArrayList<GroupConfiguration> newGroupsList = new ArrayList();
         int k;
 
         if (groupsList != null) {
             for (int i = 0; i < groupsList.size(); i++) {
                 k = -1;
 
-                for (int j = 0; j < groupsConfigurationList.size(); j++) {
-                    if (groupsList.get(i).getId() == groupsConfigurationList.get(j).getId()) {
-                        k = j;
-                        break;
+                if (groupsConfigurationList != null) {
+                    for (int j = 0; j < groupsConfigurationList.size(); j++) {
+                        if (groupsList.get(i).getId() == groupsConfigurationList.get(j).getId()) {
+                            k = j;
+                            break;
+                        }
                     }
                 }
 
