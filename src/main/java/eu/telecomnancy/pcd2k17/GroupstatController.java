@@ -48,6 +48,7 @@ public class GroupstatController implements Initializable {
     public GroupstatController(GitLabApi gitLab,int projectID, List<MemberInformations> liste){
         this.gitLab=gitLab;
         this.projectID=projectID;
+        this.liste=liste;
     }
 
 
@@ -67,12 +68,15 @@ public class GroupstatController implements Initializable {
             int[] tabnb = new int[list.size()];
             Date[] tabdate = new Date[list.size()];
             Date maxDate = null;
+            int[] tabsemaine= new int[7];
 
 
             int[][] commitshistory = new int[365][list.size()];
 
             for (Commit p : listCommits) {
                 int k = 0;
+                LocalDate dateter = p.getAuthoredDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                tabsemaine[dateter.getDayOfWeek().getValue()]++;
                 for (org.gitlab4j.api.models.Member m : list) {
                     LocalDate datebis = p.getAuthoredDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     if (p.getAuthorName().equals(m.getName())) {
@@ -93,8 +97,10 @@ public class GroupstatController implements Initializable {
             String[] listmailord = new String[list.size()];
             int k=0;
             for (Member M : list){
+
                 for (MemberInformations m : liste){
-                    if (m.getLastName()+ " " + m.getFirstname()==M.getName()){
+                    if (M.getName().toLowerCase().equals(m.getLastName().toLowerCase()+ " " + m.getFirstname().toLowerCase())){
+
                         listmailord[k]=m.getEmail();
                         k++;
                     }
@@ -102,10 +108,13 @@ public class GroupstatController implements Initializable {
             }
 
 
+
+
             for (Commit p : listCommits){
 
-
                 for (int k3=0;k3<list.size();k3++){
+
+
                     if (maxDate==null){
                         maxDate=p.getCommittedDate();
                     }
@@ -123,7 +132,6 @@ public class GroupstatController implements Initializable {
                         }
 
                     }
-                    k3+=1;
                 }
             }
 
@@ -232,9 +240,10 @@ public class GroupstatController implements Initializable {
 
             accordion.getPanes().addAll(tps);
 
-            ac2.setMaxSize(400.0, 250.0);
-            ac.setMaxSize(400.0, .0);
-            barChart.setMaxSize(400.0, 250.0);
+
+            chart1.setMaxSize(400,300);
+            chart2.setMaxSize(400,300);
+            chart3.setMaxSize(400,300);
 
             global_data.getChildren().add(gridglob);
             individual_data.getChildren().add(accordion);
