@@ -36,7 +36,7 @@ public class GroupstatView {
 
     final static Logger log = LogManager.getLogger(GroupstatView.class);
 
-    public GroupstatView (GitLabApi gitLab,int projectID, List<MemberInformations> liste) throws Exception{
+    public GroupstatView (GitLabApi gitLab,int projectID,GroupConfiguration groupconf ) throws Exception{
 
             Stage primaryStage =new Stage();
 
@@ -44,7 +44,7 @@ public class GroupstatView {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Groupstat.fxml"));
-            loader.setControllerFactory(iC -> new GroupstatController(gitLab,projectID,liste));
+            loader.setControllerFactory(iC -> new GroupstatController(gitLab,projectID,groupconf));
             Parent root = loader.load();
 
 
@@ -54,7 +54,7 @@ public class GroupstatView {
             });
 
 
-            primaryStage.setScene(new Scene(root, 800, 700));
+            primaryStage.setScene(new Scene(root, 1183, 535));
             primaryStage.show();
     }
 

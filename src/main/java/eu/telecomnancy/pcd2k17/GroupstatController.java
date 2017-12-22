@@ -2,6 +2,7 @@ package eu.telecomnancy.pcd2k17;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import javafx.scene.chart.*;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
@@ -12,11 +13,13 @@ import javafx.scene.layout.GridPane;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.Commit;
+import org.gitlab4j.api.models.Group;
 import org.gitlab4j.api.models.Member;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,6 +30,8 @@ public class GroupstatController implements Initializable {
     int projectID;
 
     List<MemberInformations> liste;
+
+    GroupConfiguration groupconf;
 
 
     @FXML
@@ -39,16 +44,19 @@ public class GroupstatController implements Initializable {
 
 
     @FXML    private AnchorPane global_data;
-    @FXML    private AnchorPane individual_data;
+    @FXML    private AnchorPane stat_indiv;
     @FXML    private AnchorPane chart1;
     @FXML    private AnchorPane chart2;
     @FXML    private AnchorPane chart3;
+    @FXML    private AnchorPane charthaut;
+    @FXML    private Label groupNom;
 
 
-    public GroupstatController(GitLabApi gitLab,int projectID, List<MemberInformations> liste){
+    public GroupstatController(GitLabApi gitLab,int projectID, GroupConfiguration groupconf ){
         this.gitLab=gitLab;
         this.projectID=projectID;
-        this.liste=liste;
+        this.groupconf= groupconf;
+
     }
 
 
@@ -60,7 +68,7 @@ public class GroupstatController implements Initializable {
             List<Commit> listCommits = gitLab.getCommitsApi().getCommits(projectID);
             List<org.gitlab4j.api.models.Member> list = gitLab.getProjectApi().getMembers(projectID);
 
-
+            ArrayList<MemberInformations> liste = groupconf.getMembersList();
             final TitledPane[] tps = new TitledPane[list.size()];
             final GridPane[] grid = new GridPane[list.size()];
             final GridPane gridglob = new GridPane();
@@ -69,6 +77,7 @@ public class GroupstatController implements Initializable {
             Date[] tabdate = new Date[list.size()];
             Date maxDate = null;
             int[] tabsemaine= new int[7];
+            int[] tabjour=new int[24];
 
 
             int[][] commitshistory = new int[365][list.size()];
@@ -76,7 +85,7 @@ public class GroupstatController implements Initializable {
             for (Commit p : listCommits) {
                 int k = 0;
                 LocalDate dateter = p.getAuthoredDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                tabsemaine[dateter.getDayOfWeek().getValue()]++;
+                tabsemaine[dateter.getDayOfWeek().getValue()]+=1;
                 for (org.gitlab4j.api.models.Member m : list) {
                     LocalDate datebis = p.getAuthoredDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     if (p.getAuthorName().equals(m.getName())) {
@@ -182,6 +191,29 @@ public class GroupstatController implements Initializable {
             GridPane.setConstraints(label4glob, 1, 2);
 
 
+            LocalDate deb=GroupConfiguration.getById(groupconf.getId()).getFirstDay();
+            LocalDate fin=GroupConfiguration.getById(groupconf.getId()).getLastDay();
+
+            int debut = deb.getDayOfYear();
+            int fini;
+
+            Date AUJ=new Date();
+            int AUJ1 = AUJ.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfYear();
+
+            if (fin==null){
+
+                fini = AUJ1;
+
+            } else {
+                if (fin.getDayOfYear()>AUJ1){
+                    fini=AUJ1;
+                }else{
+                    fini = fin.getDayOfYear();
+                }
+
+            }
+
+
             CategoryAxis xAxis = new CategoryAxis();
             xAxis.setLabel("Auteurs");
             NumberAxis yAxis = new NumberAxis();
@@ -202,7 +234,7 @@ public class GroupstatController implements Initializable {
             gridglob.getChildren().addAll(label1glob, label2glob, label3glob, label4glob);
 
 
-            final NumberAxis xAxis1 = new NumberAxis(320, 365, 1);
+            final NumberAxis xAxis1 = new NumberAxis(debut-debut, fini-debut, 1);
             final NumberAxis yAxis1 = new NumberAxis();
             final AreaChart<Number, Number> ac =
                     new AreaChart<Number, Number>(xAxis1, yAxis1);
@@ -212,44 +244,69 @@ public class GroupstatController implements Initializable {
             for (Member m : list) {
                 XYChart.Series seriesApril = new XYChart.Series();
                 seriesApril.setName(m.getName());
-                for (int u = 320; u < 365; u++) {
-                    seriesApril.getData().add(new XYChart.Data(u, commitshistory[u][k1]));
+                for (int u = debut; u < fini+1; u++) {
+                    seriesApril.getData().add(new XYChart.Data(u-debut, commitshistory[u][k1]));
                 }
                 ac.getData().addAll(seriesApril);
                 k1++;
             }
 
-            final NumberAxis xAxis2 = new NumberAxis(320, 365, 1);
-            final NumberAxis yAxis2 = new NumberAxis(0, 2, 1);
+            final NumberAxis xAxis2 = new NumberAxis(debut-debut, fini-debut, 1);
+            final NumberAxis yAxis2 = new NumberAxis();
             final AreaChart<Number, Number> ac2 = new AreaChart<Number, Number>(xAxis2, yAxis2);
             ac2.setTitle("Nombre de commits par jours du groupe");
 
 
             XYChart.Series seriesnovember = new XYChart.Series();
             seriesnovember.setName("groupe");
-            for (int u = 320; u < 365; u++) {
+
+
+
+
+            for (int u = debut; u < fini+1; u++) {
                 int a = 0;
                 for (int k2 = 0; k2 < list.size(); k2++) {
                     a = a + commitshistory[u][k2];
 
                 }
-                seriesnovember.getData().add(new XYChart.Data(u, a));
+                seriesnovember.getData().add(new XYChart.Data(u-debut, a));
             }
             ac2.getData().addAll(seriesnovember);
+
+            CategoryAxis xAx = new CategoryAxis();
+            xAxis.setLabel("jour de la semaine");
+            NumberAxis yAx = new NumberAxis();
+            yAxis.setLabel("nb Commits");
+
+            BarChart barChartjour = new BarChart(xAx, yAx);
+
+            XYChart.Series dataSeries5 = new XYChart.Series();
+            dataSeries5.setName("commits/jours");
+
+                dataSeries5.getData().add(new XYChart.Data("Lundi", tabsemaine[1]));
+                dataSeries5.getData().add(new XYChart.Data("Mardi", tabsemaine[2]));
+                dataSeries5.getData().add(new XYChart.Data("Mercredi", tabsemaine[3]));
+                dataSeries5.getData().add(new XYChart.Data("Jeudi", tabsemaine[4]));
+                dataSeries5.getData().add(new XYChart.Data("vendredi", tabsemaine[5]));
+                dataSeries5.getData().add(new XYChart.Data("samedi", tabsemaine[6]));
+                dataSeries5.getData().add(new XYChart.Data("dimanche", tabsemaine[0]));
+
+
+            barChartjour.getData().add(dataSeries5);
+
 
 
             accordion.getPanes().addAll(tps);
 
-
-            chart1.setMaxSize(400,300);
-            chart2.setMaxSize(400,300);
-            chart3.setMaxSize(400,300);
+            groupNom.setText(groupconf.getName());
 
             global_data.getChildren().add(gridglob);
-            individual_data.getChildren().add(accordion);
-            chart1.getChildren().add(barChart);
-            chart2.getChildren().add(ac);
+            stat_indiv.getChildren().add(accordion);
+            charthaut.getChildren().add(barChart);
+            chart1.getChildren().add(ac);
+            chart2.getChildren().add(barChartjour);
             chart3.getChildren().add(ac2);
+
         }
         catch (GitLabApiException e) {
             e.printStackTrace();
