@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -21,10 +23,16 @@ import org.gitlab4j.api.GitLabApiException;
 import org.gitlab4j.api.models.*;
 import org.gitlab4j.api.models.Group;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.List;
 
 public class ContentController implements Initializable {
 
@@ -87,7 +95,7 @@ public class ContentController implements Initializable {
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("GmailView.fxml"));
-                loader.setControllerFactory(iC-> new GmailSTMP(thisgroup,gitlab));
+                loader.setControllerFactory(iC-> new GmailSTMP(thisgroup));
                 Parent root = null;
                 try {
                     root = loader.load();
@@ -127,11 +135,13 @@ public class ContentController implements Initializable {
             public void handle(ActionEvent event) {
                 Stage groupStage= new Stage();
                 try {
-                    //new ProjectsView(groupStage,thisgroup);
+                    new ProjectsView(groupStage,thisgroup,gitlab);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
+
         });
 
         GroupConfiguration gc = GroupConfiguration.getById(thisgroup.getId());
@@ -164,9 +174,14 @@ public class ContentController implements Initializable {
             table.add(contact,nbmembers+2,0);
             table.setMinSize(100,30);
             width=width+100;
+            Label wento = new Label("  Aller à  ");
+            wento.setMinSize(100,30);
+            table.add(wento,nbmembers+3,0);
+            table.setMinSize(100,30);
+            width=width+100;
             Label supp = new Label("  Supprimer  ");
             supp.setMinSize(100,30);
-            table.add(supp,nbmembers+3,0);
+            table.add(supp,nbmembers+4,0);
             table.setMinSize(100,30);
             width=width+100;
             int i=1;
@@ -205,9 +220,18 @@ public class ContentController implements Initializable {
     }
 
     private void addRow(List<Member> members, int nbrow, int id,int nbmembers, Project p) {
+        ArrayList<MemberInformations> groupmember = groupconfig.getMembersList();
         int i=1;
+        ArrayList<String> email =new ArrayList<>();
+        Label groupname = new Label("   "+p.getName());
+        table.add(groupname,0,nbrow);
         for (Member m : members){
             Label membre = new Label("   "+m.getName());
+            for (MemberInformations mi : groupmember){
+                if(m.getName().toLowerCase().contains((mi.getFirstname().toLowerCase())) && m.getName().toLowerCase().contains((mi.getLastName().toLowerCase()))){
+                    email.add(mi.getEmail());
+                }
+            }
             this.table.add(membre, i, nbrow);
             i++;
         }
@@ -218,7 +242,7 @@ public class ContentController implements Initializable {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-        }); 
+        });
         table.add(stats, nbmembers+1, nbrow);
 
         Button contact = new Button("          ✉          ");
@@ -230,7 +254,7 @@ public class ContentController implements Initializable {
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("GmailView.fxml"));
-                loader.setControllerFactory(iC-> new GmailSTMP(thisgroup,gitlab));
+                loader.setControllerFactory(iC-> new GmailSTMP(email,thisgroup));
                 Parent root = null;
                 try {
                     root = loader.load();
@@ -246,8 +270,22 @@ public class ContentController implements Initializable {
                 mailStage.show();
             }
         });
-
         table.add(contact, nbmembers+2, nbrow);
+
+        Button wentto = new Button("           ͢͢           ");
+        wentto.setOnAction(e -> {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://gitlab.telecomnancy.univ-lorraine.fr/"+thisgroup.getFullPath()+"/"+p.getPath()));
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                } catch (URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+        table.add(wentto, nbmembers+3, nbrow);
+
         Button supp = new Button("          ✖          ");
         supp.setOnAction(e -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -263,7 +301,7 @@ public class ContentController implements Initializable {
                 }
             }
         });
-        table.add(supp, nbmembers+3, nbrow);
+        table.add(supp, nbmembers+4, nbrow);
     }
 
 

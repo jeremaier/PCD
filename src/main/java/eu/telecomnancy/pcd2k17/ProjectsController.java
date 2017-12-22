@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
@@ -27,6 +28,8 @@ public class ProjectsController implements Initializable {
     public int number;
     //private int this.groupes2.size();
     private int taille;
+
+    public int shift;
     public TextField[][] textes;
     public ArrayList<String> namesAdded;
     //public Group[] groupes;
@@ -37,7 +40,11 @@ public class ProjectsController implements Initializable {
     public ArrayList<Button> removeButtons;
     public GitLabApi gitlab;
 
+    public ArrayList<Integer> studentsAdded;
+
     public List<User> membersLoaded;
+
+    public List<Project> projetsGit;
 
     @FXML
     private GridPane TextFieldTab;
@@ -76,11 +83,11 @@ public class ProjectsController implements Initializable {
 
             for (int j=0;j<membres.size();j++) {
 
-                //System.out.println("Comparaison entre "+membres.get(j).getName().toLowerCase()+" et "+resultat.get(i).getLastName().toLowerCase());
+                System.out.println("Comparaison entre "+membres.get(j).getName().toLowerCase()+" et "+resultat.get(i).getLastName().toLowerCase());
                 if (membres.get(j).getName().toLowerCase().contains(resultat.get(i).getLastName().toLowerCase())) {
 
                     resultat.get(i).setId(membres.get(j).getId());
-                    //System.out.println("ici, id = "+resultat.get(i).getId());
+                    System.out.println("ici, id = "+resultat.get(i).getId());
                     res++;
 
                 }
@@ -92,6 +99,42 @@ public class ProjectsController implements Initializable {
         return resultat;
     }
 
+
+    public ArrayList<MemberInformations> compare2(ArrayList<MemberInformations> membresInfo) {
+        List<User> resultat;
+
+        //resultat = membresInfo;
+
+        int res = 0;
+        for (int i=0;i<membresInfo.size();i++) {
+            resultat = new ArrayList<User>();
+            try {
+                System.out.println(membresInfo.get(i).getEmail());
+                resultat = gitlab.getUserApi().findUsers(membresInfo.get(i).getEmail());
+            } catch (GitLabApiException e) {
+                e.printStackTrace();
+            }
+
+            if (resultat.size()==1) {
+                System.out.println("ok");
+                membresInfo.get(i).setId(resultat.get(0).getId());
+            }
+        }
+        //System.out.println(resultat.size()+" noms initialement, "+res+" ont été changés");
+        return membresInfo;
+    }
+
+    public int getMemberIndex(Member membre) {
+
+        for (int i=0;i<this.liste.controleur.boutons.size();i++) {
+
+            if (membre.getUsername().toLowerCase().contains(this.liste.controleur.membres.get(i).getLastName().toLowerCase())) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
 
 
     public void automaticCreation() {
@@ -160,6 +203,7 @@ public class ProjectsController implements Initializable {
         for (int i=0;i<this.groupes2.size();i++) {
             addGroup(groupes2.get(i),i+1);
         }
+
     }
 
     private void removeText(int j) {
@@ -191,6 +235,9 @@ public class ProjectsController implements Initializable {
 
         }
 
+        if ((j>=0)&&(j<studentsAdded.size())) {
+            studentsAdded.remove(j);
+        }
         for (int k=j;k<number-1;k++) {
             this.textes[k][0].setText(this.textes[k+1][0].getText());
             this.textes[k][1].setText(this.textes[k+1][1].getText());
@@ -225,26 +272,29 @@ public class ProjectsController implements Initializable {
         }
 
         this.namesAdded = new ArrayList<String>();
+        printGitProjects();
         /*for (int i=0;i<this.liste.controleur.boutons.size();i++) {
             this.liste.controleur.boutons.get(i).setDisable(false);
         }*/
     }
 
     public void removeGroup(int pos) {
-        //pos = pos-1;
+
+        System.out.println("FDPPPP "+groupes2.get(pos).members.size());
         /*for (int j=pos;j<this.groupes2.size();j++) {
             this.groupes[j] = this.groupes[j+1];
         }
         this.groupes[this.groupes2.size()] = null;*/
-        for (int i=0;i<groupes2.get(pos).getNumber();i++) {
+        for (int i=0;i<groupes2.get(pos).members.size();i++) {
             for (int j=0;j<liste.controleur.membres.size();j++) {
-                if (this.liste.controleur.membres.get(j).getName().equals(this.groupes2.get(pos).getMember(i))) {
+                if (this.liste.controleur.membres.get(j).getLastName().equals(this.groupes2.get(pos).members.get(i).getLastName())) {
                     this.liste.controleur.boutons.get(j).setDisable(false);
                 }
             }
         }
         this.groupes2.remove(pos);
         redo();
+        printGitProjects();
     }
     public void addGroup() {
         //Group groupe = new Group(this.groupes2.size()+1,"Dreamteam",number);
@@ -260,21 +310,39 @@ public class ProjectsController implements Initializable {
             }
         }
         ProjectGroups groupe = new ProjectGroups(this.groupes2.size()+1,"Dreamteam",number);
+
+        if (nameGroupTF.getText().length()==0) {
+            boolean bool = isNameAvailable("Groupe "+groupe.id);
+            while (!bool) {
+                groupe.id = groupe.id + 1;
+                bool = isNameAvailable("Groupe "+groupe.id);
+            }
+            groupe.setName("Groupe "+groupe.id);
+        }
+        else {
+            if (isNameAvailable(nameGroupTF.getText())) {
+                groupe.setName(nameGroupTF.getText());
+            }
+            else {
+                System.out.println("Problème");
+                groupOK = false;
+                groupLabel.setText("Le nom de groupe existe déjà.");
+                nameGroupTF.setText("");
+                nameGroupTF.setPromptText("Nom du groupe");
+            }
+        }
+
+
         for (int i=0;i<number;i++) {
             if (groupOK) {
-                MemberInformations membre = new MemberInformations(textes[i][0].getText(), textes[i][1].getText(), "test@test.com");
+                MemberInformations membre = new MemberInformations(this.liste.controleur.membres.get(studentsAdded.get(i)).getLastName(), this.liste.controleur.membres.get(studentsAdded.get(i)).getName(), this.liste.controleur.membres.get(studentsAdded.get(i)).getEmail());
                 groupe.addMember(membre);
                 textes[i][0].setText("");
                 textes[i][1].setText("");
             }
         }
 
-        if (nameGroupTF.getText().length()==0) {
-            groupe.setName("Groupe "+groupe.id);
-        }
-        else {
-            groupe.setName(nameGroupTF.getText());
-        }
+
         if (groupOK) {
             groupLabel.setText("");
             nameGroupTF.setText("");
@@ -282,10 +350,33 @@ public class ProjectsController implements Initializable {
             this.groupes2.add(groupe);
             System.out.println(groupe.members.size());
             addGroup(groupe, this.groupes2.size());
+            this.studentsAdded = new ArrayList<Integer>();
         }
     }
 
+    private boolean isNameAvailable(String s) {
+
+        boolean res = true;
+        for (int i=0;i<projetsGit.size();i++) {
+
+            if (projetsGit.get(i).getName().toLowerCase().equals(s.toLowerCase())) {
+                res = false;
+            }
+
+        }
+
+        for (int j=0;j<groupes2.size();j++) {
+            if (groupes2.get(j).getName().toLowerCase().equals(s.toLowerCase())) {
+                res = false;
+            }
+        }
+        return res;
+
+    }
+
     private void addGroup(ProjectGroups groupe, int pos) {
+
+
 
         this.liste.controleur.memberAdded = 0;
 
@@ -309,22 +400,33 @@ public class ProjectsController implements Initializable {
 
         }
 
+        pos = pos+shift;
         Label nom = new Label(groupe.name);
         nom.setPadding(new Insets(10, 10, 10, 10));
         //this.groupes2.size()++;
         nom.setPrefHeight(30);
+
+        Label nonValide = new Label("Non validé");
+        nonValide.setPadding(new Insets(10, 10, 10, 10));
+        //this.groupes2.size()++;
+        nonValide.setPrefHeight(30);
+
+
         groupsTab.add(nom,0,pos);
-        for (int n=1;n<number+1;n++) {
-            Label membre = new Label(groupe.getMember(n-1));
+        groupsTab.add(nonValide, 1, pos);
+        for (int n=2;n<number+2;n++) {
+            Label membre = new Label(groupe.getMember(n-2));
             membre.setPadding(new Insets(10, 10, 10, 10));
             membre.setPrefHeight(30);
             groupsTab.add(membre,n,pos);
         }
+        final int pos2 = pos-shift;
         boutons[this.groupes2.size()-1] = new Button("X");
         boutons[this.groupes2.size()-1].setPadding(new Insets(10, 10, 10, 10));
         //int i = this.groupes2.size();
-        boutons[this.groupes2.size()-1].setOnAction(e -> removeGroup(pos-1));
-        groupsTab.add(boutons[this.groupes2.size()-1],groupe.number+1,pos);
+        boutons[this.groupes2.size()-1].setOnAction(e -> removeGroup(pos2-1));
+        groupsTab.add(boutons[this.groupes2.size()-1],number+2,pos);
+        printGitProjects();
 
         this.namesAdded = new ArrayList<String>();
 
@@ -359,13 +461,22 @@ public class ProjectsController implements Initializable {
         Label nom = new Label(groupe.name);
         nom.setPadding(new Insets(10, 10, 10, 10));
         //this.groupes2.size()++;
-        nom.setPrefHeight(30);
+        nom.setMaxHeight(30);
+
+        Label valide = new Label("Validé");
+        valide.setPadding(new Insets(10, 10, 10, 10));
+        //this.groupes2.size()++;
+        valide.setPrefHeight(30);
+
         groupsTab.add(nom,0,pos);
-        for (int n=1;n<groupe.members.size();n++) {
-            Label membre = new Label(groupe.getMember(n-1));
+        groupsTab.add(valide,1,pos);
+        for (int n=2;n<groupe.members.size()+2;n++) {
+            System.out.println("CONNARD "+groupe.members.get(n-2).getLastName());
+            Label membre = new Label(groupe.members.get(n-2).getLastName());
             membre.setPadding(new Insets(10, 10, 10, 10));
             membre.setPrefHeight(30);
             groupsTab.add(membre,n,pos);
+            System.out.println("FILS DE PUTE "+groupe.members.get(n-2).getEmail());
         }
         /*boutons[this.groupes2.size()-1] = new Button("X");
         boutons[this.groupes2.size()-1].setPadding(new Insets(10, 10, 10, 10));
@@ -398,6 +509,8 @@ public class ProjectsController implements Initializable {
         }*/
         //this.groupes = new Group[100];
 
+        projetsGit = new ArrayList<Project>();
+
         /*ArrayList<MemberInformations> membresInfo;
         membresInfo = new ArrayList<MemberInformations>();
         membresInfo.add(new MemberInformations("Lefort","Maxence","maxence.lefort@telecomnancy.eu",-1));
@@ -410,12 +523,12 @@ public class ProjectsController implements Initializable {
         membresInfo.add(new MemberInformations("Trousseu","Mathieu","mathieu.trousseu@telecomnancy.eu",-1));
         membresInfo.add(new MemberInformations("Courtot","Clément","clement.courtot@telecomnancy.eu",-1));*/
 
-
+        this.studentsAdded = new ArrayList<Integer>();
 
         //List<Member> membersLoaded;
         this.membersLoaded = new ArrayList<User>();
         try {
-            this.membersLoaded = this.gitlab.getUserApi().getUsers();
+            this.membersLoaded = this.gitlab.getUserApi().getUsers(0, 200);
         } catch (GitLabApiException e) {
             e.printStackTrace();
         }
@@ -469,6 +582,11 @@ public class ProjectsController implements Initializable {
             TextFieldTab.add(remove,2,i);
         }
 
+        printGitProjects();
+
+    }
+
+    private void printGitProjects() {
         List<Project> projets;
         projets = new ArrayList<Project>();
         try {
@@ -476,7 +594,9 @@ public class ProjectsController implements Initializable {
         } catch (GitLabApiException e) {
             e.printStackTrace();
         }
-        System.out.println(projets.size());
+        projetsGit = projets;
+        this.shift = projets.size();
+        System.out.println("Projets récupérés : "+projets.size());
         for (int j=0;j<projets.size();j++) {
             ProjectGroups projet;
             projet = new ProjectGroups(projets.get(j).getId(), projets.get(j).getName(), this.number);
@@ -487,16 +607,26 @@ public class ProjectsController implements Initializable {
             } catch (GitLabApiException e) {
                 e.printStackTrace();
             }
+            System.out.println("La taille des projets est : "+members.size());
             for (int k=0;k<members.size();k++) {
                 MemberInformations member;
-                System.out.println(members.size());
-                member = new MemberInformations(members.get(k).getName(),members.get(k).getName(),null);
-                members.get(k).getName();
+                System.out.println("ok....."+members.get(k).getUsername()+"@telecomnancy.eu");
+                System.out.println("fdp....."+members.get(k).getEmail()+"@telecomnancy.eu");
+
+                member = new MemberInformations(members.get(k).getName(),members.get(k).getName(),members.get(k).getEmail());
+                //members.get(k).getName();
+
+                System.out.println("Est ce que ca marche : "+getMemberIndex(members.get(k)));
+                if (getMemberIndex(members.get(k))!=-1) {
+                    System.out.println("Ca marche");
+                    member.setLastName(this.liste.controleur.membres.get(getMemberIndex(members.get(k))).getLastName());
+                    this.liste.controleur.boutons.get(getMemberIndex(members.get(k))).setDisable(true);
+                }
+
                 projet.addMember(member);
             }
             addGitGroup(projet, j+1);
         }
-
     }
 
     private void createGitGroups() {
@@ -516,50 +646,55 @@ public class ProjectsController implements Initializable {
         }
         else {
 
-            Project test = new Project();
+            for (int k=0;k<groupes2.size();k++) {
 
-            this.groupes2.get(0).members = compare(membersLoaded, this.groupes2.get(0).members);
+                Project test = new Project();
 
+                //this.groupes2.get(0).members = compare(membersLoaded, this.groupes2.get(0).members);
+                System.out.println("fdp, le nombre est "+this.groupes2.size());
+                this.groupes2.get(k).members = compare2(this.groupes2.get(k).members);
 
-            //System.out.println(this.groupes2.get(0).members.get(0).getLastName());
-            Project projet = new Project();
-            projet.setName(this.groupes2.get(0).getName());
+                //System.out.println(this.groupes2.get(0).members.get(0).getLastName());
+                Project projet = new Project();
+                projet.setName(this.groupes2.get(k).getName());
 
-            //System.out.println(projets.size());
-            //System.out.println(projets.get(1).getId());
-            //System.out.println(projets.get(1).getName());
+                //System.out.println(projets.size());
+                //System.out.println(projets.get(1).getId());
+                //System.out.println(projets.get(1).getName());
 
-            projets.add(projet);
-            groupe.setProjects(projets);
-            try {
-
-                test = gitlab.getProjectApi().createProject(groupe.getId(),"Projet 42");
-            } catch (GitLabApiException e) {
-                e.printStackTrace();
-            }
-            try {
-                gitlab.getGroupApi().updateGroup(groupe.getId(),groupe.getName(),groupe.getPath(),groupe.getDescription(),groupe.getRequestAccessEnabled(),groupe.getRequestAccessEnabled(),groupe.getVisibility(),groupe.getRequestAccessEnabled(),groupe.getRequestAccessEnabled(),groupe.getParentId(),groupe.getSharedRunnersMinutesLimit());
-            } catch (GitLabApiException e) {
-                e.printStackTrace();
-            }
-
-
-            try {
-                projets = gitlab.getGroupApi().getProjects(groupe.getId());
-            } catch (GitLabApiException e) {
-                e.printStackTrace();
-            }
-
-            //System.out.println(projets.size());
-            //System.out.println(projets.get(1).getId());
-            //System.out.println(projets.get(1).getName());
-            for (int i=0;i<this.groupes2.get(0).number;i++) {
+                projets.add(projet);
+                groupe.setProjects(projets);
                 try {
-                    //System.out.println("là, id = "+this.groupes2.get(0).members.get(i).getId());
-                    //gitlab.getProjectApi().getProject()
-                    gitlab.getProjectApi().addMember(test.getId(), this.groupes2.get(0).members.get(i).getId(), AccessLevel.MASTER);
+
+                    test = gitlab.getProjectApi().createProject(groupe.getId(),groupes2.get(k).name);
                 } catch (GitLabApiException e) {
                     e.printStackTrace();
+                }
+                try {
+                    gitlab.getGroupApi().updateGroup(groupe.getId(),groupe.getName(),groupe.getPath(),groupe.getDescription(),groupe.getRequestAccessEnabled(),groupe.getRequestAccessEnabled(),groupe.getVisibility(),groupe.getRequestAccessEnabled(),groupe.getRequestAccessEnabled(),groupe.getParentId(),groupe.getSharedRunnersMinutesLimit());
+                } catch (GitLabApiException e) {
+                    e.printStackTrace();
+                }
+
+
+                try {
+                    projets = gitlab.getGroupApi().getProjects(groupe.getId());
+                } catch (GitLabApiException e) {
+                    e.printStackTrace();
+                }
+
+                //System.out.println(projets.size());
+                //System.out.println(projets.get(1).getId());
+                //System.out.println(projets.get(1).getName());
+                for (int i=0;i<this.groupes2.get(k).number;i++) {
+                    try {
+                        //System.out.println("là, id = "+this.groupes2.get(0).members.get(i).getId());
+                        //gitlab.getProjectApi().getProject()
+                        gitlab.getProjectApi().addMember(test.getId(), this.groupes2.get(k).members.get(i).getId(), AccessLevel.MASTER);
+                    } catch (GitLabApiException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
             }

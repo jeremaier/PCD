@@ -25,6 +25,7 @@ public class GmailSTMP implements Initializable {
 
     private Group thisgroup;
     private GitLabApi gitlab;
+    private ArrayList<String> mail;
 
     private boolean error = false;
 
@@ -46,11 +47,15 @@ public class GmailSTMP implements Initializable {
     @FXML
     Button sendButton;
 
-    public GmailSTMP(Group group, GitLabApi gl){
-
+    public GmailSTMP(Group group){
         thisgroup=group;
-        gitlab=gl;
     }
+
+    public GmailSTMP(ArrayList<String> email,Group group){
+        mail=email;
+        thisgroup=group;
+    }
+
 
     public void sendMailTool(String id, String mdp, String destinataire, String sujet, String corps) {
         final String username = id;
@@ -73,8 +78,7 @@ public class GmailSTMP implements Initializable {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(destinataire));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinataire));
             message.setSubject(sujet);
             message.setText(corps);
 
@@ -92,10 +96,18 @@ public class GmailSTMP implements Initializable {
 
 
     public void sendMail(){
-        ArrayList<MemberInformations> list = GroupConfiguration.getById(thisgroup.getId()).getMembersList();
-        for (MemberInformations m : list){
-            sendMailTool(id_fill.getText(),password_fill.getText(),m.getEmail(),subject.getText(),message.getText());
+        if(mail==null){
+            ArrayList<MemberInformations> list = GroupConfiguration.getById(thisgroup.getId()).getMembersList();
+            for (MemberInformations m : list){
+                sendMailTool(id_fill.getText(),password_fill.getText(),m.getEmail(),subject.getText(),message.getText());
+            }
         }
+        else{
+            for(int k=0; k<mail.size(); k++){
+                sendMailTool(id_fill.getText(),password_fill.getText(),mail.get(k),subject.getText(),message.getText());
+            }
+        }
+
         if(!error){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Delivery message");
