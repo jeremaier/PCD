@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    compile 'com.sun.mail:android-mail:1.5.5'
+    compile 'com.sun.mail:android-activation:1.5.5'
     compile 'org.apache.logging.log4j:log4j-api:2.10.0'
     compile 'org.apache.logging.log4j:log4j-core:2.10.0'
     compile 'org.gitlab4j:gitlab4j-api:4.7.4'

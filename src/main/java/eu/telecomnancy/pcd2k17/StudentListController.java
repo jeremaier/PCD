@@ -43,6 +43,7 @@ public class StudentListController implements Initializable {
 
     public void addStudent(int number) {
 
+        System.out.println(number);
     //System.out.println(memberAdded+","+groupes.number);
         System.out.println("Le numéro est "+number+" et la taille de membres est "+this.membres.size());
         memberAdded = this.groupes.namesAdded.size();
@@ -53,6 +54,8 @@ public class StudentListController implements Initializable {
 
             boutons.get(number-1).setDisable(true);
             this.groupes.namesAdded.add(groupes.textes[memberAdded][0].getText());
+            this.groupes.studentsAdded.add(number-1);
+            System.out.println(this.groupes.studentsAdded.get(groupes.studentsAdded.size()-1));
             memberAdded++;
         }
         if (memberAdded==groupes.number) {
@@ -92,6 +95,8 @@ public class StudentListController implements Initializable {
         //ArrayList<MemberInformations> membres;
         this.membres = new ArrayList<MemberInformations>();
         this.membres = GroupConfiguration.getById(groupe.getId()).getMembersList();
+
+        System.out.println(this.membres.get(0).getEmail());
         System.out.println("Taille = "+this.membres.size());
 
         int taille;

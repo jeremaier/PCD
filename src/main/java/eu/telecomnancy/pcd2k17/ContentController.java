@@ -76,7 +76,7 @@ public class ContentController implements Initializable {
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("GmailView.fxml"));
-                loader.setControllerFactory(iC-> new GmailSTMP(thisgroup));
+                //loader.setControllerFactory(iC-> new GmailSTMP(thisgroup));
                 Parent root = null;
                 try {
                     root = loader.load();

@@ -7,6 +7,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -138,7 +139,7 @@ public class ConfigurationViewController implements Initializable {
     }
 
     private void initializeGroupConfiguration() {
-        groupsList = GroupConfiguration.loadGroupsFromFile();
+        groupsList = FileManager.loadGroupsFromFile();
         int idProject = 0;
 
         if(groupsList != null) {
@@ -183,7 +184,7 @@ public class ConfigurationViewController implements Initializable {
             allInformations = false;
 
         if(allInformations) {
-            MemberInformations member = new MemberInformations(fields[0].toLowerCase(), fields[1].toLowerCase(), fields[2].toLowerCase(), -1);
+            MemberInformations member = new MemberInformations(fields[0].toLowerCase(), fields[1].toLowerCase(), fields[2].toLowerCase());
             boolean contains = false;
             int length = members.size();
 
@@ -211,12 +212,14 @@ public class ConfigurationViewController implements Initializable {
     }
 
     private void reDoGridPane() {
-        if(this.MembersList != null) {
-            this.MembersList.getChildren().clear();
+        Node node = this.MembersList.getChildren().get(0);
+        this.MembersList.getChildren().clear();
+        this.MembersList.getChildren().add(0, node);
 
+        /*if(this.MembersList != null) {
             for (int i = 0; i < this.members.size(); i++)
                 addRow(members.size() - 1, members);
-        }
+        }*/
     }
 
     private void addRow(int pos, ArrayList<MemberInformations> members) {
@@ -279,8 +282,6 @@ public class ConfigurationViewController implements Initializable {
         ArrayList<MemberInformations> groupConfMembersList = this.groupConfiguration.getMembersList();
         int length = groupConfMembersList.size();
 
-        //System.out.println(groupConfMembersList.get(0).getFirstname());
-
         if(length != 0) {
             for (int i = 0; i < length; i++) {
                 this.members.add(groupConfMembersList.get(i));
@@ -300,11 +301,15 @@ public class ConfigurationViewController implements Initializable {
         this.setArchiveText();
         this.setMembersList();
 
-        try {
-            Image image = SwingFXUtils.toFXImage(ImageIO.read(new URL(this.group.getAvatarUrl())), null);
-            Avatar.setImage(image);
-        } catch(IOException e) {
-            e.printStackTrace();
+        String avatarUrl = this.group.getAvatarUrl();
+
+        if(avatarUrl != null) {
+            try {
+                Image image = SwingFXUtils.toFXImage(ImageIO.read(new URL(avatarUrl)), null);
+                Avatar.setImage(image);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         if(visibility == 1)
