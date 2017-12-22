@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.GroupstatController">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="1183.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.telecomnancy.pcd2k17.GroupstatController">
     <children>
-        <Label layoutX="32.0" layoutY="27.0" text="GROUPE N°">
+        <Label fx:id="groupNom" layoutX="32.0" layoutY="27.0">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-
-        <AnchorPane fx:id="global_data" layoutX="-1.0" layoutY="81.0" prefHeight="84.0" prefWidth="400.0" />
-        <AnchorPane fx:id="chart1" layoutX="393.0" layoutY="81.0" prefHeight="246.0" prefWidth="400.0" />
-        <AnchorPane fx:id="chart3" layoutX="400.0" layoutY="326.0" prefHeight="274.0" prefWidth="400.0" />
-        <AnchorPane fx:id="individual_data" layoutX="-1.0" layoutY="174.0" prefHeight="154.0" prefWidth="400.0" />
-        <Separator layoutY="79.0" opacity="0.18" prefHeight="3.0" prefWidth="800.0">
+        <AnchorPane fx:id="global_data" layoutX="1.0" layoutY="90.0" prefHeight="61.0" prefWidth="400.0" />
+        <Separator layoutY="79.0" opacity="0.18" prefHeight="3.0" prefWidth="1200.0">
             <effect>
                 <DropShadow>
                     <input>
@@ -36,8 +30,18 @@
                 </DropShadow>
             </effect>
         </Separator>
-        <AnchorPane fx:id="chart2" layoutX="-1.0" layoutY="327.0" prefHeight="274.0" prefWidth="400.0" />
-        <Separator layoutX="1.0" layoutY="326.0" prefHeight="3.0" prefWidth="800.0" />
-
+        <AnchorPane fx:id="stat_indiv" layoutX="-7.0" layoutY="170.0" prefHeight="156.0" prefWidth="400.0" />
+        <ScrollPane layoutX="393.0" layoutY="79.0" prefHeight="457.0" prefWidth="791.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="434.0" prefWidth="2000.0">
+                    <children>
+                        <AnchorPane fx:id="chart1" layoutX="500.0" prefHeight="434.0" prefWidth="500.0" />
+                        <AnchorPane fx:id="chart2" layoutX="1000.0" prefHeight="434.0" prefWidth="500.0" />
+                        <AnchorPane fx:id="chart3" layoutX="1500.0" prefHeight="434.0" prefWidth="500.0" />
+                        <AnchorPane fx:id="charthaut" prefHeight="434.0" prefWidth="500.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
     </children>
 </AnchorPane>
